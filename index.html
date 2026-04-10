@@ -66,6 +66,7 @@
       padding: 14px 20px;
       display: flex; align-items: center; justify-content: space-between;
       box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      display: none;
     }
 
     header h1 { font-size: 1.2rem; color: #fff; }
@@ -80,7 +81,7 @@
     .bottom-nav {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
       background: var(--card); border-top: 1px solid var(--border);
-      display: flex; height: 62px;
+      display: none; height: 62px;
     }
 
     .bottom-nav button {
@@ -216,21 +217,21 @@
     <h2>Espaço KR</h2>
     <p>Agenda exclusiva da equipe</p>
     <input type="password" id="loginInput" placeholder="••••••" maxlength="20"
-           onkeydown="if(event.key==='Enter') doLogin()"/>
+           onkeydown="if(event.key==='Enter') document.getElementById('btnEntrar').click()"/>
     <div class="login-error" id="loginError"></div>
-    <button class="btn-login" onclick="doLogin()">Entrar</button>
+    <button class="btn-login" id="btnEntrar">Entrar</button>
   </div>
 </div>
 
 <!-- HEADER -->
-<header>
+<header id="mainHeader">
   <div>
     <h1>✂ Espaço KR</h1>
     <p id="headerDate"></p>
   </div>
   <div class="sync-indicator">
     <div class="sync-dot" id="syncDot"></div>
-    <span id="syncLabel">Online</span>
+    <span id="syncLabel">Conectando...</span>
   </div>
 </header>
 
@@ -307,7 +308,7 @@
 </div>
 
 <!-- BOTTOM NAV -->
-<nav class="bottom-nav">
+<nav class="bottom-nav" id="mainNav">
   <button class="active" onclick="goPage('home',this)"><span class="icon">🏠</span>Início</button>
   <button onclick="goPage('calendar',this)"><span class="icon">📅</span>Calendário</button>
   <button onclick="goPage('list',this)"><span class="icon">🔍</span>Buscar</button>
@@ -320,7 +321,7 @@
   import { getDatabase, ref, onValue, set }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-  // ══ FIREBASE CONFIG ══
+  // ══ CONFIG FIREBASE ══
   const firebaseConfig = {
     apiKey: "AIzaSyDuSjRYnCZ3QwCU_qQHd_IxwukqFDcCKsQ",
     authDomain: "espaco-kr.firebaseapp.com",
@@ -332,7 +333,7 @@
     measurementId: "G-6YBEP2K1J1"
   };
 
-  // ══ SENHA DE ACESSO ══
+  // ══ SENHA ══
   const SENHA_CORRETA = "espaco2024";
 
   const firebaseApp = initializeApp(firebaseConfig);
@@ -347,27 +348,47 @@
   let currentCal = new Date();
   let selectedDate = null;
   let agenda = {};
+  let syncStarted = false;
+
+  // ══ MOSTRAR APP ══
+  function mostrarApp() {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('mainHeader').style.display = 'flex';
+    document.getElementById('mainNav').style.display = 'flex';
+
+    const now = new Date();
+    document.getElementById('headerDate').textContent =
+      `${WEEKDAYS_FULL[now.getDay()]}, ${now.getDate()} de ${MONTHS[now.getMonth()]}`;
+
+    if (!syncStarted) {
+      syncStarted = true;
+      startSync();
+      renderCalendar();
+    }
+  }
 
   // ══ LOGIN ══
-  window.doLogin = function() {
+  function doLogin() {
     const val = document.getElementById('loginInput').value;
     const err = document.getElementById('loginError');
     if (val === SENHA_CORRETA) {
       sessionStorage.setItem('kr_auth', '1');
-      document.getElementById('loginScreen').style.display = 'none';
-      init();
+      err.textContent = '';
+      mostrarApp();
     } else {
       err.textContent = 'Senha incorreta. Tente novamente.';
       document.getElementById('loginInput').value = '';
     }
-  };
-
-  if (sessionStorage.getItem('kr_auth') === '1') {
-    document.getElementById('loginScreen').style.display = 'none';
-    init();
   }
 
-  // ══ SINCRONIZAÇÃO FIREBASE ══
+  document.getElementById('btnEntrar').addEventListener('click', doLogin);
+
+  // Verificar sessão ao carregar
+  if (sessionStorage.getItem('kr_auth') === '1') {
+    mostrarApp();
+  }
+
+  // ══ FIREBASE SYNC ══
   function startSync() {
     const agendaRef = ref(db, 'agenda');
     onValue(agendaRef, (snapshot) => {
@@ -376,7 +397,10 @@
       renderCalendar();
       if (selectedDate) renderDayDetail();
       setSyncStatus(true);
-    }, () => setSyncStatus(false));
+    }, (error) => {
+      console.error(error);
+      setSyncStatus(false);
+    });
 
     window.addEventListener('online',  () => setSyncStatus(true));
     window.addEventListener('offline', () => setSyncStatus(false));
@@ -388,7 +412,11 @@
   }
 
   async function saveDay(key, dayData) {
-    await set(ref(db, `agenda/${key}`), dayData);
+    try {
+      await set(ref(db, `agenda/${key}`), dayData);
+    } catch(e) {
+      showToast('⚠ Erro ao salvar. Verifique a conexão.', true);
+    }
   }
 
   // ══ UTILITÁRIOS ══
@@ -587,13 +615,13 @@
     const key = dateKey(selectedDate);
     const dayData = getDay(key);
 
-    const time = document.getElementById('inTime').value;
-    const client = document.getElementById('inClient').value.trim();
+    const time    = document.getElementById('inTime').value;
+    const client  = document.getElementById('inClient').value.trim();
     const service = document.getElementById('inService').value;
-    const obs = document.getElementById('inObs').value.trim();
+    const obs     = document.getElementById('inObs').value.trim();
 
-    if (!time) return showToast('⚠ Informe o horário.', true);
-    if (!client) return showToast('⚠ Informe o nome do cliente.', true);
+    if (!time)    return showToast('⚠ Informe o horário.', true);
+    if (!client)  return showToast('⚠ Informe o nome do cliente.', true);
     if (!service) return showToast('⚠ Selecione o serviço.', true);
 
     const dup = dayData.apts.find(a => a.time === time);
@@ -604,10 +632,10 @@
 
     await saveDay(key, dayData);
 
-    document.getElementById('inTime').value = '';
-    document.getElementById('inClient').value = '';
+    document.getElementById('inTime').value    = '';
+    document.getElementById('inClient').value  = '';
     document.getElementById('inService').value = '';
-    document.getElementById('inObs').value = '';
+    document.getElementById('inObs').value     = '';
 
     showToast('✓ Agendamento confirmado!');
   };
@@ -669,15 +697,6 @@
       </div>
     `).join('');
   };
-
-  // ══ INIT ══
-  function init() {
-    const now = new Date();
-    document.getElementById('headerDate').textContent =
-      `${WEEKDAYS_FULL[now.getDay()]}, ${now.getDate()} de ${MONTHS[now.getMonth()]}`;
-    startSync();
-    renderCalendar();
-  }
 </script>
 </body>
 </html>
