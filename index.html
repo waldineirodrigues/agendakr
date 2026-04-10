@@ -21,7 +21,6 @@
 
     html, body { height: 100%; font-family: -apple-system, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); overscroll-behavior: none; }
 
-    /* ── TELA DE LOGIN ── */
     #loginScreen {
       position: fixed; inset: 0; z-index: 999;
       background: var(--bg);
@@ -61,7 +60,6 @@
       cursor: pointer;
     }
 
-    /* ── HEADER ── */
     header {
       position: sticky; top: 0; z-index: 100;
       background: linear-gradient(135deg, var(--gold), var(--gold-dark));
@@ -73,25 +71,12 @@
     header h1 { font-size: 1.2rem; color: #fff; }
     header p  { font-size: 0.72rem; color: rgba(255,255,255,0.85); margin-top: 2px; }
 
-    .sync-indicator {
-      font-size: 0.7rem; color: rgba(255,255,255,0.85);
-      display: flex; align-items: center; gap: 5px;
-    }
-
-    .sync-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: #4ade80;
-      animation: pulse 2s infinite;
-    }
-
+    .sync-indicator { font-size: 0.7rem; color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 5px; }
+    .sync-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
     .sync-dot.offline { background: #f87171; animation: none; }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 
-    /* ── BOTTOM NAV ── */
     .bottom-nav {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
       background: var(--card); border-top: 1px solid var(--border);
@@ -108,21 +93,17 @@
     .bottom-nav button .icon { font-size: 1.4rem; line-height: 1; }
     .bottom-nav button.active { color: var(--gold); }
 
-    /* ── PÁGINAS ── */
     .page { display: none; padding: 16px 16px 80px; }
     .page.active { display: block; }
 
-    /* ── CARDS ── */
     .card { background: var(--card); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
     .card h3 { font-size: 0.82rem; color: var(--gold); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-    /* ── RESUMO ── */
     .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
     .summary-item { background: var(--card); border-radius: 12px; padding: 14px 8px; text-align: center; }
     .summary-item .val { font-size: 2rem; font-weight: 700; color: var(--gold); line-height: 1; }
     .summary-item .lbl { font-size: 0.65rem; color: var(--muted); margin-top: 5px; }
 
-    /* ── CALENDÁRIO ── */
     .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
     .cal-nav h2 { font-size: 1rem; color: var(--gold); }
     .cal-nav button {
@@ -153,7 +134,6 @@
     .cal-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); position: absolute; bottom: 4px; }
     .cal-dot.blocked-dot { background: var(--danger); }
 
-    /* ── FORM ── */
     .form-group { margin-bottom: 12px; }
     label { display: block; font-size: 0.78rem; color: var(--gold); margin-bottom: 5px; }
 
@@ -167,7 +147,6 @@
     textarea { min-height: 70px; resize: vertical; }
     .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-    /* ── BOTÕES ── */
     .btn { width: 100%; padding: 14px; border-radius: 12px; border: none; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s; margin-top: 4px; }
     .btn:active { opacity: 0.8; }
     .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #fff; }
@@ -175,7 +154,6 @@
     .btn-danger-outline { background: transparent; border: 1.5px solid var(--danger); color: var(--danger); }
     .btn-sm { width: auto; padding: 7px 14px; font-size: 0.8rem; border-radius: 8px; }
 
-    /* ── AGENDAMENTOS ── */
     .apt-card {
       background: var(--bg); border-left: 4px solid var(--gold);
       border-radius: 10px; padding: 12px 14px; margin-bottom: 10px;
@@ -204,7 +182,6 @@
     .badge { font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; background: var(--card); color: var(--gold); border: 1px solid var(--gold); }
     .badge.closed { color: var(--danger); border-color: var(--danger); background: #2d1515; }
 
-    /* ── PRÓXIMOS ── */
     .next-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
     .next-item:last-child { border-bottom: none; }
     .next-date { min-width: 42px; text-align: center; background: var(--bg); border-radius: 10px; padding: 6px 4px; }
@@ -213,12 +190,10 @@
     .next-info .ni-client { font-size: 0.9rem; font-weight: 600; }
     .next-info .ni-detail { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
 
-    /* ── LOADING ── */
     .loading { text-align: center; padding: 30px; color: var(--muted); }
     .spinner { display: inline-block; width: 28px; height: 28px; border: 3px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 10px; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ── TOAST ── */
     #toast {
       position: fixed; bottom: 74px; left: 50%;
       transform: translateX(-50%) translateY(20px);
@@ -234,19 +209,20 @@
 </head>
 <body>
 
-<!-- ═══════════ TELA DE LOGIN ═══════════ -->
+<!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-box">
     <div class="logo">✂</div>
     <h2>Espaço KR</h2>
     <p>Agenda exclusiva da equipe</p>
-    <input type="password" id="loginInput" placeholder="••••••" maxlength="20" onkeydown="if(event.key==='Enter') doLogin()"/>
+    <input type="password" id="loginInput" placeholder="••••••" maxlength="20"
+           onkeydown="if(event.key==='Enter') doLogin()"/>
     <div class="login-error" id="loginError"></div>
     <button class="btn-login" onclick="doLogin()">Entrar</button>
   </div>
 </div>
 
-<!-- ═══════════ HEADER ═══════════ -->
+<!-- HEADER -->
 <header>
   <div>
     <h1>✂ Espaço KR</h1>
@@ -258,7 +234,7 @@
   </div>
 </header>
 
-<!-- ═══════════ PÁGINA: INÍCIO ═══════════ -->
+<!-- INÍCIO -->
 <div class="page active" id="page-home">
   <div class="summary-grid">
     <div class="summary-item"><div class="val" id="sumToday">0</div><div class="lbl">Hoje</div></div>
@@ -271,7 +247,7 @@
   </div>
 </div>
 
-<!-- ═══════════ PÁGINA: CALENDÁRIO ═══════════ -->
+<!-- CALENDÁRIO -->
 <div class="page" id="page-calendar">
   <div class="card">
     <div class="cal-nav">
@@ -290,7 +266,7 @@
       <h2 id="dayDetailTitle"></h2>
       <span class="badge" id="dayBadge">0 agendamentos</span>
     </div>
-    <div id="blockedBanner" class="blocked-banner" style="display:none;">🔴 Este dia está fechado para agendamentos</div>
+    <div id="blockedBanner" class="blocked-banner" style="display:none;">🔴 Este dia está fechado</div>
     <button class="btn btn-sm btn-danger-outline" id="toggleBlockBtn" onclick="toggleBlock()" style="margin-bottom:12px;">🔒 Fechar este dia</button>
     <div id="dayAptList"></div>
     <div id="newAptForm" class="card">
@@ -321,7 +297,7 @@
   </div>
 </div>
 
-<!-- ═══════════ PÁGINA: BUSCA ═══════════ -->
+<!-- BUSCA -->
 <div class="page" id="page-list">
   <div class="card">
     <h3>🔍 Buscar agendamentos</h3>
@@ -330,7 +306,7 @@
   <div id="searchList"></div>
 </div>
 
-<!-- ═══════════ BOTTOM NAV ═══════════ -->
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
   <button class="active" onclick="goPage('home',this)"><span class="icon">🏠</span>Início</button>
   <button onclick="goPage('calendar',this)"><span class="icon">📅</span>Calendário</button>
@@ -339,49 +315,40 @@
 
 <div id="toast"></div>
 
-<!-- ═══════════ FIREBASE ═══════════ -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getDatabase, ref, onValue, set, remove, get }
+  import { getDatabase, ref, onValue, set }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-  // ══════════════════════════════════════════
-  //  🔴 CONFIGURE AQUI COM SEUS DADOS FIREBASE
-  // ══════════════════════════════════════════
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDuSjRYnCZ3QwCU_qQHd_IxwukqFDcCKsQ",
-  authDomain: "espaco-kr.firebaseapp.com",
-  databaseURL: "https://espaco-kr-default-rtdb.firebaseio.com",
-  projectId: "espaco-kr",
-  storageBucket: "espaco-kr.firebasestorage.app",
-  messagingSenderId: "697053007858",
-  appId: "1:697053007858:web:fae7eac2ae9a1123e0256b",
-  measurementId: "G-6YBEP2K1J1"
-};
+  // ══ FIREBASE CONFIG ══
+  const firebaseConfig = {
+    apiKey: "AIzaSyDuSjRYnCZ3QwCU_qQHd_IxwukqFDcCKsQ",
+    authDomain: "espaco-kr.firebaseapp.com",
+    databaseURL: "https://espaco-kr-default-rtdb.firebaseio.com",
+    projectId: "espaco-kr",
+    storageBucket: "espaco-kr.firebasestorage.app",
+    messagingSenderId: "697053007858",
+    appId: "1:697053007858:web:fae7eac2ae9a1123e0256b",
+    measurementId: "G-6YBEP2K1J1"
   };
 
-  // ── SENHA DE ACESSO (altere aqui) ──
+  // ══ SENHA DE ACESSO ══
   const SENHA_CORRETA = "espaco2024";
 
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
+  const firebaseApp = initializeApp(firebaseConfig);
+  const db = getDatabase(firebaseApp);
 
-  // ══════════════════════════════════════════
-  //  ESTADO
-  // ══════════════════════════════════════════
-  const MONTHS = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  const MONTHS = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                  'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
   const MONTHS_SHORT = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
   const WEEKDAYS = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+  const WEEKDAYS_FULL = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
 
   let currentCal = new Date();
   let selectedDate = null;
   let agenda = {};
-  let isOnline = true;
 
-  // ══════════════════════════════════════════
-  //  LOGIN
-  // ══════════════════════════════════════════
+  // ══ LOGIN ══
   window.doLogin = function() {
     const val = document.getElementById('loginInput').value;
     const err = document.getElementById('loginError');
@@ -395,14 +362,12 @@ const firebaseConfig = {
     }
   };
 
-  // Verificar se já está autenticado
   if (sessionStorage.getItem('kr_auth') === '1') {
     document.getElementById('loginScreen').style.display = 'none';
+    init();
   }
 
-  // ══════════════════════════════════════════
-  //  FIREBASE – SINCRONIZAÇÃO EM TEMPO REAL
-  // ══════════════════════════════════════════
+  // ══ SINCRONIZAÇÃO FIREBASE ══
   function startSync() {
     const agendaRef = ref(db, 'agenda');
     onValue(agendaRef, (snapshot) => {
@@ -418,7 +383,6 @@ const firebaseConfig = {
   }
 
   function setSyncStatus(online) {
-    isOnline = online;
     document.getElementById('syncDot').className = 'sync-dot' + (online ? '' : ' offline');
     document.getElementById('syncLabel').textContent = online ? 'Online' : 'Offline';
   }
@@ -427,15 +391,7 @@ const firebaseConfig = {
     await set(ref(db, `agenda/${key}`), dayData);
   }
 
-  async function deleteApt(key, id) {
-    const dayData = agenda[key];
-    dayData.apts = (dayData.apts || []).filter(a => a.id !== id);
-    await saveDay(key, dayData);
-  }
-
-  // ══════════════════════════════════════════
-  //  UTILITÁRIOS
-  // ══════════════════════════════════════════
+  // ══ UTILITÁRIOS ══
   function dateKey(d) {
     return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
@@ -450,9 +406,7 @@ const firebaseConfig = {
     return `${WEEKDAYS[d.getDay()]}, ${d.getDate()} de ${MONTHS[d.getMonth()]}`;
   }
 
-  // ══════════════════════════════════════════
-  //  TOAST
-  // ══════════════════════════════════════════
+  // ══ TOAST ══
   function showToast(msg, isError = false) {
     const t = document.getElementById('toast');
     t.textContent = msg;
@@ -461,9 +415,7 @@ const firebaseConfig = {
     setTimeout(() => t.classList.remove('show'), 2800);
   }
 
-  // ══════════════════════════════════════════
-  //  NAVEGAÇÃO
-  // ══════════════════════════════════════════
+  // ══ NAVEGAÇÃO ══
   window.goPage = function(id, btn) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.bottom-nav button').forEach(b => b.classList.remove('active'));
@@ -474,9 +426,7 @@ const firebaseConfig = {
     if (id === 'list') renderSearchList();
   };
 
-  // ══════════════════════════════════════════
-  //  HOME
-  // ══════════════════════════════════════════
+  // ══ HOME ══
   function renderHome() {
     const todayKey = dateKey(new Date());
     const todayData = agenda[todayKey];
@@ -529,9 +479,7 @@ const firebaseConfig = {
     `).join('');
   }
 
-  // ══════════════════════════════════════════
-  //  CALENDÁRIO
-  // ══════════════════════════════════════════
+  // ══ CALENDÁRIO ══
   function renderCalendar() {
     const grid = document.getElementById('calGrid');
     const label = document.getElementById('calMonthLabel');
@@ -583,12 +531,12 @@ const firebaseConfig = {
     renderCalendar();
     renderDayDetail();
     document.getElementById('dayDetail').style.display = 'block';
-    document.getElementById('dayDetail').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(() => {
+      document.getElementById('dayDetail').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   }
 
-  // ══════════════════════════════════════════
-  //  DETALHE DO DIA
-  // ══════════════════════════════════════════
+  // ══ DETALHE DO DIA ══
   function renderDayDetail() {
     if (!selectedDate) return;
     const key = dateKey(selectedDate);
@@ -633,9 +581,7 @@ const firebaseConfig = {
     `).join('');
   }
 
-  // ══════════════════════════════════════════
-  //  AGENDAMENTO
-  // ══════════════════════════════════════════
+  // ══ AGENDAMENTO ══
   window.addApt = async function() {
     if (!selectedDate) return;
     const key = dateKey(selectedDate);
@@ -668,7 +614,9 @@ const firebaseConfig = {
 
   window.removeApt = async function(key, id) {
     if (!confirm('Remover este agendamento?')) return;
-    await deleteApt(key, id);
+    const dayData = getDay(key);
+    dayData.apts = dayData.apts.filter(a => a.id !== id);
+    await saveDay(key, dayData);
     showToast('Agendamento removido.');
   };
 
@@ -686,9 +634,7 @@ const firebaseConfig = {
     showToast(dayData.blocked ? '🔒 Dia fechado.' : '🔓 Dia aberto.');
   };
 
-  // ══════════════════════════════════════════
-  //  BUSCA
-  // ══════════════════════════════════════════
+  // ══ BUSCA ══
   window.renderSearchList = function() {
     const q = document.getElementById('searchInput').value.toLowerCase().trim();
     const list = document.getElementById('searchList');
@@ -724,19 +670,14 @@ const firebaseConfig = {
     `).join('');
   };
 
-  // ══════════════════════════════════════════
-  //  INIT
-  // ══════════════════════════════════════════
+  // ══ INIT ══
   function init() {
     const now = new Date();
-    const WEEKDAYS_FULL = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
     document.getElementById('headerDate').textContent =
       `${WEEKDAYS_FULL[now.getDay()]}, ${now.getDate()} de ${MONTHS[now.getMonth()]}`;
     startSync();
     renderCalendar();
   }
-
-  if (sessionStorage.getItem('kr_auth') === '1') init();
 </script>
 </body>
 </html>
