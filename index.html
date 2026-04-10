@@ -19,274 +19,129 @@
       --danger: #dc2626;
     }
 
-    html, body {
-      height: 100%;
-      font-family: -apple-system, 'Segoe UI', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      overscroll-behavior: none;
-    }
+    html, body { height: 100%; font-family: -apple-system, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); overscroll-behavior: none; }
 
-    /* ══ TELA DE LOGIN ══ */
+    /* ── TELA DE LOGIN ── */
     #loginScreen {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      background: linear-gradient(160deg, #111827 60%, #1a2a1a);
+      position: fixed; inset: 0; z-index: 999;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
     }
 
     .login-box {
       background: var(--card);
       border-radius: 20px;
       padding: 36px 28px;
-      width: 100%;
-      max-width: 360px;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-      border: 1px solid var(--border);
-    }
-
-    .login-logo {
+      width: 90%; max-width: 360px;
       text-align: center;
-      margin-bottom: 28px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
     }
 
-    .login-logo .scissors {
-      font-size: 3rem;
-      display: block;
-      margin-bottom: 8px;
+    .login-box .logo { font-size: 3rem; margin-bottom: 6px; }
+    .login-box h2 { color: var(--gold); font-size: 1.4rem; margin-bottom: 4px; }
+    .login-box p { color: var(--muted); font-size: 0.82rem; margin-bottom: 24px; }
+
+    .login-box input {
+      width: 100%; background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 12px; color: var(--text);
+      padding: 14px 16px; font-size: 1rem;
+      outline: none; margin-bottom: 12px;
+      text-align: center; letter-spacing: 4px;
     }
 
-    .login-logo h1 {
-      font-size: 1.5rem;
-      color: var(--gold);
-      letter-spacing: 1px;
-    }
-
-    .login-logo p {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    .login-error {
-      background: #2d1515;
-      border: 1px solid var(--danger);
-      color: #f87171;
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-size: 0.85rem;
-      margin-bottom: 14px;
-      display: none;
-      text-align: center;
-    }
-
-    .login-field {
-      margin-bottom: 14px;
-    }
-
-    .login-field label {
-      display: block;
-      font-size: 0.78rem;
-      color: var(--gold);
-      margin-bottom: 6px;
-    }
-
-    .login-field input {
-      width: 100%;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--text);
-      padding: 13px 14px;
-      font-size: 1rem;
-      outline: none;
-    }
-
-    .login-field input:focus { border-color: var(--gold); }
+    .login-box input:focus { border-color: var(--gold); }
+    .login-error { color: var(--danger); font-size: 0.82rem; margin-bottom: 10px; min-height: 18px; }
 
     .btn-login {
-      width: 100%;
-      padding: 14px;
-      border-radius: 12px;
-      border: none;
+      width: 100%; padding: 14px;
       background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 700;
+      border: none; border-radius: 12px;
+      color: #fff; font-size: 1rem; font-weight: 700;
       cursor: pointer;
-      margin-top: 6px;
-      letter-spacing: 0.5px;
     }
 
-    .btn-login:active { opacity: 0.85; }
-
-    .login-hint {
-      text-align: center;
-      font-size: 0.72rem;
-      color: var(--muted);
-      margin-top: 18px;
-    }
-
-    /* ══ APP PRINCIPAL ══ */
-    #app { display: none; }
-
+    /* ── HEADER ── */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: sticky; top: 0; z-index: 100;
       background: linear-gradient(135deg, var(--gold), var(--gold-dark));
       padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
       box-shadow: 0 2px 12px rgba(0,0,0,0.5);
     }
 
-    header h1 { font-size: 1.2rem; color: #fff; letter-spacing: 0.5px; }
+    header h1 { font-size: 1.2rem; color: #fff; }
     header p  { font-size: 0.72rem; color: rgba(255,255,255,0.85); margin-top: 2px; }
 
-    .logout-btn {
-      background: rgba(255,255,255,0.2);
-      border: none;
-      color: #fff;
-      padding: 7px 13px;
-      border-radius: 20px;
-      font-size: 0.78rem;
-      cursor: pointer;
+    .sync-indicator {
+      font-size: 0.7rem; color: rgba(255,255,255,0.85);
+      display: flex; align-items: center; gap: 5px;
     }
 
+    .sync-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #4ade80;
+      animation: pulse 2s infinite;
+    }
+
+    .sync-dot.offline { background: #f87171; animation: none; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ── BOTTOM NAV ── */
     .bottom-nav {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      z-index: 100;
-      background: var(--card);
-      border-top: 1px solid var(--border);
-      display: flex;
-      height: 62px;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+      background: var(--card); border-top: 1px solid var(--border);
+      display: flex; height: 62px;
     }
 
     .bottom-nav button {
-      flex: 1;
-      background: none;
-      border: none;
-      color: var(--muted);
-      font-size: 0.7rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 3px;
-      cursor: pointer;
-      transition: color 0.2s;
+      flex: 1; background: none; border: none; color: var(--muted);
+      font-size: 0.7rem; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 3px;
+      cursor: pointer; transition: color 0.2s;
     }
 
     .bottom-nav button .icon { font-size: 1.4rem; line-height: 1; }
     .bottom-nav button.active { color: var(--gold); }
 
+    /* ── PÁGINAS ── */
     .page { display: none; padding: 16px 16px 80px; }
     .page.active { display: block; }
 
-    .card {
-      background: var(--card);
-      border-radius: 14px;
-      padding: 16px;
-      margin-bottom: 14px;
-    }
+    /* ── CARDS ── */
+    .card { background: var(--card); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+    .card h3 { font-size: 0.82rem; color: var(--gold); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-    .card h3 {
-      font-size: 0.85rem;
-      color: var(--gold);
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+    /* ── RESUMO ── */
+    .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+    .summary-item { background: var(--card); border-radius: 12px; padding: 14px 8px; text-align: center; }
+    .summary-item .val { font-size: 2rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .summary-item .lbl { font-size: 0.65rem; color: var(--muted); margin-top: 5px; }
 
-    .summary-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .summary-item {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 14px 8px;
-      text-align: center;
-    }
-
-    .summary-item .val {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--gold);
-      line-height: 1;
-    }
-
-    .summary-item .lbl {
-      font-size: 0.68rem;
-      color: var(--muted);
-      margin-top: 5px;
-    }
-
-    .cal-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-    }
-
+    /* ── CALENDÁRIO ── */
+    .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
     .cal-nav h2 { font-size: 1rem; color: var(--gold); }
-
     .cal-nav button {
-      background: var(--gold);
-      border: none;
-      color: #fff;
-      width: 34px; height: 34px;
-      border-radius: 50%;
-      font-size: 1.1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: var(--gold); border: none; color: #fff;
+      width: 34px; height: 34px; border-radius: 50%;
+      font-size: 1.1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
     }
 
-    .cal-days-header {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      margin-bottom: 6px;
-    }
+    .cal-days-header { display: grid; grid-template-columns: repeat(7,1fr); margin-bottom: 6px; }
+    .cal-days-header span { text-align: center; font-size: 0.68rem; color: var(--gold); font-weight: 600; padding: 4px 0; }
 
-    .cal-days-header span {
-      text-align: center;
-      font-size: 0.68rem;
-      color: var(--gold);
-      font-weight: 600;
-      padding: 4px 0;
-    }
-
-    .cal-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 4px;
-    }
+    .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; }
 
     .cal-cell {
-      aspect-ratio: 1;
-      border-radius: 10px;
-      background: var(--card2);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: all 0.15s;
-      position: relative;
-      font-size: 0.85rem;
-      font-weight: 600;
+      aspect-ratio: 1; border-radius: 10px; background: var(--card2);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      cursor: pointer; border: 2px solid transparent; transition: all 0.15s;
+      position: relative; font-size: 0.85rem; font-weight: 600;
     }
 
     .cal-cell.empty { background: transparent; cursor: default; }
@@ -295,74 +150,36 @@
     .cal-cell.blocked { background: #2d1515; }
     .cal-cell.blocked .cal-num { color: #666; }
 
-    .cal-dot {
-      width: 5px; height: 5px;
-      border-radius: 50%;
-      background: var(--gold);
-      position: absolute;
-      bottom: 4px;
-    }
-
+    .cal-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); position: absolute; bottom: 4px; }
     .cal-dot.blocked-dot { background: var(--danger); }
 
+    /* ── FORM ── */
     .form-group { margin-bottom: 12px; }
-
-    label {
-      display: block;
-      font-size: 0.78rem;
-      color: var(--gold);
-      margin-bottom: 5px;
-    }
+    label { display: block; font-size: 0.78rem; color: var(--gold); margin-bottom: 5px; }
 
     input, select, textarea {
-      width: 100%;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--text);
-      padding: 12px 14px;
-      font-size: 0.95rem;
-      outline: none;
-      -webkit-appearance: none;
-      appearance: none;
+      width: 100%; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; color: var(--text); padding: 12px 14px;
+      font-size: 0.95rem; outline: none; -webkit-appearance: none; appearance: none;
     }
 
     input:focus, select:focus, textarea:focus { border-color: var(--gold); }
     textarea { min-height: 70px; resize: vertical; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-    .form-row-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .btn {
-      width: 100%;
-      padding: 14px;
-      border-radius: 12px;
-      border: none;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: opacity 0.2s;
-      margin-top: 4px;
-    }
-
+    /* ── BOTÕES ── */
+    .btn { width: 100%; padding: 14px; border-radius: 12px; border: none; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s; margin-top: 4px; }
     .btn:active { opacity: 0.8; }
     .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #fff; }
     .btn-outline { background: transparent; border: 1.5px solid var(--gold); color: var(--gold); }
     .btn-danger-outline { background: transparent; border: 1.5px solid var(--danger); color: var(--danger); }
     .btn-sm { width: auto; padding: 7px 14px; font-size: 0.8rem; border-radius: 8px; }
 
+    /* ── AGENDAMENTOS ── */
     .apt-card {
-      background: var(--bg);
-      border-left: 4px solid var(--gold);
-      border-radius: 10px;
-      padding: 12px 14px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
+      background: var(--bg); border-left: 4px solid var(--gold);
+      border-radius: 10px; padding: 12px 14px; margin-bottom: 10px;
+      display: flex; align-items: flex-start; gap: 12px;
     }
 
     .apt-time { font-size: 1rem; font-weight: 700; color: var(--gold); min-width: 46px; }
@@ -370,807 +187,553 @@
     .apt-client { font-size: 0.95rem; font-weight: 600; }
     .apt-service { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
     .apt-obs { font-size: 0.75rem; color: #6b7280; margin-top: 3px; font-style: italic; }
-
-    .apt-del {
-      background: none;
-      border: none;
-      color: var(--danger);
-      font-size: 1.1rem;
-      cursor: pointer;
-      padding: 2px 6px;
-      border-radius: 6px;
-    }
+    .apt-del { background: none; border: none; color: var(--danger); font-size: 1.1rem; cursor: pointer; padding: 2px 6px; border-radius: 6px; }
 
     .blocked-banner {
-      background: #2d1515;
-      border: 1px solid var(--danger);
-      border-radius: 12px;
-      padding: 16px;
-      text-align: center;
-      color: #f87171;
-      font-weight: 600;
-      margin-bottom: 12px;
+      background: #2d1515; border: 1px solid var(--danger);
+      border-radius: 12px; padding: 16px; text-align: center;
+      color: #f87171; font-weight: 600; margin-bottom: 12px;
     }
 
-    .empty-state {
-      text-align: center;
-      color: var(--muted);
-      padding: 30px 0;
-      font-size: 0.9rem;
-    }
-
+    .empty-state { text-align: center; color: var(--muted); padding: 30px 0; font-size: 0.9rem; }
     .empty-state .icon { font-size: 2.5rem; margin-bottom: 8px; }
 
-    .day-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
+    .day-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
     .day-header h2 { font-size: 1rem; }
 
-    .badge {
-      font-size: 0.75rem;
-      padding: 4px 10px;
-      border-radius: 20px;
-      background: var(--card);
-      color: var(--gold);
-      border: 1px solid var(--gold);
-    }
-
+    .badge { font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; background: var(--card); color: var(--gold); border: 1px solid var(--gold); }
     .badge.closed { color: var(--danger); border-color: var(--danger); background: #2d1515; }
 
-    .next-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
+    /* ── PRÓXIMOS ── */
+    .next-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
     .next-item:last-child { border-bottom: none; }
-
-    .next-date {
-      min-width: 42px;
-      text-align: center;
-      background: var(--bg);
-      border-radius: 10px;
-      padding: 6px 4px;
-    }
-
+    .next-date { min-width: 42px; text-align: center; background: var(--bg); border-radius: 10px; padding: 6px 4px; }
     .next-date .nd { font-size: 1.3rem; font-weight: 700; color: var(--gold); line-height: 1; }
     .next-date .nm { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; }
     .next-info .ni-client { font-size: 0.9rem; font-weight: 600; }
     .next-info .ni-detail { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
 
-    /* ══ PAINEL ADMIN ══ */
-    .user-card {
-      background: var(--bg);
-      border-radius: 10px;
-      padding: 14px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
+    /* ── LOADING ── */
+    .loading { text-align: center; padding: 30px; color: var(--muted); }
+    .spinner { display: inline-block; width: 28px; height: 28px; border: 3px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 10px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-    .user-card .u-name { font-size: 0.95rem; font-weight: 600; }
-    .user-card .u-role { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
-
-    .role-badge {
-      font-size: 0.7rem;
-      padding: 3px 9px;
-      border-radius: 20px;
-      border: 1px solid;
-    }
-
-    .role-badge.admin { color: var(--gold); border-color: var(--gold); }
-    .role-badge.funcionario { color: #60a5fa; border-color: #60a5fa; }
-
-    .btn-del-user {
-      background: none;
-      border: none;
-      color: var(--danger);
-      cursor: pointer;
-      font-size: 1rem;
-      padding: 4px 8px;
-    }
-
+    /* ── TOAST ── */
     #toast {
-      position: fixed;
-      bottom: 74px;
-      left: 50%;
+      position: fixed; bottom: 74px; left: 50%;
       transform: translateX(-50%) translateY(20px);
-      background: #1f2937;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      opacity: 0;
-      transition: all 0.3s;
-      z-index: 999;
-      white-space: nowrap;
-      border: 1px solid var(--border);
-      pointer-events: none;
+      background: #1f2937; color: #fff;
+      padding: 10px 20px; border-radius: 30px;
+      font-size: 0.85rem; opacity: 0; transition: all 0.3s;
+      z-index: 999; white-space: nowrap;
+      border: 1px solid var(--border); pointer-events: none;
     }
 
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-    .section-title {
-      font-size: 0.78rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin: 16px 0 8px;
-    }
   </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════════════
-     TELA DE LOGIN
-════════════════════════════════════════ -->
+<!-- ═══════════ TELA DE LOGIN ═══════════ -->
 <div id="loginScreen">
   <div class="login-box">
-    <div class="login-logo">
-      <span class="scissors">✂</span>
-      <h1>Espaço KR</h1>
-      <p>Agenda Interna — Acesso Restrito</p>
-    </div>
-
-    <div class="login-error" id="loginError">Usuário ou senha incorretos.</div>
-
-    <div class="login-field">
-      <label>Usuário</label>
-      <input type="text" id="loginUser" placeholder="seu.usuario" autocomplete="username"
-             onkeydown="if(event.key==='Enter') doLogin()"/>
-    </div>
-
-    <div class="login-field">
-      <label>Senha</label>
-      <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password"
-             onkeydown="if(event.key==='Enter') doLogin()"/>
-    </div>
-
+    <div class="logo">✂</div>
+    <h2>Espaço KR</h2>
+    <p>Agenda exclusiva da equipe</p>
+    <input type="password" id="loginInput" placeholder="••••••" maxlength="20" onkeydown="if(event.key==='Enter') doLogin()"/>
+    <div class="login-error" id="loginError"></div>
     <button class="btn-login" onclick="doLogin()">Entrar</button>
-
-    <p class="login-hint">Acesso exclusivo para funcionários do Espaço KR.</p>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     APP PRINCIPAL
-════════════════════════════════════════ -->
-<div id="app">
+<!-- ═══════════ HEADER ═══════════ -->
+<header>
+  <div>
+    <h1>✂ Espaço KR</h1>
+    <p id="headerDate"></p>
+  </div>
+  <div class="sync-indicator">
+    <div class="sync-dot" id="syncDot"></div>
+    <span id="syncLabel">Online</span>
+  </div>
+</header>
 
-  <header>
-    <div>
-      <h1>✂ Espaço KR</h1>
-      <p id="headerDateTxt"></p>
-    </div>
-    <div style="display:flex;align-items:center;gap:10px;">
-      <span style="font-size:0.75rem;color:rgba(255,255,255,0.85);" id="headerUser"></span>
-      <button class="logout-btn" onclick="doLogout()">Sair</button>
-    </div>
-  </header>
+<!-- ═══════════ PÁGINA: INÍCIO ═══════════ -->
+<div class="page active" id="page-home">
+  <div class="summary-grid">
+    <div class="summary-item"><div class="val" id="sumToday">0</div><div class="lbl">Hoje</div></div>
+    <div class="summary-item"><div class="val" id="sumMonth">0</div><div class="lbl">Este mês</div></div>
+    <div class="summary-item"><div class="val" id="sumBlocked">0</div><div class="lbl">Dias fechados</div></div>
+  </div>
+  <div class="card">
+    <h3>📋 Próximos agendamentos</h3>
+    <div id="nextList"><div class="loading"><div class="spinner"></div><br>Carregando...</div></div>
+  </div>
+</div>
 
-  <!-- ── INÍCIO ── -->
-  <div class="page active" id="page-home">
-    <div class="summary-grid">
-      <div class="summary-item">
-        <div class="val" id="sumToday">0</div>
-        <div class="lbl">Hoje</div>
-      </div>
-      <div class="summary-item">
-        <div class="val" id="sumMonth">0</div>
-        <div class="lbl">Este mês</div>
-      </div>
-      <div class="summary-item">
-        <div class="val" id="sumBlocked">0</div>
-        <div class="lbl">Dias fechados</div>
-      </div>
+<!-- ═══════════ PÁGINA: CALENDÁRIO ═══════════ -->
+<div class="page" id="page-calendar">
+  <div class="card">
+    <div class="cal-nav">
+      <button onclick="changeMonth(-1)">‹</button>
+      <h2 id="calMonthLabel"></h2>
+      <button onclick="changeMonth(1)">›</button>
     </div>
-
-    <div class="card">
-      <h3>📋 Próximos agendamentos</h3>
-      <div id="nextList">
-        <div class="empty-state"><div class="icon">📭</div>Nenhum agendamento futuro.</div>
-      </div>
+    <div class="cal-days-header">
+      <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span>
     </div>
+    <div class="cal-grid" id="calGrid"></div>
   </div>
 
-  <!-- ── CALENDÁRIO ── -->
-  <div class="page" id="page-calendar">
-    <div class="card">
-      <div class="cal-nav">
-        <button onclick="changeMonth(-1)">‹</button>
-        <h2 id="calMonthLabel"></h2>
-        <button onclick="changeMonth(1)">›</button>
-      </div>
-      <div class="cal-days-header">
-        <span>D</span><span>S</span><span>T</span><span>Q</span>
-        <span>Q</span><span>S</span><span>S</span>
-      </div>
-      <div class="cal-grid" id="calGrid"></div>
+  <div id="dayDetail" style="display:none;">
+    <div class="day-header">
+      <h2 id="dayDetailTitle"></h2>
+      <span class="badge" id="dayBadge">0 agendamentos</span>
     </div>
-
-    <div id="dayDetail" style="display:none;">
-      <div class="day-header">
-        <h2 id="dayDetailTitle"></h2>
-        <span class="badge" id="dayBadge">0 agendamentos</span>
-      </div>
-
-      <div id="blockedBanner" class="blocked-banner" style="display:none;">
-        🔴 Este dia está fechado para agendamentos
-      </div>
-
-      <button class="btn btn-outline btn-sm" id="toggleBlockBtn"
-              onclick="toggleBlock()" style="margin-bottom:12px;">
-        🔒 Fechar este dia
-      </button>
-
-      <div id="dayAptList"></div>
-
-      <div id="newAptForm" class="card">
-        <h3>➕ Novo agendamento</h3>
-        <div class="form-row-2">
-          <div class="form-group">
-            <label>Horário</label>
-            <input type="time" id="inTime"/>
-          </div>
-          <div class="form-group">
-            <label>Serviço</label>
-            <select id="inService">
-              <option value="">Selecione</option>
-              <option>Corte</option>
-              <option>Barba</option>
-              <option>Corte + Barba</option>
-              <option>Coloração</option>
-              <option>Hidratação</option>
-              <option>Escova</option>
-              <option>Manicure</option>
-              <option>Pedicure</option>
-              <option>Design de Sobrancelha</option>
-              <option>Outro</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Nome do cliente</label>
-          <input type="text" id="inClient" placeholder="Ex: Maria Silva"/>
-        </div>
-        <div class="form-group">
-          <label>Observação</label>
-          <textarea id="inObs" placeholder="Preferências, alergias..."></textarea>
-        </div>
-        <button class="btn btn-gold" onclick="addApt()">Confirmar agendamento</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── BUSCAR ── -->
-  <div class="page" id="page-list">
-    <div class="card">
-      <h3>🔍 Buscar agendamentos</h3>
-      <input type="text" id="searchInput" placeholder="Nome do cliente ou serviço..."
-             oninput="renderSearchList()"/>
-    </div>
-    <div id="searchList"></div>
-  </div>
-
-  <!-- ── ADMIN ── -->
-  <div class="page" id="page-admin">
-    <div class="card" id="adminPanel">
-      <h3>⚙ Painel do Administrador</h3>
-      <p style="font-size:0.82rem;color:var(--muted);margin-bottom:16px;">
-        Gerencie os usuários que têm acesso à agenda.
-      </p>
-
-      <div class="section-title">Adicionar usuário</div>
-      <div class="form-group">
-        <label>Nome</label>
-        <input type="text" id="newUserName" placeholder="Ex: Ana"/>
-      </div>
+    <div id="blockedBanner" class="blocked-banner" style="display:none;">🔴 Este dia está fechado para agendamentos</div>
+    <button class="btn btn-sm btn-danger-outline" id="toggleBlockBtn" onclick="toggleBlock()" style="margin-bottom:12px;">🔒 Fechar este dia</button>
+    <div id="dayAptList"></div>
+    <div id="newAptForm" class="card">
+      <h3>➕ Novo agendamento</h3>
       <div class="form-row-2">
+        <div class="form-group"><label>Horário</label><input type="time" id="inTime"/></div>
         <div class="form-group">
-          <label>Usuário (login)</label>
-          <input type="text" id="newUserLogin" placeholder="Ex: ana"/>
-        </div>
-        <div class="form-group">
-          <label>Senha</label>
-          <input type="password" id="newUserPass" placeholder="••••••"/>
+          <label>Serviço</label>
+          <select id="inService">
+            <option value="">Selecione</option>
+            <option>Corte</option>
+            <option>Barba</option>
+            <option>Corte + Barba</option>
+            <option>Coloração</option>
+            <option>Hidratação</option>
+            <option>Escova</option>
+            <option>Manicure</option>
+            <option>Pedicure</option>
+            <option>Design de Sobrancelha</option>
+            <option>Outro</option>
+          </select>
         </div>
       </div>
-      <div class="form-group">
-        <label>Perfil</label>
-        <select id="newUserRole">
-          <option value="funcionario">Funcionário</option>
-          <option value="admin">Administrador</option>
-        </select>
-      </div>
-      <button class="btn btn-gold" onclick="addUser()">Adicionar usuário</button>
-
-      <div class="section-title" style="margin-top:20px;">Usuários cadastrados</div>
-      <div id="userList"></div>
-    </div>
-
-    <div id="notAdminMsg" class="empty-state" style="display:none;">
-      <div class="icon">🔒</div>
-      Apenas administradores podem acessar esta área.
+      <div class="form-group"><label>Nome do cliente</label><input type="text" id="inClient" placeholder="Ex: Maria Silva"/></div>
+      <div class="form-group"><label>Observação</label><textarea id="inObs" placeholder="Preferências, alergias..."></textarea></div>
+      <button class="btn btn-gold" onclick="addApt()">Confirmar agendamento</button>
     </div>
   </div>
-
-  <nav class="bottom-nav">
-    <button class="active" onclick="goPage('home',this)">
-      <span class="icon">🏠</span>Início
-    </button>
-    <button onclick="goPage('calendar',this)">
-      <span class="icon">📅</span>Calendário
-    </button>
-    <button onclick="goPage('list',this)">
-      <span class="icon">🔍</span>Buscar
-    </button>
-    <button onclick="goPage('admin',this)" id="navAdmin">
-      <span class="icon">⚙</span>Admin
-    </button>
-  </nav>
-
 </div>
+
+<!-- ═══════════ PÁGINA: BUSCA ═══════════ -->
+<div class="page" id="page-list">
+  <div class="card">
+    <h3>🔍 Buscar agendamentos</h3>
+    <input type="text" id="searchInput" placeholder="Nome do cliente ou serviço..." oninput="renderSearchList()"/>
+  </div>
+  <div id="searchList"></div>
+</div>
+
+<!-- ═══════════ BOTTOM NAV ═══════════ -->
+<nav class="bottom-nav">
+  <button class="active" onclick="goPage('home',this)"><span class="icon">🏠</span>Início</button>
+  <button onclick="goPage('calendar',this)"><span class="icon">📅</span>Calendário</button>
+  <button onclick="goPage('list',this)"><span class="icon">🔍</span>Buscar</button>
+</nav>
 
 <div id="toast"></div>
 
-<script>
-// ══════════════════════════════════════════
-//  USUÁRIOS (senha simples, local)
-//  Para produção real use um backend seguro.
-// ══════════════════════════════════════════
-const DEFAULT_USERS = [
-  { login: 'admin', pass: 'espacokr2026', name: 'Administrador', role: 'admin' },
-  { login: 'funcionario', pass: 'kr123', name: 'Funcionário', role: 'funcionario' }
-];
+<!-- ═══════════ FIREBASE ═══════════ -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, onValue, set, remove, get }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-function getUsers() {
-  const stored = localStorage.getItem('kr_users');
-  return stored ? JSON.parse(stored) : DEFAULT_USERS;
-}
+  // ══════════════════════════════════════════
+  //  🔴 CONFIGURE AQUI COM SEUS DADOS FIREBASE
+  // ══════════════════════════════════════════
+  const firebaseConfig = {
+    apiKey: "COLE_SUA_API_KEY",
+    authDomain: "COLE_SEU_AUTH_DOMAIN",
+    databaseURL: "COLE_SUA_DATABASE_URL",
+    projectId: "COLE_SEU_PROJECT_ID",
+    storageBucket: "COLE_SEU_STORAGE_BUCKET",
+    messagingSenderId: "COLE_SEU_MESSAGING_SENDER_ID",
+    appId: "COLE_SEU_APP_ID"
+  };
 
-function saveUsers(users) {
-  localStorage.setItem('kr_users', JSON.stringify(users));
-}
+  // ── SENHA DE ACESSO (altere aqui) ──
+  const SENHA_CORRETA = "espaco2024";
 
-// ══════════════════════════════════════════
-//  LOGIN / LOGOUT
-// ══════════════════════════════════════════
-let currentUser = null;
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
 
-function doLogin() {
-  const login = document.getElementById('loginUser').value.trim().toLowerCase();
-  const pass  = document.getElementById('loginPass').value;
-  const users = getUsers();
-  const found = users.find(u => u.login === login && u.pass === pass);
+  // ══════════════════════════════════════════
+  //  ESTADO
+  // ══════════════════════════════════════════
+  const MONTHS = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  const MONTHS_SHORT = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  const WEEKDAYS = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
 
-  if (!found) {
-    document.getElementById('loginError').style.display = 'block';
-    document.getElementById('loginPass').value = '';
-    return;
-  }
+  let currentCal = new Date();
+  let selectedDate = null;
+  let agenda = {};
+  let isOnline = true;
 
-  currentUser = found;
-  sessionStorage.setItem('kr_session', JSON.stringify(found));
-  document.getElementById('loginError').style.display = 'none';
-  showApp();
-}
-
-function doLogout() {
-  currentUser = null;
-  sessionStorage.removeItem('kr_session');
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('loginScreen').style.display = 'flex';
-  document.getElementById('loginUser').value = '';
-  document.getElementById('loginPass').value = '';
-}
-
-function showApp() {
-  document.getElementById('loginScreen').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-
-  const now = new Date();
-  document.getElementById('headerDateTxt').textContent =
-    `${WEEKDAYS[now.getDay()]}, ${now.getDate()} de ${MONTHS[now.getMonth()]}`;
-  document.getElementById('headerUser').textContent = currentUser.name;
-
-  // Mostrar/ocultar aba admin
-  document.getElementById('navAdmin').style.display =
-    currentUser.role === 'admin' ? 'flex' : 'none';
-
-  renderHome();
-  renderCalendar();
-}
-
-// Verificar sessão ao carregar
-window.onload = function() {
-  const session = sessionStorage.getItem('kr_session');
-  if (session) {
-    currentUser = JSON.parse(session);
-    showApp();
-  }
-};
-
-// ══════════════════════════════════════════
-//  AGENDA — DADOS
-// ══════════════════════════════════════════
-let currentCal = new Date();
-let selectedDate = null;
-let agenda = JSON.parse(localStorage.getItem('espacoKR_v2') || '{}');
-
-const MONTHS = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
-                'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-const MONTHS_SHORT = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-const WEEKDAYS = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-
-function save() { localStorage.setItem('espacoKR_v2', JSON.stringify(agenda)); }
-
-function getDay(key) {
-  if (!agenda[key]) agenda[key] = { blocked: false, apts: [] };
-  return agenda[key];
-}
-
-function dateKey(d) {
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-}
-
-function formatDateDisplay(d) {
-  return `${WEEKDAYS[d.getDay()]}, ${d.getDate()} de ${MONTHS[d.getMonth()]}`;
-}
-
-// ══════════════════════════════════════════
-//  TOAST
-// ══════════════════════════════════════════
-function showToast(msg, isError = false) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.style.borderColor = isError ? '#dc2626' : '#c8a96e';
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
-}
-
-// ══════════════════════════════════════════
-//  NAVEGAÇÃO
-// ══════════════════════════════════════════
-function goPage(id, btn) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.bottom-nav button').forEach(b => b.classList.remove('active'));
-  document.getElementById('page-'+id).classList.add('active');
-  btn.classList.add('active');
-  if (id === 'home') renderHome();
-  if (id === 'calendar') renderCalendar();
-  if (id === 'list') renderSearchList();
-  if (id === 'admin') renderAdmin();
-}
-
-// ══════════════════════════════════════════
-//  HOME
-// ══════════════════════════════════════════
-function renderHome() {
-  const todayKey = dateKey(new Date());
-  const todayData = agenda[todayKey];
-  const month = String(new Date().getMonth()+1).padStart(2,'0');
-  const year = new Date().getFullYear();
-  const prefix = `${year}-${month}`;
-
-  let monthTotal = 0, blockedTotal = 0;
-  Object.keys(agenda).forEach(k => {
-    if (k.startsWith(prefix)) {
-      monthTotal += agenda[k].apts?.length || 0;
-      if (agenda[k].blocked) blockedTotal++;
+  // ══════════════════════════════════════════
+  //  LOGIN
+  // ══════════════════════════════════════════
+  window.doLogin = function() {
+    const val = document.getElementById('loginInput').value;
+    const err = document.getElementById('loginError');
+    if (val === SENHA_CORRETA) {
+      sessionStorage.setItem('kr_auth', '1');
+      document.getElementById('loginScreen').style.display = 'none';
+      init();
+    } else {
+      err.textContent = 'Senha incorreta. Tente novamente.';
+      document.getElementById('loginInput').value = '';
     }
-  });
+  };
 
-  document.getElementById('sumToday').textContent = todayData?.apts?.length || 0;
-  document.getElementById('sumMonth').textContent = monthTotal;
-  document.getElementById('sumBlocked').textContent = blockedTotal;
-
-  const list = document.getElementById('nextList');
-  const today = new Date(); today.setHours(0,0,0,0);
-  let items = [];
-
-  Object.keys(agenda).sort().forEach(k => {
-    const [y,m,d] = k.split('-').map(Number);
-    const dt = new Date(y,m-1,d);
-    if (dt >= today && !agenda[k].blocked) {
-      agenda[k].apts.forEach(apt => items.push({ date: dt, ...apt }));
-    }
-  });
-
-  items = items.slice(0, 8);
-
-  if (items.length === 0) {
-    list.innerHTML = '<div class="empty-state"><div class="icon">📭</div>Nenhum agendamento futuro.</div>';
-    return;
+  // Verificar se já está autenticado
+  if (sessionStorage.getItem('kr_auth') === '1') {
+    document.getElementById('loginScreen').style.display = 'none';
   }
 
-  list.innerHTML = items.map(it => `
-    <div class="next-item">
-      <div class="next-date">
-        <div class="nd">${it.date.getDate()}</div>
-        <div class="nm">${MONTHS_SHORT[it.date.getMonth()]}</div>
-      </div>
-      <div class="next-info">
-        <div class="ni-client">${it.client}</div>
-        <div class="ni-detail">${it.time} · ${it.service}</div>
-      </div>
-    </div>
-  `).join('');
-}
+  // ══════════════════════════════════════════
+  //  FIREBASE – SINCRONIZAÇÃO EM TEMPO REAL
+  // ══════════════════════════════════════════
+  function startSync() {
+    const agendaRef = ref(db, 'agenda');
+    onValue(agendaRef, (snapshot) => {
+      agenda = snapshot.val() || {};
+      renderHome();
+      renderCalendar();
+      if (selectedDate) renderDayDetail();
+      setSyncStatus(true);
+    }, () => setSyncStatus(false));
 
-// ══════════════════════════════════════════
-//  CALENDÁRIO
-// ══════════════════════════════════════════
-function renderCalendar() {
-  const grid = document.getElementById('calGrid');
-  const label = document.getElementById('calMonthLabel');
-  grid.innerHTML = '';
-
-  const year = currentCal.getFullYear();
-  const month = currentCal.getMonth();
-  const todayKey = dateKey(new Date());
-  label.textContent = `${MONTHS[month]} ${year}`;
-
-  const firstDay = new Date(year, month, 1).getDay();
-  const daysInMonth = new Date(year, month+1, 0).getDate();
-
-  for (let i = 0; i < firstDay; i++) {
-    const el = document.createElement('div');
-    el.className = 'cal-cell empty';
-    grid.appendChild(el);
+    window.addEventListener('online',  () => setSyncStatus(true));
+    window.addEventListener('offline', () => setSyncStatus(false));
   }
 
-  for (let d = 1; d <= daysInMonth; d++) {
-    const dt = new Date(year, month, d);
-    const key = dateKey(dt);
+  function setSyncStatus(online) {
+    isOnline = online;
+    document.getElementById('syncDot').className = 'sync-dot' + (online ? '' : ' offline');
+    document.getElementById('syncLabel').textContent = online ? 'Online' : 'Offline';
+  }
+
+  async function saveDay(key, dayData) {
+    await set(ref(db, `agenda/${key}`), dayData);
+  }
+
+  async function deleteApt(key, id) {
     const dayData = agenda[key];
-    const el = document.createElement('div');
-    el.className = 'cal-cell';
-    el.innerHTML = `<span class="cal-num">${d}</span>`;
-
-    if (key === todayKey) el.classList.add('today');
-    if (selectedDate && dateKey(selectedDate) === key) el.classList.add('selected');
-    if (dayData?.blocked) {
-      el.classList.add('blocked');
-      el.innerHTML += '<div class="cal-dot blocked-dot"></div>';
-    } else if (dayData?.apts?.length > 0) {
-      el.innerHTML += '<div class="cal-dot"></div>';
-    }
-
-    el.onclick = () => selectDay(new Date(year, month, d));
-    grid.appendChild(el);
-  }
-}
-
-function changeMonth(dir) {
-  currentCal.setMonth(currentCal.getMonth() + dir);
-  renderCalendar();
-}
-
-function selectDay(date) {
-  selectedDate = date;
-  renderCalendar();
-  renderDayDetail();
-  document.getElementById('dayDetail').style.display = 'block';
-  setTimeout(() => {
-    document.getElementById('dayDetail').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 100);
-}
-
-// ══════════════════════════════════════════
-//  DETALHE DO DIA
-// ══════════════════════════════════════════
-function renderDayDetail() {
-  if (!selectedDate) return;
-  const key = dateKey(selectedDate);
-  const dayData = getDay(key);
-
-  document.getElementById('dayDetailTitle').textContent = formatDateDisplay(selectedDate);
-
-  const badge = document.getElementById('dayBadge');
-  const toggleBtn = document.getElementById('toggleBlockBtn');
-  const blockedBanner = document.getElementById('blockedBanner');
-  const newForm = document.getElementById('newAptForm');
-
-  badge.textContent = dayData.blocked ? 'Fechado' : `${dayData.apts.length} agendamento(s)`;
-  badge.className = 'badge' + (dayData.blocked ? ' closed' : '');
-  toggleBtn.textContent = dayData.blocked ? '🔓 Abrir este dia' : '🔒 Fechar este dia';
-  toggleBtn.className = 'btn btn-sm ' + (dayData.blocked ? 'btn-gold' : 'btn-danger-outline');
-  blockedBanner.style.display = dayData.blocked ? 'block' : 'none';
-  newForm.style.display = dayData.blocked ? 'none' : 'block';
-
-  renderDayApts(key);
-}
-
-function renderDayApts(key) {
-  const dayData = getDay(key);
-  const list = document.getElementById('dayAptList');
-
-  if (dayData.apts.length === 0) {
-    list.innerHTML = '<div class="empty-state"><div class="icon">🗓</div>Nenhum agendamento neste dia.</div>';
-    return;
+    dayData.apts = (dayData.apts || []).filter(a => a.id !== id);
+    await saveDay(key, dayData);
   }
 
-  list.innerHTML = dayData.apts.map(apt => `
-    <div class="apt-card">
-      <div class="apt-time">${apt.time}</div>
-      <div class="apt-body">
-        <div class="apt-client">${apt.client}</div>
-        <div class="apt-service">${apt.service}</div>
-        ${apt.obs ? `<div class="apt-obs">${apt.obs}</div>` : ''}
-      </div>
-      <button class="apt-del" onclick="removeApt('${key}', ${apt.id})">✕</button>
-    </div>
-  `).join('');
-}
-
-// ══════════════════════════════════════════
-//  AGENDAMENTO
-// ══════════════════════════════════════════
-function addApt() {
-  if (!selectedDate) return;
-  const key = dateKey(selectedDate);
-  const dayData = getDay(key);
-
-  const time    = document.getElementById('inTime').value;
-  const client  = document.getElementById('inClient').value.trim();
-  const service = document.getElementById('inService').value;
-  const obs     = document.getElementById('inObs').value.trim();
-
-  if (!time)    return showToast('⚠ Informe o horário.', true);
-  if (!client)  return showToast('⚠ Informe o nome do cliente.', true);
-  if (!service) return showToast('⚠ Selecione o serviço.', true);
-
-  const dup = dayData.apts.find(a => a.time === time);
-  if (dup) return showToast(`⚠ Já existe agendamento às ${time}.`, true);
-
-  dayData.apts.push({ id: Date.now(), time, client, service, obs });
-  dayData.apts.sort((a,b) => a.time.localeCompare(b.time));
-  save();
-
-  document.getElementById('inTime').value    = '';
-  document.getElementById('inClient').value  = '';
-  document.getElementById('inService').value = '';
-  document.getElementById('inObs').value     = '';
-
-  renderDayDetail();
-  renderCalendar();
-  showToast('✓ Agendamento confirmado!');
-}
-
-function removeApt(key, id) {
-  if (!confirm('Remover este agendamento?')) return;
-  const dayData = getDay(key);
-  dayData.apts = dayData.apts.filter(a => a.id !== id);
-  save();
-  renderDayDetail();
-  renderCalendar();
-  renderHome();
-  showToast('Agendamento removido.');
-}
-
-function toggleBlock() {
-  if (!selectedDate) return;
-  const key = dateKey(selectedDate);
-  const dayData = getDay(key);
-
-  if (!dayData.blocked && dayData.apts.length > 0) {
-    if (!confirm(`Há ${dayData.apts.length} agendamento(s) neste dia. Fechar mesmo assim?`)) return;
+  // ══════════════════════════════════════════
+  //  UTILITÁRIOS
+  // ══════════════════════════════════════════
+  function dateKey(d) {
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
 
-  dayData.blocked = !dayData.blocked;
-  save();
-  renderDayDetail();
-  renderCalendar();
-  showToast(dayData.blocked ? '🔒 Dia fechado.' : '🔓 Dia aberto.');
-}
+  function getDay(key) {
+    if (!agenda[key]) agenda[key] = { blocked: false, apts: [] };
+    if (!agenda[key].apts) agenda[key].apts = [];
+    return agenda[key];
+  }
 
-// ══════════════════════════════════════════
-//  BUSCA
-// ══════════════════════════════════════════
-function renderSearchList() {
-  const q = document.getElementById('searchInput').value.toLowerCase().trim();
-  const list = document.getElementById('searchList');
-  let results = [];
+  function formatDateDisplay(d) {
+    return `${WEEKDAYS[d.getDay()]}, ${d.getDate()} de ${MONTHS[d.getMonth()]}`;
+  }
 
-  Object.keys(agenda).sort().forEach(key => {
-    const [y,m,d] = key.split('-').map(Number);
-    const dt = new Date(y,m-1,d);
-    agenda[key].apts.forEach(apt => {
-      if (!q || apt.client.toLowerCase().includes(q) || apt.service.toLowerCase().includes(q)) {
-        results.push({ dt, key, ...apt });
+  // ══════════════════════════════════════════
+  //  TOAST
+  // ══════════════════════════════════════════
+  function showToast(msg, isError = false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.borderColor = isError ? '#dc2626' : '#c8a96e';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // ══════════════════════════════════════════
+  //  NAVEGAÇÃO
+  // ══════════════════════════════════════════
+  window.goPage = function(id, btn) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.bottom-nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-'+id).classList.add('active');
+    btn.classList.add('active');
+    if (id === 'home') renderHome();
+    if (id === 'calendar') renderCalendar();
+    if (id === 'list') renderSearchList();
+  };
+
+  // ══════════════════════════════════════════
+  //  HOME
+  // ══════════════════════════════════════════
+  function renderHome() {
+    const todayKey = dateKey(new Date());
+    const todayData = agenda[todayKey];
+    const month = String(new Date().getMonth()+1).padStart(2,'0');
+    const year = new Date().getFullYear();
+    const prefix = `${year}-${month}`;
+
+    let monthTotal = 0, blockedTotal = 0;
+    Object.keys(agenda).forEach(k => {
+      if (k.startsWith(prefix)) {
+        monthTotal += agenda[k].apts?.length || 0;
+        if (agenda[k].blocked) blockedTotal++;
       }
     });
-  });
 
-  if (results.length === 0) {
-    list.innerHTML = '<div class="empty-state"><div class="icon">🔍</div>Nenhum resultado encontrado.</div>';
-    return;
+    document.getElementById('sumToday').textContent = todayData?.apts?.length || 0;
+    document.getElementById('sumMonth').textContent = monthTotal;
+    document.getElementById('sumBlocked').textContent = blockedTotal;
+
+    const list = document.getElementById('nextList');
+    const today = new Date(); today.setHours(0,0,0,0);
+    let items = [];
+
+    Object.keys(agenda).sort().forEach(k => {
+      const [y,m,d] = k.split('-').map(Number);
+      const dt = new Date(y,m-1,d);
+      if (dt >= today && !agenda[k].blocked) {
+        (agenda[k].apts || []).forEach(apt => items.push({ date: dt, ...apt }));
+      }
+    });
+
+    items = items.slice(0, 8);
+
+    if (items.length === 0) {
+      list.innerHTML = '<div class="empty-state"><div class="icon">📭</div>Nenhum agendamento futuro.</div>';
+      return;
+    }
+
+    list.innerHTML = items.map(it => `
+      <div class="next-item">
+        <div class="next-date">
+          <div class="nd">${it.date.getDate()}</div>
+          <div class="nm">${MONTHS_SHORT[it.date.getMonth()]}</div>
+        </div>
+        <div class="next-info">
+          <div class="ni-client">${it.client}</div>
+          <div class="ni-detail">${it.time} · ${it.service}</div>
+        </div>
+      </div>
+    `).join('');
   }
 
-  list.innerHTML = results.map(r => `
-    <div class="apt-card">
-      <div style="min-width:48px;text-align:center;">
-        <div style="font-size:1.1rem;font-weight:700;color:var(--gold)">${r.dt.getDate()}</div>
-        <div style="font-size:0.65rem;color:var(--muted)">${MONTHS_SHORT[r.dt.getMonth()]}</div>
+  // ══════════════════════════════════════════
+  //  CALENDÁRIO
+  // ══════════════════════════════════════════
+  function renderCalendar() {
+    const grid = document.getElementById('calGrid');
+    const label = document.getElementById('calMonthLabel');
+    grid.innerHTML = '';
+
+    const year = currentCal.getFullYear();
+    const month = currentCal.getMonth();
+    const todayKey = dateKey(new Date());
+    label.textContent = `${MONTHS[month]} ${year}`;
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month+1, 0).getDate();
+
+    for (let i = 0; i < firstDay; i++) {
+      const el = document.createElement('div');
+      el.className = 'cal-cell empty';
+      grid.appendChild(el);
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dt = new Date(year, month, d);
+      const key = dateKey(dt);
+      const dayData = agenda[key];
+      const el = document.createElement('div');
+      el.className = 'cal-cell';
+      el.innerHTML = `<span class="cal-num">${d}</span>`;
+
+      if (key === todayKey) el.classList.add('today');
+      if (selectedDate && dateKey(selectedDate) === key) el.classList.add('selected');
+      if (dayData?.blocked) {
+        el.classList.add('blocked');
+        el.innerHTML += '<div class="cal-dot blocked-dot"></div>';
+      } else if (dayData?.apts?.length > 0) {
+        el.innerHTML += '<div class="cal-dot"></div>';
+      }
+
+      el.onclick = () => selectDay(new Date(year, month, d));
+      grid.appendChild(el);
+    }
+  }
+
+  window.changeMonth = function(dir) {
+    currentCal.setMonth(currentCal.getMonth() + dir);
+    renderCalendar();
+  };
+
+  function selectDay(date) {
+    selectedDate = date;
+    renderCalendar();
+    renderDayDetail();
+    document.getElementById('dayDetail').style.display = 'block';
+    document.getElementById('dayDetail').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ══════════════════════════════════════════
+  //  DETALHE DO DIA
+  // ══════════════════════════════════════════
+  function renderDayDetail() {
+    if (!selectedDate) return;
+    const key = dateKey(selectedDate);
+    const dayData = getDay(key);
+
+    document.getElementById('dayDetailTitle').textContent = formatDateDisplay(selectedDate);
+
+    const badge = document.getElementById('dayBadge');
+    const toggleBtn = document.getElementById('toggleBlockBtn');
+    const blockedBanner = document.getElementById('blockedBanner');
+    const newForm = document.getElementById('newAptForm');
+
+    badge.textContent = dayData.blocked ? 'Fechado' : `${dayData.apts.length} agendamento(s)`;
+    badge.className = 'badge' + (dayData.blocked ? ' closed' : '');
+    toggleBtn.textContent = dayData.blocked ? '🔓 Abrir este dia' : '🔒 Fechar este dia';
+    toggleBtn.className = 'btn btn-sm ' + (dayData.blocked ? 'btn-gold' : 'btn-danger-outline');
+    blockedBanner.style.display = dayData.blocked ? 'block' : 'none';
+    newForm.style.display = dayData.blocked ? 'none' : 'block';
+
+    renderDayApts(key);
+  }
+
+  function renderDayApts(key) {
+    const dayData = getDay(key);
+    const list = document.getElementById('dayAptList');
+
+    if (dayData.apts.length === 0) {
+      list.innerHTML = '<div class="empty-state"><div class="icon">🗓</div>Nenhum agendamento neste dia.</div>';
+      return;
+    }
+
+    list.innerHTML = dayData.apts.map(apt => `
+      <div class="apt-card">
+        <div class="apt-time">${apt.time}</div>
+        <div class="apt-body">
+          <div class="apt-client">${apt.client}</div>
+          <div class="apt-service">${apt.service}</div>
+          ${apt.obs ? `<div class="apt-obs">${apt.obs}</div>` : ''}
+        </div>
+        <button class="apt-del" onclick="removeApt('${key}', ${apt.id})">✕</button>
       </div>
-      <div class="apt-body">
-        <div class="apt-client">${r.client}</div>
-        <div class="apt-service">${r.time} · ${r.service}</div>
-        ${r.obs ? `<div class="apt-obs">${r.obs}</div>` : ''}
+    `).join('');
+  }
+
+  // ══════════════════════════════════════════
+  //  AGENDAMENTO
+  // ══════════════════════════════════════════
+  window.addApt = async function() {
+    if (!selectedDate) return;
+    const key = dateKey(selectedDate);
+    const dayData = getDay(key);
+
+    const time = document.getElementById('inTime').value;
+    const client = document.getElementById('inClient').value.trim();
+    const service = document.getElementById('inService').value;
+    const obs = document.getElementById('inObs').value.trim();
+
+    if (!time) return showToast('⚠ Informe o horário.', true);
+    if (!client) return showToast('⚠ Informe o nome do cliente.', true);
+    if (!service) return showToast('⚠ Selecione o serviço.', true);
+
+    const dup = dayData.apts.find(a => a.time === time);
+    if (dup) return showToast(`⚠ Já existe agendamento às ${time}.`, true);
+
+    dayData.apts.push({ id: Date.now(), time, client, service, obs });
+    dayData.apts.sort((a,b) => a.time.localeCompare(b.time));
+
+    await saveDay(key, dayData);
+
+    document.getElementById('inTime').value = '';
+    document.getElementById('inClient').value = '';
+    document.getElementById('inService').value = '';
+    document.getElementById('inObs').value = '';
+
+    showToast('✓ Agendamento confirmado!');
+  };
+
+  window.removeApt = async function(key, id) {
+    if (!confirm('Remover este agendamento?')) return;
+    await deleteApt(key, id);
+    showToast('Agendamento removido.');
+  };
+
+  window.toggleBlock = async function() {
+    if (!selectedDate) return;
+    const key = dateKey(selectedDate);
+    const dayData = getDay(key);
+
+    if (!dayData.blocked && dayData.apts.length > 0) {
+      if (!confirm(`Há ${dayData.apts.length} agendamento(s) neste dia. Fechar mesmo assim?`)) return;
+    }
+
+    dayData.blocked = !dayData.blocked;
+    await saveDay(key, dayData);
+    showToast(dayData.blocked ? '🔒 Dia fechado.' : '🔓 Dia aberto.');
+  };
+
+  // ══════════════════════════════════════════
+  //  BUSCA
+  // ══════════════════════════════════════════
+  window.renderSearchList = function() {
+    const q = document.getElementById('searchInput').value.toLowerCase().trim();
+    const list = document.getElementById('searchList');
+    let results = [];
+
+    Object.keys(agenda).sort().forEach(key => {
+      const [y,m,d] = key.split('-').map(Number);
+      const dt = new Date(y,m-1,d);
+      (agenda[key].apts || []).forEach(apt => {
+        if (!q || apt.client.toLowerCase().includes(q) || apt.service.toLowerCase().includes(q)) {
+          results.push({ dt, key, ...apt });
+        }
+      });
+    });
+
+    if (results.length === 0) {
+      list.innerHTML = '<div class="empty-state"><div class="icon">🔍</div>Nenhum resultado.</div>';
+      return;
+    }
+
+    list.innerHTML = results.map(r => `
+      <div class="apt-card">
+        <div style="min-width:44px;text-align:center;">
+          <div style="font-size:1.1rem;font-weight:700;color:var(--gold)">${r.dt.getDate()}</div>
+          <div style="font-size:0.65rem;color:var(--muted)">${MONTHS_SHORT[r.dt.getMonth()]}</div>
+        </div>
+        <div class="apt-body">
+          <div class="apt-client">${r.client}</div>
+          <div class="apt-service">${r.time} · ${r.service}</div>
+          ${r.obs ? `<div class="apt-obs">${r.obs}</div>` : ''}
+        </div>
       </div>
-    </div>
-  `).join('');
-}
+    `).join('');
+  };
 
-// ══════════════════════════════════════════
-//  PAINEL ADMIN — USUÁRIOS
-// ══════════════════════════════════════════
-function renderAdmin() {
-  const isAdmin = currentUser?.role === 'admin';
-  document.getElementById('adminPanel').style.display = isAdmin ? 'block' : 'none';
-  document.getElementById('notAdminMsg').style.display = isAdmin ? 'none' : 'block';
-  if (!isAdmin) return;
-  renderUserList();
-}
+  // ══════════════════════════════════════════
+  //  INIT
+  // ══════════════════════════════════════════
+  function init() {
+    const now = new Date();
+    const WEEKDAYS_FULL = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+    document.getElementById('headerDate').textContent =
+      `${WEEKDAYS_FULL[now.getDay()]}, ${now.getDate()} de ${MONTHS[now.getMonth()]}`;
+    startSync();
+    renderCalendar();
+  }
 
-function renderUserList() {
-  const users = getUsers();
-  const list  = document.getElementById('userList');
-
-  list.innerHTML = users.map((u, i) => `
-    <div class="user-card">
-      <div>
-        <div class="u-name">${u.name}</div>
-        <div class="u-role">@${u.login}</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px;">
-        <span class="role-badge ${u.role}">${u.role === 'admin' ? 'Admin' : 'Funcionário'}</span>
-        ${u.login !== 'admin' ? `<button class="btn-del-user" onclick="removeUser(${i})">✕</button>` : ''}
-      </div>
-    </div>
-  `).join('');
-}
-
-function addUser() {
-  const name  = document.getElementById('newUserName').value.trim();
-  const login = document.getElementById('newUserLogin').value.trim().toLowerCase();
-  const pass  = document.getElementById('newUserPass').value;
-  const role  = document.getElementById('newUserRole').value;
-
-  if (!name || !login || !pass) return showToast('⚠ Preencha todos os campos.', true);
-
-  const users = getUsers();
-  if (users.find(u => u.login === login)) return showToast('⚠ Este usuário já existe.', true);
-
-  users.push({ login, pass, name, role });
-  saveUsers(users);
-
-  document.getElementById('newUserName').value  = '';
-  document.getElementById('newUserLogin').value = '';
-  document.getElementById('newUserPass').value  = '';
-
-  renderUserList();
-  showToast(`✓ Usuário "${name}" adicionado!`);
-}
-
-function removeUser(index) {
-  if (!confirm('Remover este usuário?')) return;
-  const users = getUsers();
-  users.splice(index, 1);
-  saveUsers(users);
-  renderUserList();
-  showToast('Usuário removido.');
-}
+  if (sessionStorage.getItem('kr_auth') === '1') init();
 </script>
 </body>
 </html>
