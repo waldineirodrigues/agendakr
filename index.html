@@ -64,9 +64,8 @@
       position: sticky; top: 0; z-index: 100;
       background: linear-gradient(135deg, var(--gold), var(--gold-dark));
       padding: 14px 20px;
-      display: flex; align-items: center; justify-content: space-between;
+      display: none; align-items: center; justify-content: space-between;
       box-shadow: 0 2px 12px rgba(0,0,0,0.5);
-      display: none;
     }
 
     header h1 { font-size: 1.2rem; color: #fff; }
@@ -147,6 +146,7 @@
     input:focus, select:focus, textarea:focus { border-color: var(--gold); }
     textarea { min-height: 70px; resize: vertical; }
     .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
 
     .btn { width: 100%; padding: 14px; border-radius: 12px; border: none; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s; margin-top: 4px; }
     .btn:active { opacity: 0.8; }
@@ -161,7 +161,11 @@
       display: flex; align-items: flex-start; gap: 12px;
     }
 
-    .apt-time { font-size: 1rem; font-weight: 700; color: var(--gold); min-width: 46px; }
+    .apt-time-block { display: flex; flex-direction: column; align-items: center; min-width: 52px; }
+    .apt-time-start { font-size: 1rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .apt-time-sep { font-size: 0.65rem; color: var(--muted); margin: 2px 0; }
+    .apt-time-end { font-size: 0.82rem; font-weight: 600; color: var(--muted); line-height: 1; }
+
     .apt-body { flex: 1; }
     .apt-client { font-size: 0.95rem; font-weight: 600; }
     .apt-service { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
@@ -206,6 +210,8 @@
     }
 
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .time-arrow { text-align: center; color: var(--muted); font-size: 0.8rem; padding-top: 28px; }
   </style>
 </head>
 <body>
@@ -270,29 +276,52 @@
     <div id="blockedBanner" class="blocked-banner" style="display:none;">🔴 Este dia está fechado</div>
     <button class="btn btn-sm btn-danger-outline" id="toggleBlockBtn" onclick="toggleBlock()" style="margin-bottom:12px;">🔒 Fechar este dia</button>
     <div id="dayAptList"></div>
+
     <div id="newAptForm" class="card">
       <h3>➕ Novo agendamento</h3>
-      <div class="form-row-2">
-        <div class="form-group"><label>Horário</label><input type="time" id="inTime"/></div>
+
+      <!-- Horário início e fim -->
+      <div class="form-row-3">
         <div class="form-group">
-          <label>Serviço</label>
-          <select id="inService">
-            <option value="">Selecione</option>
-            <option>Corte</option>
-            <option>Barba</option>
-            <option>Corte + Barba</option>
-            <option>Coloração</option>
-            <option>Hidratação</option>
-            <option>Escova</option>
-            <option>Manicure</option>
-            <option>Pedicure</option>
-            <option>Design de Sobrancelha</option>
-            <option>Outro</option>
-          </select>
+          <label>Início</label>
+          <input type="time" id="inTimeStart"/>
+        </div>
+        <div class="time-arrow">→</div>
+        <div class="form-group">
+          <label>Término</label>
+          <input type="time" id="inTimeEnd"/>
         </div>
       </div>
-      <div class="form-group"><label>Nome do cliente</label><input type="text" id="inClient" placeholder="Ex: Maria Silva"/></div>
-      <div class="form-group"><label>Observação</label><textarea id="inObs" placeholder="Preferências, alergias..."></textarea></div>
+
+      <!-- Serviço -->
+      <div class="form-group">
+        <label>Serviço</label>
+        <select id="inService">
+          <option value="">Selecione</option>
+          <option>Maquiagem</option>
+          <option>Penteado</option>
+          <option>Dia da noiva</option>
+          <option>Hidratação</option>
+          <option>15 anos</option>
+          <option>Progressiva</option>
+          <option>Corte bordado</option>
+          <option>Escova</option>
+          <option>Realinhamento</option>
+        </select>
+      </div>
+
+      <!-- Cliente -->
+      <div class="form-group">
+        <label>Nome do cliente</label>
+        <input type="text" id="inClient" placeholder="Ex: Maria Silva"/>
+      </div>
+
+      <!-- Observação -->
+      <div class="form-group">
+        <label>Observação</label>
+        <textarea id="inObs" placeholder="Preferências, alergias..."></textarea>
+      </div>
+
       <button class="btn btn-gold" onclick="addApt()">Confirmar agendamento</button>
     </div>
   </div>
@@ -321,7 +350,6 @@
   import { getDatabase, ref, onValue, set }
     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-  // ══ CONFIG FIREBASE ══
   const firebaseConfig = {
     apiKey: "AIzaSyDuSjRYnCZ3QwCU_qQHd_IxwukqFDcCKsQ",
     authDomain: "espaco-kr.firebaseapp.com",
@@ -333,7 +361,6 @@
     measurementId: "G-6YBEP2K1J1"
   };
 
-  // ══ SENHA ══
   const SENHA_CORRETA = "espaco2024";
 
   const firebaseApp = initializeApp(firebaseConfig);
@@ -383,7 +410,6 @@
 
   document.getElementById('btnEntrar').addEventListener('click', doLogin);
 
-  // Verificar sessão ao carregar
   if (sessionStorage.getItem('kr_auth') === '1') {
     mostrarApp();
   }
@@ -501,7 +527,7 @@
         </div>
         <div class="next-info">
           <div class="ni-client">${it.client}</div>
-          <div class="ni-detail">${it.time} · ${it.service}</div>
+          <div class="ni-detail">${it.timeStart} – ${it.timeEnd} · ${it.service}</div>
         </div>
       </div>
     `).join('');
@@ -598,7 +624,11 @@
 
     list.innerHTML = dayData.apts.map(apt => `
       <div class="apt-card">
-        <div class="apt-time">${apt.time}</div>
+        <div class="apt-time-block">
+          <div class="apt-time-start">${apt.timeStart}</div>
+          <div class="apt-time-sep">até</div>
+          <div class="apt-time-end">${apt.timeEnd}</div>
+        </div>
         <div class="apt-body">
           <div class="apt-client">${apt.client}</div>
           <div class="apt-service">${apt.service}</div>
@@ -615,27 +645,31 @@
     const key = dateKey(selectedDate);
     const dayData = getDay(key);
 
-    const time    = document.getElementById('inTime').value;
-    const client  = document.getElementById('inClient').value.trim();
-    const service = document.getElementById('inService').value;
-    const obs     = document.getElementById('inObs').value.trim();
+    const timeStart = document.getElementById('inTimeStart').value;
+    const timeEnd   = document.getElementById('inTimeEnd').value;
+    const client    = document.getElementById('inClient').value.trim();
+    const service   = document.getElementById('inService').value;
+    const obs       = document.getElementById('inObs').value.trim();
 
-    if (!time)    return showToast('⚠ Informe o horário.', true);
-    if (!client)  return showToast('⚠ Informe o nome do cliente.', true);
-    if (!service) return showToast('⚠ Selecione o serviço.', true);
+    if (!timeStart)  return showToast('⚠ Informe o horário de início.', true);
+    if (!timeEnd)    return showToast('⚠ Informe o horário de término.', true);
+    if (timeEnd <= timeStart) return showToast('⚠ O término deve ser após o início.', true);
+    if (!client)     return showToast('⚠ Informe o nome do cliente.', true);
+    if (!service)    return showToast('⚠ Selecione o serviço.', true);
 
-    const dup = dayData.apts.find(a => a.time === time);
-    if (dup) return showToast(`⚠ Já existe agendamento às ${time}.`, true);
+    const dup = dayData.apts.find(a => a.timeStart === timeStart);
+    if (dup) return showToast(`⚠ Já existe agendamento às ${timeStart}.`, true);
 
-    dayData.apts.push({ id: Date.now(), time, client, service, obs });
-    dayData.apts.sort((a,b) => a.time.localeCompare(b.time));
+    dayData.apts.push({ id: Date.now(), timeStart, timeEnd, client, service, obs });
+    dayData.apts.sort((a,b) => a.timeStart.localeCompare(b.timeStart));
 
     await saveDay(key, dayData);
 
-    document.getElementById('inTime').value    = '';
-    document.getElementById('inClient').value  = '';
-    document.getElementById('inService').value = '';
-    document.getElementById('inObs').value     = '';
+    document.getElementById('inTimeStart').value = '';
+    document.getElementById('inTimeEnd').value   = '';
+    document.getElementById('inClient').value    = '';
+    document.getElementById('inService').value   = '';
+    document.getElementById('inObs').value       = '';
 
     showToast('✓ Agendamento confirmado!');
   };
@@ -685,13 +719,18 @@
 
     list.innerHTML = results.map(r => `
       <div class="apt-card">
-        <div style="min-width:44px;text-align:center;">
+        <div class="apt-time-block">
+          <div class="apt-time-start">${r.timeStart}</div>
+          <div class="apt-time-sep">até</div>
+          <div class="apt-time-end">${r.timeEnd}</div>
+        </div>
+        <div style="min-width:44px;text-align:center;margin-right:4px;">
           <div style="font-size:1.1rem;font-weight:700;color:var(--gold)">${r.dt.getDate()}</div>
           <div style="font-size:0.65rem;color:var(--muted)">${MONTHS_SHORT[r.dt.getMonth()]}</div>
         </div>
         <div class="apt-body">
           <div class="apt-client">${r.client}</div>
-          <div class="apt-service">${r.time} · ${r.service}</div>
+          <div class="apt-service">${r.service}</div>
           ${r.obs ? `<div class="apt-obs">${r.obs}</div>` : ''}
         </div>
       </div>
