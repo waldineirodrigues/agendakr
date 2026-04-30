@@ -34,12 +34,8 @@
       text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.6);
     }
 
-    .login-logo {
-      width: 160px; height: auto; margin: 0 auto 20px;
-      display: block;
-      filter: drop-shadow(0 2px 10px rgba(200,169,110,0.35));
-    }
-
+    .login-box .logo { font-size: 3rem; margin-bottom: 6px; }
+    .login-box h2 { color: var(--gold); font-size: 1.4rem; margin-bottom: 4px; }
     .login-box p { color: var(--muted); font-size: 0.82rem; margin-bottom: 24px; }
 
     .login-box input {
@@ -62,19 +58,13 @@
     header {
       position: sticky; top: 0; z-index: 100;
       background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-      padding: 10px 20px; display: none;
+      padding: 14px 20px; display: none;
       align-items: center; justify-content: space-between;
       box-shadow: 0 2px 12px rgba(0,0,0,0.5);
     }
 
-    .header-left { display: flex; align-items: center; gap: 10px; }
-
-    .header-logo {
-      height: 38px; width: auto;
-      filter: brightness(0) invert(1);
-    }
-
-    .header-text p { font-size: 0.7rem; color: rgba(255,255,255,0.88); margin-top: 1px; }
+    header h1 { font-size: 1.2rem; color: #fff; }
+    header p  { font-size: 0.72rem; color: rgba(255,255,255,0.85); margin-top: 2px; }
 
     .sync-indicator { font-size: 0.7rem; color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 5px; }
     .sync-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
@@ -120,7 +110,10 @@
     .faturamento-card .fat-val { font-size: 1.8rem; font-weight: 700; color: var(--green); margin-top: 4px; }
     .faturamento-card .fat-icon { font-size: 2.2rem; opacity: 0.6; }
 
-    .filtros-wrap { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    /* ── FILTROS VISÃO GERAL ── */
+    .filtros-wrap {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;
+    }
 
     .filtro-btn {
       padding: 7px 14px; border-radius: 20px; border: 1.5px solid var(--border);
@@ -130,11 +123,19 @@
 
     .filtro-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(200,169,110,0.1); }
 
-    .filtros-selects { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .filtros-selects {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;
+    }
 
-    .visao-resumo { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .visao-resumo {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;
+    }
 
-    .visao-resumo-item { background: var(--card); border-radius: 12px; padding: 12px; text-align: center; }
+    .visao-resumo-item {
+      background: var(--card); border-radius: 12px; padding: 12px;
+      text-align: center;
+    }
+
     .visao-resumo-item .vr-val { font-size: 1.4rem; font-weight: 700; color: var(--gold); }
     .visao-resumo-item .vr-val.green { color: var(--green); }
     .visao-resumo-item .vr-lbl { font-size: 0.68rem; color: var(--muted); margin-top: 4px; }
@@ -145,17 +146,29 @@
       display: flex; align-items: flex-start; gap: 12px;
     }
 
+    .visao-data {
+      min-width: 44px; text-align: center; background: var(--card);
+      border-radius: 10px; padding: 6px 4px;
+    }
+
+    .visao-data .vd-num { font-size: 1.2rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .visao-data .vd-mes { font-size: 0.62rem; color: var(--muted); text-transform: uppercase; }
+    .visao-data .vd-dia { font-size: 0.6rem; color: var(--muted); margin-top: 2px; }
+
     .visao-body { flex: 1; }
     .visao-client { font-size: 0.9rem; font-weight: 600; }
+    .visao-detail { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
     .visao-valor { font-size: 0.8rem; color: var(--green); font-weight: 600; margin-top: 3px; }
     .visao-obs { font-size: 0.72rem; color: #6b7280; margin-top: 3px; font-style: italic; }
 
     .servico-tag {
       display: inline-block; font-size: 0.68rem; padding: 2px 8px;
       border-radius: 10px; background: rgba(200,169,110,0.15);
-      color: var(--gold); border: 1px solid rgba(200,169,110,0.3); margin-top: 3px;
+      color: var(--gold); border: 1px solid rgba(200,169,110,0.3);
+      margin-top: 3px;
     }
 
+    /* ── CALENDÁRIO ── */
     .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
     .cal-nav h2 { font-size: 1rem; color: var(--gold); }
     .cal-nav button {
@@ -277,7 +290,9 @@
       letter-spacing: 0.5px; margin: 16px 0 8px; padding-left: 2px;
     }
 
-    .resultado-count { font-size: 0.78rem; color: var(--muted); margin-bottom: 12px; text-align: right; }
+    .resultado-count {
+      font-size: 0.78rem; color: var(--muted); margin-bottom: 12px; text-align: right;
+    }
   </style>
 </head>
 <body>
@@ -285,9 +300,8 @@
 <!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-box">
-    <img class="login-logo"
-      src="data:image/png;base64,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"
-      alt="Espaço KR Logo"/>
+    <div class="logo">✂</div>
+    <h2>Espaço KR</h2>
     <p>Agenda exclusiva da equipe</p>
     <input type="password" id="loginInput" placeholder="••••••" maxlength="20"
            onkeydown="if(event.key==='Enter') document.getElementById('btnEntrar').click()"/>
@@ -298,13 +312,9 @@
 
 <!-- HEADER -->
 <header id="mainHeader">
-  <div class="header-left">
-    <img class="header-logo"
-      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAY8AAAIyCAYAAAAzJkbRAAAKN2lDQ1BzUkdCIElFQzYxOTY2LTIuMQAAeJydlndUU9kWh8+9N71QkhCKlNBraFICSA29SJEuKjEJEErAkAAiNkRUcERRkaYIMijggKNDkbEiioUBUbHrBBlE1HFwFBuWSWStGd+8ee/Nm98f935rn73P3Wfvfda6AJD8gwXCTFgJgAyhWBTh58WIjYtnYAcBDPAAA2wA4HCzs0IW+EYCmQJ82IxsmRP4F726DiD5+yrTP4zBAP+flLlZIjEAUJiM5/L42VwZF8k4PVecJbdPyZi2NE3OMErOIlmCMlaTc/IsW3z2mWUPOfMyhDwZy3PO4mXw5Nwn4405Er6MkWAZF+cI+LkyviZjg3RJhkDGb+SxGXxONgAoktwu5nNTZGwtY5IoMoIt43kA4EjJX/DSL1jMzxPLD8XOzFouEiSniBkmXFOGjZMTi+HPz03ni8XMMA43jSPiMdiZGVkc4XIAZs/8WRR5bRmyIjvYODk4MG0tbb4o1H9d/JuS93aWXoR/7hlEH/jD9ld+mQ0AsKZltdn6h21pFQBd6wFQu/2HzWAvAIqyvnUOfXEeunxeUsTiLGcrq9zcXEsBn2spL+jv+p8Of0NffM9Svt3v5WF485M4knQxQ143bmZ6pkTEyM7icPkM5p+H+B8H/nUeFhH8JL6IL5RFRMumTCBMlrVbyBOIBZlChkD4n5r4D8P+pNm5lona+BHQllgCpSEaQH4eACgqESAJe2Qr0O99C8ZHA/nNi9GZmJ37z4L+fVe4TP7IFiR/jmNHRDK4ElHO7Jr8WgI0IABFQAPqQBvoAxPABLbAEbgAD+ADAkEoiARxYDHgghSQAUQgFxSAtaAYlIKtYCeoBnWgETSDNnAYdIFj4DQ4By6By2AE3AFSMA6egCnwCsxAEISFyBAVUod0IEPIHLKFWJAb5AMFQxFQHJQIJUNCSAIVQOugUqgcqobqoWboW+godBq6AA1Dt6BRaBL6FXoHIzAJpsFasBFsBbNgTzgIjoQXwcnwMjgfLoK3wJVwA3wQ7oRPw5fgEVgKP4GnEYAQETqiizARFsJGQpF4JAkRIauQEqQCaUDakB6kH7mKSJGnyFsUBkVFMVBMlAvKHxWF4qKWoVahNqOqUQdQnag+1FXUKGoK9RFNRmuizdHO6AI0LDoZnYsuRlegm9Ad6LPoEfQ4+hUGg6FjjDGOGH9MHCYVswKzGbMb0445hRnGjGGmsVisOtYc64oNxXKwYmwxtgp7EHsSewU7jn2DI+J0cLY4X1w8TogrxFXgWnAncFdwE7gZvBLeEO+MD8Xz8MvxZfhGfA9+CD+OnyEoE4wJroRIQiphLaGS0EY4S7hLeEEkEvWITsRwooC4hlhJPEQ8TxwlviVRSGYkNimBJCFtIe0nnSLdIr0gk8lGZA9yPFlM3kJuJp8h3ye/UaAqWCoEKPAUVivUKHQqXFF4pohXNFT0VFysmK9YoXhEcUjxqRJeyUiJrcRRWqVUo3RU6YbStDJV2UY5VDlDebNyi/IF5UcULMWI4kPhUYoo+yhnKGNUhKpPZVO51HXURupZ6jgNQzOmBdBSaaW0b2iDtCkVioqdSrRKnkqNynEVKR2hG9ED6On0Mvph+nX6O1UtVU9Vvuom1TbVK6qv1eaoeajx1UrU2tVG1N6pM9R91NPUt6l3qd/TQGmYaYRr5Grs0Tir8XQObY7LHO6ckjmH59zWhDXNNCM0V2ju0xzQnNbS1vLTytKq0jqj9VSbru2hnaq9Q/uE9qQOVcdNR6CzQ+ekzsOOMCMWgUBGJpSVOKy+B8OcVRGdZGiNt0BGsXW4AINuJNwsYMDhZ9TYYCrIBRmOjhZ1oBssMFJMpSoXW0AkOYJoKG5hAfTjFSBFRQAgSqp/RtASBKHyalIBFJAVIAGhZoAIJOCJJAQ+IMBA0JMABBBpYFNGDqJX1jHgcVAGcFBRaJAFZJ7G7BqihQAG85lnOvd9zjnffc73fY8AAAB/SURBVHic7cExAQAAAMKg9U9tCF8gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAMBYAABHgD3RQAAAABJRU5ErkJggg=="
-      alt="Espaço KR"/>
-    <div class="header-text">
-      <p id="headerDate"></p>
-    </div>
+  <div>
+    <h1>✂ Espaço KR</h1>
+    <p id="headerDate"></p>
   </div>
   <div class="sync-indicator">
     <div class="sync-dot" id="syncDot"></div>
@@ -397,16 +407,22 @@
 <div class="page" id="page-visao">
   <div class="card">
     <h3>🔎 Filtrar agendamentos</h3>
+
+    <!-- Período rápido -->
     <div class="filtros-wrap" id="filtrosPeriodo">
       <button class="filtro-btn active" data-periodo="hoje" onclick="setPeriodo(this)">Hoje</button>
       <button class="filtro-btn" data-periodo="semana" onclick="setPeriodo(this)">Esta semana</button>
       <button class="filtro-btn" data-periodo="mes" onclick="setPeriodo(this)">Este mês</button>
       <button class="filtro-btn" data-periodo="custom" onclick="setPeriodo(this)">Personalizado</button>
     </div>
+
+    <!-- Datas personalizadas -->
     <div id="customDates" style="display:none;" class="form-row-2">
       <div class="form-group"><label>De</label><input type="date" id="filtroDataDe" oninput="renderVisao()"/></div>
       <div class="form-group"><label>Até</label><input type="date" id="filtroDataAte" oninput="renderVisao()"/></div>
     </div>
+
+    <!-- Filtros de serviço e cliente -->
     <div class="filtros-selects">
       <div class="form-group" style="margin:0">
         <label>Serviço</label>
@@ -430,7 +446,8 @@
     </div>
   </div>
 
-  <div class="visao-resumo">
+  <!-- Resumo dos resultados -->
+  <div class="visao-resumo" id="visaoResumo">
     <div class="visao-resumo-item">
       <div class="vr-val" id="vrTotal">0</div>
       <div class="vr-lbl">Agendamentos</div>
@@ -516,13 +533,16 @@
     return `${WEEKDAYS[d.getDay()]}, ${d.getDate()} de ${MONTHS[d.getMonth()]}`;
   }
 
+  // ══ MOSTRAR APP ══
   function mostrarApp() {
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('mainHeader').style.display = 'flex';
     document.getElementById('mainNav').style.display = 'flex';
+
     const now = new Date();
     document.getElementById('headerDate').textContent =
       `${WEEKDAYS_FULL[now.getDay()]}, ${now.getDate()} de ${MONTHS[now.getMonth()]}`;
+
     if (!syncStarted) {
       syncStarted = true;
       startSync();
@@ -530,6 +550,7 @@
     }
   }
 
+  // ══ LOGIN ══
   function doLogin() {
     const val = document.getElementById('loginInput').value;
     const err = document.getElementById('loginError');
@@ -546,6 +567,7 @@
   document.getElementById('btnEntrar').addEventListener('click', doLogin);
   if (sessionStorage.getItem('kr_auth') === '1') mostrarApp();
 
+  // ══ FIREBASE ══
   function startSync() {
     const agendaRef = ref(db, 'agenda');
     onValue(agendaRef, (snapshot) => {
@@ -556,6 +578,7 @@
       renderVisao();
       setSyncStatus(true);
     }, () => setSyncStatus(false));
+
     window.addEventListener('online',  () => setSyncStatus(true));
     window.addEventListener('offline', () => setSyncStatus(false));
   }
@@ -573,6 +596,7 @@
     }
   }
 
+  // ══ TOAST ══
   function showToast(msg, isError = false) {
     const t = document.getElementById('toast');
     t.textContent = msg;
@@ -581,6 +605,7 @@
     setTimeout(() => t.classList.remove('show'), 2800);
   }
 
+  // ══ NAVEGAÇÃO ══
   window.goPage = function(id, btn) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.bottom-nav button').forEach(b => b.classList.remove('active'));
@@ -592,12 +617,14 @@
     if (id === 'list') renderSearchList();
   };
 
+  // ══ HOME ══
   function renderHome() {
     const todayKey = dateKey(new Date());
     const todayData = agenda[todayKey];
     const month = String(new Date().getMonth()+1).padStart(2,'0');
     const year = new Date().getFullYear();
     const prefix = `${year}-${month}`;
+
     let monthTotal = 0, blockedTotal = 0, fatTotal = 0;
     Object.keys(agenda).forEach(k => {
       if (k.startsWith(prefix)) {
@@ -606,13 +633,16 @@
         (agenda[k].apts || []).forEach(apt => { if (apt.valor) fatTotal += Number(apt.valor); });
       }
     });
+
     document.getElementById('sumToday').textContent = todayData?.apts?.length || 0;
     document.getElementById('sumMonth').textContent = monthTotal;
     document.getElementById('sumBlocked').textContent = blockedTotal;
     document.getElementById('fatMonth').textContent = formatValor(fatTotal) || 'R$ 0,00';
+
     const list = document.getElementById('nextList');
     const today = new Date(); today.setHours(0,0,0,0);
     let items = [];
+
     Object.keys(agenda).sort().forEach(k => {
       const [y,m,d] = k.split('-').map(Number);
       const dt = new Date(y,m-1,d);
@@ -620,11 +650,14 @@
         (agenda[k].apts || []).forEach(apt => items.push({ date: dt, ...apt }));
       }
     });
+
     items = items.slice(0, 8);
+
     if (items.length === 0) {
       list.innerHTML = '<div class="empty-state"><div class="icon">📭</div>Nenhum agendamento futuro.</div>';
       return;
     }
+
     list.innerHTML = items.map(it => `
       <div class="next-item">
         <div class="next-date">
@@ -640,21 +673,26 @@
     `).join('');
   }
 
+  // ══ CALENDÁRIO ══
   function renderCalendar() {
     const grid = document.getElementById('calGrid');
     const label = document.getElementById('calMonthLabel');
     grid.innerHTML = '';
+
     const year = currentCal.getFullYear();
     const month = currentCal.getMonth();
     const todayKey = dateKey(new Date());
     label.textContent = `${MONTHS[month]} ${year}`;
+
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month+1, 0).getDate();
+
     for (let i = 0; i < firstDay; i++) {
       const el = document.createElement('div');
       el.className = 'cal-cell empty';
       grid.appendChild(el);
     }
+
     for (let d = 1; d <= daysInMonth; d++) {
       const dt = new Date(year, month, d);
       const key = dateKey(dt);
@@ -662,6 +700,7 @@
       const el = document.createElement('div');
       el.className = 'cal-cell';
       el.innerHTML = `<span class="cal-num">${d}</span>`;
+
       if (key === todayKey) el.classList.add('today');
       if (selectedDate && dateKey(selectedDate) === key) el.classList.add('selected');
       if (dayData?.blocked) {
@@ -670,6 +709,7 @@
       } else if (dayData?.apts?.length > 0) {
         el.innerHTML += '<div class="cal-dot"></div>';
       }
+
       el.onclick = () => selectDay(new Date(year, month, d));
       grid.appendChild(el);
     }
@@ -690,35 +730,43 @@
     }, 100);
   }
 
+  // ══ DETALHE DO DIA ══
   function renderDayDetail() {
     if (!selectedDate) return;
     const key = dateKey(selectedDate);
     const dayData = getDay(key);
+
     document.getElementById('dayDetailTitle').textContent = formatDateDisplay(selectedDate);
+
     const badge = document.getElementById('dayBadge');
     const toggleBtn = document.getElementById('toggleBlockBtn');
     const blockedBanner = document.getElementById('blockedBanner');
     const newForm = document.getElementById('newAptForm');
+
     badge.textContent = dayData.blocked ? 'Fechado' : `${dayData.apts.length} agendamento(s)`;
     badge.className = 'badge' + (dayData.blocked ? ' closed' : '');
     toggleBtn.textContent = dayData.blocked ? '🔓 Abrir este dia' : '🔒 Fechar este dia';
     toggleBtn.className = 'btn btn-sm ' + (dayData.blocked ? 'btn-gold' : 'btn-danger-outline');
     blockedBanner.style.display = dayData.blocked ? 'block' : 'none';
     newForm.style.display = dayData.blocked ? 'none' : 'block';
+
     renderDayApts(key);
   }
 
   function renderDayApts(key) {
     const dayData = getDay(key);
     const list = document.getElementById('dayAptList');
+
     if (dayData.apts.length === 0) {
       list.innerHTML = '<div class="empty-state"><div class="icon">🗓</div>Nenhum agendamento neste dia.</div>';
       return;
     }
+
     const totalDia = dayData.apts.reduce((s, a) => s + (Number(a.valor) || 0), 0);
     const totalHtml = totalDia > 0
       ? `<div style="text-align:right;font-size:0.82rem;color:var(--green);margin-bottom:10px;font-weight:600;">Total do dia: ${formatValor(totalDia)}</div>`
       : '';
+
     list.innerHTML = totalHtml + dayData.apts.map(apt => `
       <div class="apt-card">
         <div class="apt-time-block">
@@ -737,32 +785,40 @@
     `).join('');
   }
 
+  // ══ AGENDAMENTO ══
   window.addApt = async function() {
     if (!selectedDate) return;
     const key = dateKey(selectedDate);
     const dayData = getDay(key);
+
     const timeStart = document.getElementById('inTimeStart').value;
     const timeEnd   = document.getElementById('inTimeEnd').value;
     const client    = document.getElementById('inClient').value.trim();
     const service   = document.getElementById('inService').value;
     const valor     = document.getElementById('inValor').value;
     const obs       = document.getElementById('inObs').value.trim();
+
     if (!timeStart)  return showToast('⚠ Informe o horário de início.', true);
     if (!timeEnd)    return showToast('⚠ Informe o horário de término.', true);
     if (timeEnd <= timeStart) return showToast('⚠ O término deve ser após o início.', true);
     if (!client)     return showToast('⚠ Informe o nome do cliente.', true);
     if (!service)    return showToast('⚠ Selecione o serviço.', true);
+
     const dup = dayData.apts.find(a => a.timeStart === timeStart);
     if (dup) return showToast(`⚠ Já existe agendamento às ${timeStart}.`, true);
+
     dayData.apts.push({ id: Date.now(), timeStart, timeEnd, client, service, valor: valor ? parseFloat(valor) : null, obs });
     dayData.apts.sort((a,b) => a.timeStart.localeCompare(b.timeStart));
+
     await saveDay(key, dayData);
+
     document.getElementById('inTimeStart').value = '';
     document.getElementById('inTimeEnd').value   = '';
     document.getElementById('inClient').value    = '';
     document.getElementById('inService').value   = '';
     document.getElementById('inValor').value     = '';
     document.getElementById('inObs').value       = '';
+
     showToast('✓ Agendamento confirmado!');
   };
 
@@ -778,14 +834,17 @@
     if (!selectedDate) return;
     const key = dateKey(selectedDate);
     const dayData = getDay(key);
+
     if (!dayData.blocked && dayData.apts.length > 0) {
       if (!confirm(`Há ${dayData.apts.length} agendamento(s) neste dia. Fechar mesmo assim?`)) return;
     }
+
     dayData.blocked = !dayData.blocked;
     await saveDay(key, dayData);
     showToast(dayData.blocked ? '🔒 Dia fechado.' : '🔓 Dia aberto.');
   };
 
+  // ══ VISÃO GERAL ══
   window.setPeriodo = function(btn) {
     document.querySelectorAll('#filtrosPeriodo .filtro-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -796,12 +855,152 @@
 
   function getRangeDatas() {
     const hoje = new Date(); hoje.setHours(0,0,0,0);
-    if (periodoAtivo === 'hoje') return { de: new Date(hoje), ate: new Date(hoje) };
+
+    if (periodoAtivo === 'hoje') {
+      return { de: new Date(hoje), ate: new Date(hoje) };
+    }
+
     if (periodoAtivo === 'semana') {
       const dom = new Date(hoje);
       dom.setDate(hoje.getDate() - hoje.getDay());
       const sab = new Date(dom);
       sab.setDate(dom.getDate() + 6);
       return { de: dom, ate: sab };
+    }
 
+    if (periodoAtivo === 'mes') {
+      const ini = new Date(hoje.getFullYear(), hoje.getMonth(), 1);
+      const fim = new Date(hoje.getFullYear(), hoje.getMonth()+1, 0);
+      return { de: ini, ate: fim };
+    }
 
+    if (periodoAtivo === 'custom') {
+      const de  = document.getElementById('filtroDataDe').value;
+      const ate = document.getElementById('filtroDataAte').value;
+      if (!de || !ate) return null;
+      const [dy,dm,dd] = de.split('-').map(Number);
+      const [ay,am,ad] = ate.split('-').map(Number);
+      return { de: new Date(dy,dm-1,dd), ate: new Date(ay,am-1,ad) };
+    }
+
+    return null;
+  }
+
+  window.renderVisao = function() {
+    const range = getRangeDatas();
+    const filtroServico = document.getElementById('filtroServico').value;
+    const filtroCliente = document.getElementById('filtroCliente').value.toLowerCase().trim();
+    const list = document.getElementById('visaoList');
+
+    if (!range) {
+      list.innerHTML = '<div class="empty-state"><div class="icon">📅</div>Selecione o período personalizado.</div>';
+      return;
+    }
+
+    let results = [];
+
+    Object.keys(agenda).sort().forEach(key => {
+      const [y,m,d] = key.split('-').map(Number);
+      const dt = new Date(y,m-1,d); dt.setHours(0,0,0,0);
+
+      if (dt < range.de || dt > range.ate) return;
+      if (agenda[key].blocked) return;
+
+      (agenda[key].apts || []).forEach(apt => {
+        if (filtroServico && apt.service !== filtroServico) return;
+        if (filtroCliente && !apt.client.toLowerCase().includes(filtroCliente)) return;
+        results.push({ dt, key, ...apt });
+      });
+    });
+
+    // Resumo
+    const totalFat = results.reduce((s, r) => s + (Number(r.valor) || 0), 0);
+    document.getElementById('vrTotal').textContent = results.length;
+    document.getElementById('vrFat').textContent = formatValor(totalFat) || 'R$ 0,00';
+    document.getElementById('resultadoCount').textContent =
+      results.length > 0 ? `${results.length} agendamento(s) encontrado(s)` : '';
+
+    if (results.length === 0) {
+      list.innerHTML = '<div class="empty-state"><div class="icon">📭</div>Nenhum agendamento no período.</div>';
+      return;
+    }
+
+    // Agrupar por data
+    const grupos = {};
+    results.forEach(r => {
+      const k = dateKey(r.dt);
+      if (!grupos[k]) grupos[k] = { dt: r.dt, items: [] };
+      grupos[k].items.push(r);
+    });
+
+    list.innerHTML = Object.keys(grupos).sort().map(k => {
+      const g = grupos[k];
+      const totalGrupo = g.items.reduce((s, a) => s + (Number(a.valor) || 0), 0);
+      return `
+        <div class="section-sep">
+          ${WEEKDAYS[g.dt.getDay()]}, ${g.dt.getDate()} de ${MONTHS[g.dt.getMonth()]}
+          ${totalGrupo > 0 ? `<span style="color:var(--green);float:right;">${formatValor(totalGrupo)}</span>` : ''}
+        </div>
+        ${g.items.map(apt => `
+          <div class="visao-apt-card">
+            <div class="apt-time-block">
+              <div class="apt-time-start">${apt.timeStart}</div>
+              <div class="apt-time-sep">até</div>
+              <div class="apt-time-end">${apt.timeEnd}</div>
+            </div>
+            <div class="visao-body">
+              <div class="visao-client">${apt.client}</div>
+              <span class="servico-tag">${apt.service}</span>
+              ${apt.valor ? `<div class="visao-valor">${formatValor(apt.valor)}</div>` : ''}
+              ${apt.obs ? `<div class="visao-obs">${apt.obs}</div>` : ''}
+            </div>
+          </div>
+        `).join('')}
+      `;
+    }).join('');
+  };
+
+  // ══ BUSCA ══
+  window.renderSearchList = function() {
+    const q = document.getElementById('searchInput').value.toLowerCase().trim();
+    const list = document.getElementById('searchList');
+    let results = [];
+
+    Object.keys(agenda).sort().forEach(key => {
+      const [y,m,d] = key.split('-').map(Number);
+      const dt = new Date(y,m-1,d);
+      (agenda[key].apts || []).forEach(apt => {
+        if (!q || apt.client.toLowerCase().includes(q) || apt.service.toLowerCase().includes(q)) {
+          results.push({ dt, key, ...apt });
+        }
+      });
+    });
+
+    if (results.length === 0) {
+      list.innerHTML = '<div class="empty-state"><div class="icon">🔍</div>Nenhum resultado.</div>';
+      return;
+    }
+
+    list.innerHTML = results.map(r => `
+      <div class="apt-card">
+        <div class="apt-time-block">
+          <div class="apt-time-start">${r.timeStart}</div>
+          <div class="apt-time-sep">até</div>
+          <div class="apt-time-end">${r.timeEnd}</div>
+        </div>
+        <div style="min-width:40px;text-align:center;margin-right:4px;">
+          <div style="font-size:1rem;font-weight:700;color:var(--gold)">${r.dt.getDate()}</div>
+          <div style="font-size:0.62rem;color:var(--muted)">${MONTHS_SHORT[r.dt.getMonth()]}</div>
+        </div>
+        <div class="apt-body">
+          <div class="apt-client">${r.client}</div>
+          <div class="apt-service">${r.service}</div>
+          ${r.valor ? `<div class="apt-valor">${formatValor(r.valor)}</div>` : ''}
+          ${r.obs ? `<div class="apt-obs">${r.obs}</div>` : ''}
+        </div>
+      </div>
+    `).join('');
+  };
+</script>
+</body>
+</html>
