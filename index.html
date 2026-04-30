@@ -278,6 +278,11 @@
     }
 
     .resultado-count { font-size: 0.78rem; color: var(--muted); margin-bottom: 12px; text-align: right; }
+
+    .periodo-label {
+      font-size: 0.72rem; color: var(--gold); margin-bottom: 10px;
+      text-align: center; font-weight: 600; letter-spacing: 0.3px;
+    }
   </style>
 </head>
 <body>
@@ -393,16 +398,22 @@
 <div class="page" id="page-visao">
   <div class="card">
     <h3>🔎 Filtrar agendamentos</h3>
+
     <div class="filtros-wrap" id="filtrosPeriodo">
       <button class="filtro-btn active" data-periodo="hoje" onclick="setPeriodo(this)">Hoje</button>
       <button class="filtro-btn" data-periodo="semana" onclick="setPeriodo(this)">Esta semana</button>
       <button class="filtro-btn" data-periodo="mes" onclick="setPeriodo(this)">Este mês</button>
+      <button class="filtro-btn" data-periodo="proximo" onclick="setPeriodo(this)">Próximo mês</button>
       <button class="filtro-btn" data-periodo="custom" onclick="setPeriodo(this)">Personalizado</button>
     </div>
+
+    <div id="periodoLabel" class="periodo-label" style="display:none;"></div>
+
     <div id="customDates" style="display:none;" class="form-row-2">
       <div class="form-group"><label>De</label><input type="date" id="filtroDataDe" oninput="renderVisao()"/></div>
       <div class="form-group"><label>Até</label><input type="date" id="filtroDataAte" oninput="renderVisao()"/></div>
     </div>
+
     <div class="filtros-selects">
       <div class="form-group" style="margin:0">
         <label>Serviço</label>
@@ -477,7 +488,6 @@
   };
 
   const SENHA_CORRETA = "espaco2024";
-
   const firebaseApp = initializeApp(firebaseConfig);
   const db = getDatabase(firebaseApp);
 
@@ -588,6 +598,7 @@
     if (id === 'list') renderSearchList();
   };
 
+  // ══ HOME ══
   function renderHome() {
     const todayKey = dateKey(new Date());
     const todayData = agenda[todayKey];
@@ -637,6 +648,7 @@
     `).join('');
   }
 
+  // ══ CALENDÁRIO ══
   function renderCalendar() {
     const grid = document.getElementById('calGrid');
     const label = document.getElementById('calMonthLabel');
@@ -687,6 +699,7 @@
     }, 100);
   }
 
+  // ══ DETALHE DO DIA ══
   function renderDayDetail() {
     if (!selectedDate) return;
     const key = dateKey(selectedDate);
@@ -734,6 +747,7 @@
     `).join('');
   }
 
+  // ══ AGENDAMENTO ══
   window.addApt = async function() {
     if (!selectedDate) return;
     const key = dateKey(selectedDate);
@@ -783,6 +797,7 @@
     showToast(dayData.blocked ? '🔒 Dia fechado.' : '🔓 Dia aberto.');
   };
 
+  // ══ VISÃO GERAL ══
   window.setPeriodo = function(btn) {
     document.querySelectorAll('#filtrosPeriodo .filtro-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -793,28 +808,56 @@
 
   function getRangeDatas() {
     const hoje = new Date(); hoje.setHours(0,0,0,0);
-    if (periodoAtivo === 'hoje') return { de: new Date(hoje), ate: new Date(hoje) };
+
+    if (periodoAtivo === 'hoje') {
+      atualizarLabelPeriodo(`Exibindo: ${hoje.getDate()} de ${MONTHS[hoje.getMonth()]} de ${hoje.getFullYear()}`);
+      return { de: new Date(hoje), ate: new Date(hoje) };
+    }
+
     if (periodoAtivo === 'semana') {
       const dom = new Date(hoje);
       dom.setDate(hoje.getDate() - hoje.getDay());
       const sab = new Date(dom);
       sab.setDate(dom.getDate() + 6);
+      atualizarLabelPeriodo(`Exibindo: ${dom.getDate()}/${dom.getMonth()+1} a ${sab.getDate()}/${sab.getMonth()+1}`);
       return { de: dom, ate: sab };
     }
+
     if (periodoAtivo === 'mes') {
       const ini = new Date(hoje.getFullYear(), hoje.getMonth(), 1);
       const fim = new Date(hoje.getFullYear(), hoje.getMonth()+1, 0);
+      atualizarLabelPeriodo(`Exibindo: ${MONTHS[hoje.getMonth()]} de ${hoje.getFullYear()}`);
       return { de: ini, ate: fim };
     }
+
+    if (periodoAtivo === 'proximo') {
+      const proxMes = new Date(hoje.getFullYear(), hoje.getMonth()+1, 1);
+      const fimProx = new Date(hoje.getFullYear(), hoje.getMonth()+2, 0);
+      atualizarLabelPeriodo(`Exibindo: ${MONTHS[proxMes.getMonth()]} de ${proxMes.getFullYear()}`);
+      return { de: proxMes, ate: fimProx };
+    }
+
     if (periodoAtivo === 'custom') {
       const de  = document.getElementById('filtroDataDe').value;
       const ate = document.getElementById('filtroDataAte').value;
-      if (!de || !ate) return null;
+      if (!de || !ate) { atualizarLabelPeriodo(''); return null; }
       const [dy,dm,dd] = de.split('-').map(Number);
       const [ay,am,ad] = ate.split('-').map(Number);
+      atualizarLabelPeriodo(`Exibindo: ${dd}/${dm}/${dy} a ${ad}/${am}/${ay}`);
       return { de: new Date(dy,dm-1,dd), ate: new Date(ay,am-1,ad) };
     }
+
     return null;
+  }
+
+  function atualizarLabelPeriodo(texto) {
+    const el = document.getElementById('periodoLabel');
+    if (texto) {
+      el.textContent = texto;
+      el.style.display = 'block';
+    } else {
+      el.style.display = 'none';
+    }
   }
 
   window.renderVisao = function() {
@@ -822,10 +865,12 @@
     const filtroServico = document.getElementById('filtroServico').value;
     const filtroCliente = document.getElementById('filtroCliente').value.toLowerCase().trim();
     const list = document.getElementById('visaoList');
+
     if (!range) {
       list.innerHTML = '<div class="empty-state"><div class="icon">📅</div>Selecione o período personalizado.</div>';
       return;
     }
+
     let results = [];
     Object.keys(agenda).sort().forEach(key => {
       const [y,m,d] = key.split('-').map(Number);
@@ -838,21 +883,25 @@
         results.push({ dt, key, ...apt });
       });
     });
+
     const totalFat = results.reduce((s, r) => s + (Number(r.valor) || 0), 0);
     document.getElementById('vrTotal').textContent = results.length;
     document.getElementById('vrFat').textContent = formatValor(totalFat) || 'R$ 0,00';
     document.getElementById('resultadoCount').textContent =
       results.length > 0 ? `${results.length} agendamento(s) encontrado(s)` : '';
+
     if (results.length === 0) {
       list.innerHTML = '<div class="empty-state"><div class="icon">📭</div>Nenhum agendamento no período.</div>';
       return;
     }
+
     const grupos = {};
     results.forEach(r => {
       const k = dateKey(r.dt);
       if (!grupos[k]) grupos[k] = { dt: r.dt, items: [] };
       grupos[k].items.push(r);
     });
+
     list.innerHTML = Object.keys(grupos).sort().map(k => {
       const g = grupos[k];
       const totalGrupo = g.items.reduce((s, a) => s + (Number(a.valor) || 0), 0);
@@ -880,6 +929,7 @@
     }).join('');
   };
 
+  // ══ BUSCA ══
   window.renderSearchList = function() {
     const q = document.getElementById('searchInput').value.toLowerCase().trim();
     const list = document.getElementById('searchList');
