@@ -18,6 +18,8 @@
       --muted: #9ca3af;
       --danger: #dc2626;
       --green: #4ade80;
+      --blue: #60a5fa;
+      --amber: #f59e0b;
     }
 
     html, body { height: 100%; font-family: -apple-system, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); overscroll-behavior: none; }
@@ -34,12 +36,7 @@
       text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.6);
     }
 
-    .login-logo {
-      width: 180px; height: auto; margin: 0 auto 20px;
-      display: block;
-      filter: drop-shadow(0 2px 10px rgba(200,169,110,0.4));
-    }
-
+    .login-logo { width: 180px; height: auto; margin: 0 auto 20px; display: block; filter: drop-shadow(0 2px 10px rgba(200,169,110,0.4)); }
     .login-box p { color: var(--muted); font-size: 0.82rem; margin-bottom: 24px; }
 
     .login-box input {
@@ -48,7 +45,6 @@
       color: var(--text); padding: 14px 16px; font-size: 1rem;
       outline: none; margin-bottom: 12px; text-align: center; letter-spacing: 4px;
     }
-
     .login-box input:focus { border-color: var(--gold); }
     .login-error { color: var(--danger); font-size: 0.82rem; margin-bottom: 10px; min-height: 18px; }
 
@@ -59,13 +55,11 @@
       color: #fff; font-size: 1rem; font-weight: 700; cursor: pointer;
     }
 
-    /* ── MODAL VISÃO GERAL ── */
     #modalVisao {
       position: fixed; inset: 0; z-index: 998;
       background: rgba(0,0,0,0.75);
       display: none; align-items: center; justify-content: center;
     }
-
     #modalVisao.show { display: flex; }
 
     .modal-box {
@@ -73,21 +67,17 @@
       padding: 32px 28px; width: 90%; max-width: 340px;
       text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.7);
     }
-
     .modal-box .modal-icon { font-size: 2.2rem; margin-bottom: 10px; }
     .modal-box h3 { color: var(--gold); font-size: 1.1rem; margin-bottom: 6px; }
     .modal-box p { color: var(--muted); font-size: 0.8rem; margin-bottom: 20px; }
-
     .modal-box input {
       width: 100%; background: var(--bg);
       border: 1.5px solid var(--border); border-radius: 12px;
       color: var(--text); padding: 13px 16px; font-size: 1rem;
-      outline: none; margin-bottom: 10px; text-align: center; letter-spacing: 3px;
+      outline: none; margin-bottom: 12px; text-align: center; letter-spacing: 4px;
     }
-
     .modal-box input:focus { border-color: var(--gold); }
-    .modal-error { color: var(--danger); font-size: 0.8rem; margin-bottom: 10px; min-height: 18px; }
-
+    .modal-error { color: var(--danger); font-size: 0.82rem; margin-bottom: 10px; min-height: 18px; }
     .modal-btns { display: flex; gap: 10px; }
     .modal-btns button { flex: 1; padding: 12px; border-radius: 12px; border: none; font-size: 0.9rem; font-weight: 700; cursor: pointer; }
     .btn-modal-ok { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #fff; }
@@ -100,7 +90,6 @@
       align-items: center; justify-content: space-between;
       box-shadow: 0 2px 12px rgba(0,0,0,0.5);
     }
-
     .header-left { display: flex; align-items: center; gap: 10px; }
     .header-logo { height: 40px; width: auto; filter: brightness(0) invert(1); }
     .header-text p { font-size: 0.7rem; color: rgba(255,255,255,0.88); margin-top: 1px; }
@@ -108,22 +97,19 @@
     .sync-indicator { font-size: 0.7rem; color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 5px; }
     .sync-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
     .sync-dot.offline { background: #f87171; animation: none; }
-
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.4} }
 
     .bottom-nav {
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
       background: var(--card); border-top: 1px solid var(--border);
       display: none; height: 62px;
     }
-
     .bottom-nav button {
       flex: 1; background: none; border: none; color: var(--muted);
       font-size: 0.68rem; display: flex; flex-direction: column;
       align-items: center; justify-content: center; gap: 3px;
       cursor: pointer; transition: color 0.2s;
     }
-
     .bottom-nav button .icon { font-size: 1.3rem; line-height: 1; }
     .bottom-nav button.active { color: var(--gold); }
 
@@ -133,25 +119,22 @@
     .card { background: var(--card); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
     .card h3 { font-size: 0.82rem; color: var(--gold); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-    .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+    .summary-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 14px; }
     .summary-item { background: var(--card); border-radius: 12px; padding: 14px 8px; text-align: center; }
     .summary-item .val { font-size: 1.6rem; font-weight: 700; color: var(--gold); line-height: 1; }
     .summary-item .lbl { font-size: 0.62rem; color: var(--muted); margin-top: 5px; }
 
     .filtros-wrap { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
-
     .filtro-btn {
       padding: 7px 14px; border-radius: 20px; border: 1.5px solid var(--border);
       background: var(--card2); color: var(--muted); font-size: 0.78rem;
       cursor: pointer; transition: all 0.2s; white-space: nowrap;
     }
-
     .filtro-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(200,169,110,0.1); }
 
     .filtros-selects { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
 
     .visao-resumo { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-
     .visao-resumo-item { background: var(--card); border-radius: 12px; padding: 12px; text-align: center; }
     .visao-resumo-item .vr-val { font-size: 1.4rem; font-weight: 700; color: var(--gold); }
     .visao-resumo-item .vr-val.green { color: var(--green); }
@@ -162,10 +145,13 @@
       border-radius: 10px; padding: 12px 14px; margin-bottom: 10px;
       display: flex; align-items: flex-start; gap: 12px;
     }
-
     .visao-body { flex: 1; }
     .visao-client { font-size: 0.9rem; font-weight: 600; }
     .visao-valor { font-size: 0.8rem; color: var(--green); font-weight: 600; margin-top: 3px; }
+    .visao-pago  { font-size: 0.78rem; color: var(--blue); margin-top: 2px; }
+    .visao-saldo { font-size: 0.78rem; font-weight: 700; margin-top: 2px; }
+    .visao-saldo.quitado { color: var(--green); }
+    .visao-saldo.pendente { color: var(--amber); }
     .visao-obs { font-size: 0.72rem; color: #6b7280; margin-top: 3px; font-style: italic; }
 
     .servico-tag {
@@ -194,13 +180,11 @@
       cursor: pointer; border: 2px solid transparent; transition: all 0.15s;
       position: relative; font-size: 0.85rem; font-weight: 600;
     }
-
     .cal-cell.empty { background: transparent; cursor: default; }
     .cal-cell.today { background: #1e3a5f; }
     .cal-cell.selected { border-color: var(--gold); background: #2a3f5f; }
     .cal-cell.blocked { background: #2d1515; }
     .cal-cell.blocked .cal-num { color: #666; }
-
     .cal-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); position: absolute; bottom: 4px; }
     .cal-dot.blocked-dot { background: var(--danger); }
 
@@ -212,9 +196,9 @@
       border-radius: 10px; color: var(--text); padding: 12px 14px;
       font-size: 0.95rem; outline: none; -webkit-appearance: none; appearance: none;
     }
-
     input:focus, select:focus, textarea:focus { border-color: var(--gold); }
     textarea { min-height: 70px; resize: vertical; }
+
     .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .form-row-3 { display: grid; grid-template-columns: 1fr auto 1fr; gap: 6px; align-items: end; }
     .time-arrow { color: var(--muted); font-size: 1rem; padding-bottom: 13px; text-align: center; }
@@ -225,12 +209,25 @@
     .btn-danger-outline { background: transparent; border: 1.5px solid var(--danger); color: var(--danger); }
     .btn-sm { width: auto; padding: 7px 14px; font-size: 0.8rem; border-radius: 8px; }
 
+    /* Caixa de saldo automático */
+    .saldo-box {
+      background: var(--bg); border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 12px 14px; margin-bottom: 12px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .saldo-box.pendente { border-color: var(--amber); background: rgba(245,158,11,0.06); }
+    .saldo-box.quitado  { border-color: var(--green);  background: rgba(74,222,128,0.06); }
+    .saldo-box .sb-label { font-size: 0.78rem; color: var(--gold); font-weight: 600; }
+    .saldo-box .sb-val   { font-size: 1.05rem; font-weight: 800; color: var(--muted); }
+    .saldo-box .sb-val.pendente { color: var(--amber); }
+    .saldo-box .sb-val.quitado  { color: var(--green); }
+
     .apt-card {
       background: var(--bg); border-left: 4px solid var(--gold);
       border-radius: 10px; padding: 12px 14px; margin-bottom: 10px;
       display: flex; align-items: flex-start; gap: 12px;
     }
-
     .apt-time-block { display: flex; flex-direction: column; align-items: center; min-width: 52px; }
     .apt-time-start { font-size: 1rem; font-weight: 700; color: var(--gold); line-height: 1; }
     .apt-time-sep { font-size: 0.6rem; color: var(--muted); margin: 2px 0; }
@@ -240,6 +237,10 @@
     .apt-client { font-size: 0.95rem; font-weight: 600; }
     .apt-service { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
     .apt-valor { font-size: 0.82rem; color: var(--green); font-weight: 600; margin-top: 3px; }
+    .apt-pago  { font-size: 0.8rem; color: var(--blue); margin-top: 2px; }
+    .apt-saldo { font-size: 0.8rem; font-weight: 700; margin-top: 2px; }
+    .apt-saldo.pendente { color: var(--amber); }
+    .apt-saldo.quitado  { color: var(--green); }
     .apt-obs { font-size: 0.75rem; color: #6b7280; margin-top: 3px; font-style: italic; }
     .apt-del { background: none; border: none; color: var(--danger); font-size: 1.1rem; cursor: pointer; padding: 2px 6px; border-radius: 6px; }
 
@@ -272,59 +273,56 @@
     .spinner { display: inline-block; width: 28px; height: 28px; border: 3px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 10px; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    #toast {
-      position: fixed; bottom: 74px; left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: #1f2937; color: #fff; padding: 10px 20px;
-      border-radius: 30px; font-size: 0.85rem; opacity: 0;
-      transition: all 0.3s; z-index: 999; white-space: nowrap;
-      border: 1px solid var(--border); pointer-events: none;
-    }
-
-    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-    .input-valor-wrap { position: relative; }
-    .input-valor-wrap span {
-      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-      color: var(--green); font-weight: 700; font-size: 0.95rem; pointer-events: none;
-    }
-    .input-valor-wrap input { padding-left: 30px; color: var(--green); font-weight: 700; }
-
     .section-sep {
-      font-size: 0.72rem; color: var(--muted); text-transform: uppercase;
-      letter-spacing: 0.5px; margin: 16px 0 8px; padding-left: 2px;
+      font-size: 0.78rem; font-weight: 700; color: var(--gold);
+      padding: 8px 0 6px; margin-top: 6px;
+      border-bottom: 1px solid var(--border); margin-bottom: 8px;
     }
-
-    .resultado-count { font-size: 0.78rem; color: var(--muted); margin-bottom: 12px; text-align: right; }
 
     .periodo-label {
-      font-size: 0.72rem; color: var(--gold); margin-bottom: 10px;
-      text-align: center; font-weight: 600; letter-spacing: 0.3px;
+      font-size: 0.78rem; color: var(--gold); font-weight: 600;
+      margin-bottom: 10px; display: none;
+      background: rgba(200,169,110,0.08); border-radius: 8px;
+      padding: 6px 12px; text-align: center;
     }
+
+    .resultado-count {
+      font-size: 0.78rem; color: var(--muted);
+      margin-bottom: 10px; text-align: right;
+    }
+
+    .custom-dates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; display: none; }
+
+    .toast {
+      position: fixed; bottom: 76px; left: 50%; transform: translateX(-50%) translateY(20px);
+      background: var(--card); border: 1.5px solid var(--gold);
+      color: var(--text); padding: 10px 20px; border-radius: 20px;
+      font-size: 0.85rem; opacity: 0; transition: all 0.3s; z-index: 9999;
+      white-space: nowrap; pointer-events: none;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
 
-<!-- LOGIN PRINCIPAL -->
+<!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-box">
-    <img class="login-logo" src="logo_branca_sem_fundo.png" alt="Espaço KR"/>
-    <p>Agenda exclusiva da equipe</p>
-    <input type="password" id="loginInput" placeholder="••••••" maxlength="20"
-           onkeydown="if(event.key==='Enter') document.getElementById('btnEntrar').click()"/>
+    <img src="logo_branca_sem_fundo.png" alt="Espaço KR" class="login-logo"/>
+    <p>Digite a senha para acessar</p>
+    <input type="password" id="loginInput" placeholder="••••••••" maxlength="20"/>
     <div class="login-error" id="loginError"></div>
     <button class="btn-login" id="btnEntrar">Entrar</button>
   </div>
 </div>
 
-<!-- MODAL SENHA VISÃO GERAL -->
+<!-- MODAL VISÃO GERAL -->
 <div id="modalVisao">
   <div class="modal-box">
-    <div class="modal-icon">📊</div>
-    <h3>Visão Geral</h3>
-    <p>Digite a senha para acessar esta área</p>
-    <input type="password" id="visaoSenhaInput" placeholder="••••••" maxlength="30"
-           onkeydown="if(event.key==='Enter') confirmarSenhaVisao()"/>
+    <div class="modal-icon">🔐</div>
+    <h3>Área Restrita</h3>
+    <p>Digite a senha para acessar a Visão Geral</p>
+    <input type="password" id="visaoSenhaInput" placeholder="••••••••" maxlength="20"/>
     <div class="modal-error" id="visaoSenhaError"></div>
     <div class="modal-btns">
       <button class="btn-modal-cancel" onclick="cancelarVisao()">Cancelar</button>
@@ -336,18 +334,18 @@
 <!-- HEADER -->
 <header id="mainHeader">
   <div class="header-left">
-    <img class="header-logo" src="logo_branca_sem_fundo.png" alt="Espaço KR"/>
+    <img src="logo_branca_sem_fundo.png" alt="Espaço KR" class="header-logo"/>
     <div class="header-text">
       <p id="headerDate"></p>
     </div>
   </div>
   <div class="sync-indicator">
     <div class="sync-dot" id="syncDot"></div>
-    <span id="syncLabel">Conectando...</span>
+    <span id="syncLabel">Online</span>
   </div>
 </header>
 
-<!-- ═══ INÍCIO ═══ -->
+<!-- HOME -->
 <div class="page active" id="page-home">
   <div class="summary-grid">
     <div class="summary-item"><div class="val" id="sumToday">0</div><div class="lbl">Hoje</div></div>
@@ -356,11 +354,11 @@
   </div>
   <div class="card">
     <h3>📋 Próximos agendamentos</h3>
-    <div id="nextList"><div class="loading"><div class="spinner"></div><br>Carregando...</div></div>
+    <div id="nextList"><div class="loading"><div class="spinner"></div><div>Carregando...</div></div></div>
   </div>
 </div>
 
-<!-- ═══ CALENDÁRIO ═══ -->
+<!-- AGENDA -->
 <div class="page" id="page-calendar">
   <div class="card">
     <div class="cal-nav">
@@ -369,76 +367,117 @@
       <button onclick="changeMonth(1)">›</button>
     </div>
     <div class="cal-days-header">
-      <span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span>
+      <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
     </div>
     <div class="cal-grid" id="calGrid"></div>
   </div>
 
   <div id="dayDetail" style="display:none;">
-    <div class="day-header">
-      <h2 id="dayDetailTitle"></h2>
-      <span class="badge" id="dayBadge">0 agendamentos</span>
+    <div class="card">
+      <div class="day-header">
+        <h2 id="dayDetailTitle"></h2>
+        <span class="badge" id="dayBadge"></span>
+      </div>
+      <button class="btn btn-sm btn-danger-outline" id="toggleBlockBtn" onclick="toggleBlock()">🔒 Fechar este dia</button>
     </div>
-    <div id="blockedBanner" class="blocked-banner" style="display:none;">🔴 Este dia está fechado</div>
-    <button class="btn btn-sm btn-danger-outline" id="toggleBlockBtn" onclick="toggleBlock()" style="margin-bottom:12px;">🔒 Fechar este dia</button>
-    <div id="dayAptList"></div>
+
+    <div id="blockedBanner" class="blocked-banner" style="display:none;">
+      🚫 Este dia está fechado para novos agendamentos.
+    </div>
 
     <div id="newAptForm" class="card">
       <h3>➕ Novo agendamento</h3>
-      <div class="form-row-3">
-        <div class="form-group"><label>Início</label><input type="time" id="inTimeStart"/></div>
+
+      <div class="form-row-3 form-group">
+        <div>
+          <label>Início</label>
+          <input type="time" id="inTimeStart"/>
+        </div>
         <div class="time-arrow">→</div>
-        <div class="form-group"><label>Término</label><input type="time" id="inTimeEnd"/></div>
-      </div>
-      <div class="form-row-2">
-        <div class="form-group">
-          <label>Serviço</label>
-          <select id="inService">
-            <option value="">Selecione</option>
-            <option>Maquiagem</option>
-            <option>Penteado</option>
-            <option>Dia da noiva</option>
-            <option>Hidratação</option>
-            <option>15 anos</option>
-            <option>Progressiva</option>
-            <option>Corte bordado</option>
-            <option>Escova</option>
-            <option>Realinhamento</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Valor do serviço</label>
-          <div class="input-valor-wrap">
-            <span>R$</span>
-            <input type="number" id="inValor" placeholder="0,00" min="0" step="0.01"/>
-          </div>
+        <div>
+          <label>Término</label>
+          <input type="time" id="inTimeEnd"/>
         </div>
       </div>
-      <div class="form-group"><label>Nome do cliente</label><input type="text" id="inClient" placeholder="Ex: Maria Silva"/></div>
-      <div class="form-group"><label>Observação</label><textarea id="inObs" placeholder="Preferências, alergias..."></textarea></div>
-      <button class="btn btn-gold" onclick="addApt()">Confirmar agendamento</button>
+
+      <div class="form-group">
+        <label>Cliente</label>
+        <input type="text" id="inClient" placeholder="Nome da cliente"/>
+      </div>
+
+      <div class="form-group">
+        <label>Serviço</label>
+        <select id="inService">
+          <option value="">Selecione...</option>
+          <option>Maquiagem</option>
+          <option>Penteado</option>
+          <option>Dia da noiva</option>
+          <option>Hidratação</option>
+          <option>15 anos</option>
+          <option>Progressiva</option>
+          <option>Corte bordado</option>
+          <option>Escova</option>
+          <option>Realinhamento</option>
+        </select>
+      </div>
+
+      <!-- VALOR DO SERVIÇO -->
+      <div class="form-group">
+        <label>Valor do serviço (R$)</label>
+        <input type="number" id="inValor" placeholder="0,00" min="0" step="0.01"
+               oninput="calcularSaldo()"/>
+      </div>
+
+      <!-- VALOR PAGO -->
+      <div class="form-group">
+        <label>Valor pago (R$)</label>
+        <input type="number" id="inValorPago" placeholder="0,00" min="0" step="0.01"
+               oninput="calcularSaldo()"/>
+      </div>
+
+      <!-- SALDO AUTOMÁTICO -->
+      <div class="saldo-box" id="saldoBox">
+        <span class="sb-label">💰 Saldo a pagar</span>
+        <span class="sb-val" id="saldoDisplay">—</span>
+      </div>
+
+      <div class="form-group">
+        <label>Observações</label>
+        <textarea id="inObs" placeholder="Alguma observação..."></textarea>
+      </div>
+
+      <button class="btn btn-gold" onclick="addApt()">✓ Confirmar agendamento</button>
+    </div>
+
+    <div class="card">
+      <h3>📌 Agendamentos do dia</h3>
+      <div id="dayAptList"></div>
     </div>
   </div>
 </div>
 
-<!-- ═══ VISÃO GERAL ═══ -->
+<!-- VISÃO GERAL -->
 <div class="page" id="page-visao">
   <div class="card">
-    <h3>🔎 Filtrar agendamentos</h3>
+    <h3>📊 Filtrar período</h3>
     <div class="filtros-wrap" id="filtrosPeriodo">
-      <button class="filtro-btn active" data-periodo="hoje" onclick="setPeriodo(this)">Hoje</button>
-      <button class="filtro-btn" data-periodo="semana" onclick="setPeriodo(this)">Esta semana</button>
-      <button class="filtro-btn" data-periodo="mes" onclick="setPeriodo(this)">Este mês</button>
-      <button class="filtro-btn" data-periodo="proximo" onclick="setPeriodo(this)">Próximo mês</button>
-      <button class="filtro-btn" data-periodo="custom" onclick="setPeriodo(this)">Personalizado</button>
+      <button class="filtro-btn active" data-periodo="hoje"    onclick="setPeriodo(this)">Hoje</button>
+      <button class="filtro-btn"        data-periodo="semana"  onclick="setPeriodo(this)">Semana</button>
+      <button class="filtro-btn"        data-periodo="mes"     onclick="setPeriodo(this)">Este mês</button>
+      <button class="filtro-btn"        data-periodo="proximo" onclick="setPeriodo(this)">Próximo mês</button>
+      <button class="filtro-btn"        data-periodo="custom"  onclick="setPeriodo(this)">Personalizado</button>
     </div>
-    <div id="periodoLabel" class="periodo-label" style="display:none;"></div>
-    <div id="customDates" style="display:none;" class="form-row-2">
-      <div class="form-group"><label>De</label><input type="date" id="filtroDataDe" oninput="renderVisao()"/></div>
-      <div class="form-group"><label>Até</label><input type="date" id="filtroDataAte" oninput="renderVisao()"/></div>
+    <div class="custom-dates-grid" id="customDates">
+      <div><label>De</label><input type="date" id="filtroDataDe" onchange="renderVisao()"/></div>
+      <div><label>Até</label><input type="date" id="filtroDataAte" onchange="renderVisao()"/></div>
     </div>
+    <div class="periodo-label" id="periodoLabel"></div>
+  </div>
+
+  <div class="card">
+    <h3>🔎 Filtrar resultados</h3>
     <div class="filtros-selects">
-      <div class="form-group" style="margin:0">
+      <div>
         <label>Serviço</label>
         <select id="filtroServico" onchange="renderVisao()">
           <option value="">Todos</option>
@@ -453,7 +492,7 @@
           <option>Realinhamento</option>
         </select>
       </div>
-      <div class="form-group" style="margin:0">
+      <div>
         <label>Cliente</label>
         <input type="text" id="filtroCliente" placeholder="Nome..." oninput="renderVisao()"/>
       </div>
@@ -475,7 +514,7 @@
   <div id="visaoList"></div>
 </div>
 
-<!-- ═══ BUSCA ═══ -->
+<!-- BUSCA -->
 <div class="page" id="page-list">
   <div class="card">
     <h3>🔍 Buscar agendamentos</h3>
@@ -492,7 +531,7 @@
   <button onclick="goPage('list',this)"><span class="icon">🔍</span>Buscar</button>
 </nav>
 
-<div id="toast"></div>
+<div id="toast" class="toast"></div>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -510,28 +549,27 @@
     measurementId: "G-6YBEP2K1J1"
   };
 
-  const SENHA_PRINCIPAL  = "espaco2024";
-  const SENHA_VISAO      = "karla@2020";
+  const SENHA_PRINCIPAL = "espaco2024";
+  const SENHA_VISAO     = "karla@2020";
 
   const firebaseApp = initializeApp(firebaseConfig);
   const db = getDatabase(firebaseApp);
 
-  const MONTHS = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
-                  'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  const MONTHS       = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
   const MONTHS_SHORT = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-  const WEEKDAYS = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-  const WEEKDAYS_FULL = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+  const WEEKDAYS     = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+  const WEEKDAYS_FULL= ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
 
-  let currentCal    = new Date();
-  let selectedDate  = null;
-  let agenda        = {};
-  let syncStarted   = false;
-  let periodoAtivo  = 'hoje';
-  let btnVisaoRef   = null; // botão do nav que acionou a visão geral
+  let currentCal   = new Date();
+  let selectedDate = null;
+  let agenda       = {};
+  let syncStarted  = false;
+  let periodoAtivo = 'hoje';
+  let btnVisaoRef  = null;
 
-  // ══ UTILITÁRIOS ══
-  function formatValor(v) {
-    if (!v || isNaN(v)) return '';
+  // ── UTILITÁRIOS ──
+  function fv(v) {
+    if (!v && v !== 0) return '';
     return Number(v).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   }
 
@@ -549,27 +587,55 @@
     return `${WEEKDAYS[d.getDay()]}, ${d.getDate()} de ${MONTHS[d.getMonth()]}`;
   }
 
-  // ══ APP PRINCIPAL ══
+  function fmtDataBR(iso) {
+    if (!iso) return '';
+    const [y,m,d] = iso.split('-');
+    return `${d}/${m}/${y}`;
+  }
+
+  // ── SALDO AUTOMÁTICO ──
+  window.calcularSaldo = function() {
+    const val  = parseFloat(document.getElementById('inValor').value)     || 0;
+    const pago = parseFloat(document.getElementById('inValorPago').value) || 0;
+    const saldo = val - pago;
+    const box   = document.getElementById('saldoBox');
+    const disp  = document.getElementById('saldoDisplay');
+
+    if (val === 0 && pago === 0) {
+      disp.textContent = '—';
+      disp.className   = 'sb-val';
+      box.className    = 'saldo-box';
+      return;
+    }
+
+    if (saldo <= 0) {
+      disp.textContent = saldo < 0 ? `Crédito ${fv(Math.abs(saldo))}` : '✓ Quitado';
+      disp.className   = 'sb-val quitado';
+      box.className    = 'saldo-box quitado';
+    } else {
+      disp.textContent = fv(saldo);
+      disp.className   = 'sb-val pendente';
+      box.className    = 'saldo-box pendente';
+    }
+  };
+
+  // ── APP ──
   function mostrarApp() {
     document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('mainHeader').style.display = 'flex';
-    document.getElementById('mainNav').style.display = 'flex';
+    document.getElementById('mainHeader').style.display  = 'flex';
+    document.getElementById('mainNav').style.display     = 'flex';
     const now = new Date();
     document.getElementById('headerDate').textContent =
       `${WEEKDAYS_FULL[now.getDay()]}, ${now.getDate()} de ${MONTHS[now.getMonth()]}`;
-    if (!syncStarted) {
-      syncStarted = true;
-      startSync();
-      renderCalendar();
-    }
+    if (!syncStarted) { syncStarted = true; startSync(); renderCalendar(); }
   }
 
-  // ══ LOGIN PRINCIPAL ══
+  // ── LOGIN ──
   function doLogin() {
     const val = document.getElementById('loginInput').value;
     const err = document.getElementById('loginError');
     if (val === SENHA_PRINCIPAL) {
-      sessionStorage.setItem('kr_auth', '1');
+      sessionStorage.setItem('kr_auth','1');
       err.textContent = '';
       mostrarApp();
     } else {
@@ -579,17 +645,14 @@
   }
 
   document.getElementById('btnEntrar').addEventListener('click', doLogin);
+  document.getElementById('loginInput').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
   if (sessionStorage.getItem('kr_auth') === '1') mostrarApp();
 
-  // ══ MODAL VISÃO GERAL ══
+  // ── MODAL VISÃO ──
   window.solicitarVisao = function(btn) {
-    // Se já autenticou na visão nesta sessão, vai direto
-    if (sessionStorage.getItem('kr_visao') === '1') {
-      goPageDireto('visao', btn);
-      return;
-    }
+    if (sessionStorage.getItem('kr_visao') === '1') { goPageDireto('visao', btn); return; }
     btnVisaoRef = btn;
-    document.getElementById('visaoSenhaInput').value = '';
+    document.getElementById('visaoSenhaInput').value   = '';
     document.getElementById('visaoSenhaError').textContent = '';
     document.getElementById('modalVisao').classList.add('show');
     setTimeout(() => document.getElementById('visaoSenhaInput').focus(), 100);
@@ -599,7 +662,7 @@
     const val = document.getElementById('visaoSenhaInput').value;
     const err = document.getElementById('visaoSenhaError');
     if (val === SENHA_VISAO) {
-      sessionStorage.setItem('kr_visao', '1');
+      sessionStorage.setItem('kr_visao','1');
       document.getElementById('modalVisao').classList.remove('show');
       goPageDireto('visao', btnVisaoRef);
     } else {
@@ -612,51 +675,48 @@
     document.getElementById('modalVisao').classList.remove('show');
   };
 
-  // ══ NAVEGAÇÃO ══
+  document.getElementById('visaoSenhaInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') window.confirmarSenhaVisao();
+  });
+
+  // ── NAVEGAÇÃO ──
   function goPageDireto(id, btn) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.bottom-nav button').forEach(b => b.classList.remove('active'));
     document.getElementById('page-'+id).classList.add('active');
     if (btn) btn.classList.add('active');
-    if (id === 'home') renderHome();
+    if (id === 'home')     renderHome();
     if (id === 'calendar') renderCalendar();
-    if (id === 'visao') renderVisao();
-    if (id === 'list') renderSearchList();
+    if (id === 'visao')    renderVisao();
+    if (id === 'list')     renderSearchList();
   }
 
-  window.goPage = function(id, btn) {
-    goPageDireto(id, btn);
-  };
+  window.goPage = function(id, btn) { goPageDireto(id, btn); };
 
-  // ══ FIREBASE ══
+  // ── FIREBASE ──
   function startSync() {
     const agendaRef = ref(db, 'agenda');
-    onValue(agendaRef, (snapshot) => {
-      agenda = snapshot.val() || {};
-      renderHome();
-      renderCalendar();
+    onValue(agendaRef, snap => {
+      agenda = snap.val() || {};
+      renderHome(); renderCalendar();
       if (selectedDate) renderDayDetail();
-      renderVisao();
-      setSyncStatus(true);
+      renderVisao(); setSyncStatus(true);
     }, () => setSyncStatus(false));
     window.addEventListener('online',  () => setSyncStatus(true));
     window.addEventListener('offline', () => setSyncStatus(false));
   }
 
   function setSyncStatus(online) {
-    document.getElementById('syncDot').className = 'sync-dot' + (online ? '' : ' offline');
-    document.getElementById('syncLabel').textContent = online ? 'Online' : 'Offline';
+    document.getElementById('syncDot').className      = 'sync-dot'+(online?'':' offline');
+    document.getElementById('syncLabel').textContent  = online ? 'Online' : 'Offline';
   }
 
   async function saveDay(key, dayData) {
-    try {
-      await set(ref(db, `agenda/${key}`), dayData);
-    } catch(e) {
-      showToast('⚠ Erro ao salvar. Verifique a conexão.', true);
-    }
+    try { await set(ref(db, `agenda/${key}`), dayData); }
+    catch(e) { showToast('⚠ Erro ao salvar. Verifique a conexão.', true); }
   }
 
-  // ══ TOAST ══
+  // ── TOAST ──
   function showToast(msg, isError = false) {
     const t = document.getElementById('toast');
     t.textContent = msg;
@@ -665,14 +725,13 @@
     setTimeout(() => t.classList.remove('show'), 2800);
   }
 
-  // ══ HOME ══
+  // ── HOME ──
   function renderHome() {
     const todayKey  = dateKey(new Date());
     const todayData = agenda[todayKey];
     const month     = String(new Date().getMonth()+1).padStart(2,'0');
     const year      = new Date().getFullYear();
     const prefix    = `${year}-${month}`;
-
     let monthTotal = 0, blockedTotal = 0;
     Object.keys(agenda).forEach(k => {
       if (k.startsWith(prefix)) {
@@ -680,7 +739,6 @@
         if (agenda[k].blocked) blockedTotal++;
       }
     });
-
     document.getElementById('sumToday').textContent   = todayData?.apts?.length || 0;
     document.getElementById('sumMonth').textContent   = monthTotal;
     document.getElementById('sumBlocked').textContent = blockedTotal;
@@ -688,22 +746,17 @@
     const list  = document.getElementById('nextList');
     const today = new Date(); today.setHours(0,0,0,0);
     let items   = [];
-
     Object.keys(agenda).sort().forEach(k => {
       const [y,m,d] = k.split('-').map(Number);
       const dt = new Date(y,m-1,d);
-      if (dt >= today && !agenda[k].blocked) {
-        (agenda[k].apts || []).forEach(apt => items.push({ date: dt, ...apt }));
-      }
+      if (dt >= today && !agenda[k].blocked)
+        (agenda[k].apts||[]).forEach(apt => items.push({ date: dt, ...apt }));
     });
-
     items = items.slice(0, 8);
-
-    if (items.length === 0) {
+    if (!items.length) {
       list.innerHTML = '<div class="empty-state"><div class="icon">📭</div>Nenhum agendamento futuro.</div>';
       return;
     }
-
     list.innerHTML = items.map(it => `
       <div class="next-item">
         <div class="next-date">
@@ -714,12 +767,11 @@
           <div class="ni-client">${it.client}</div>
           <div class="ni-detail">${it.timeStart} – ${it.timeEnd} · ${it.service}</div>
         </div>
-        ${it.valor ? `<div class="next-valor">${formatValor(it.valor)}</div>` : ''}
-      </div>
-    `).join('');
+        ${it.valor ? `<div class="next-valor">${fv(it.valor)}</div>` : ''}
+      </div>`).join('');
   }
 
-  // ══ CALENDÁRIO ══
+  // ── CALENDÁRIO ──
   function renderCalendar() {
     const grid  = document.getElementById('calGrid');
     const label = document.getElementById('calMonthLabel');
@@ -730,24 +782,22 @@
     label.textContent = `${MONTHS[month]} ${year}`;
     const firstDay    = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month+1, 0).getDate();
-    for (let i = 0; i < firstDay; i++) {
-      const el = document.createElement('div');
-      el.className = 'cal-cell empty';
-      grid.appendChild(el);
+    for (let i=0; i<firstDay; i++) {
+      const el = document.createElement('div'); el.className = 'cal-cell empty'; grid.appendChild(el);
     }
-    for (let d = 1; d <= daysInMonth; d++) {
+    for (let d=1; d<=daysInMonth; d++) {
       const dt  = new Date(year, month, d);
       const key = dateKey(dt);
-      const dayData = agenda[key];
-      const el = document.createElement('div');
+      const dd  = agenda[key];
+      const el  = document.createElement('div');
       el.className = 'cal-cell';
       el.innerHTML = `<span class="cal-num">${d}</span>`;
       if (key === todayKey) el.classList.add('today');
       if (selectedDate && dateKey(selectedDate) === key) el.classList.add('selected');
-      if (dayData?.blocked) {
+      if (dd?.blocked) {
         el.classList.add('blocked');
         el.innerHTML += '<div class="cal-dot blocked-dot"></div>';
-      } else if (dayData?.apts?.length > 0) {
+      } else if (dd?.apts?.length > 0) {
         el.innerHTML += '<div class="cal-dot"></div>';
       }
       el.onclick = () => selectDay(new Date(year, month, d));
@@ -756,7 +806,7 @@
   }
 
   window.changeMonth = function(dir) {
-    currentCal.setMonth(currentCal.getMonth() + dir);
+    currentCal.setMonth(currentCal.getMonth()+dir);
     renderCalendar();
   };
 
@@ -765,110 +815,132 @@
     renderCalendar();
     renderDayDetail();
     document.getElementById('dayDetail').style.display = 'block';
-    setTimeout(() => {
-      document.getElementById('dayDetail').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
+    setTimeout(() => document.getElementById('dayDetail').scrollIntoView({ behavior:'smooth', block:'start' }), 100);
   }
 
-  // ══ DETALHE DO DIA ══
+  // ── DETALHE DO DIA ──
   function renderDayDetail() {
     if (!selectedDate) return;
     const key     = dateKey(selectedDate);
     const dayData = getDay(key);
     document.getElementById('dayDetailTitle').textContent = formatDateDisplay(selectedDate);
-    const badge        = document.getElementById('dayBadge');
-    const toggleBtn    = document.getElementById('toggleBlockBtn');
-    const blockedBanner = document.getElementById('blockedBanner');
-    const newForm      = document.getElementById('newAptForm');
+    const badge  = document.getElementById('dayBadge');
+    const tBtn   = document.getElementById('toggleBlockBtn');
+    const banner = document.getElementById('blockedBanner');
+    const form   = document.getElementById('newAptForm');
     badge.textContent  = dayData.blocked ? 'Fechado' : `${dayData.apts.length} agendamento(s)`;
-    badge.className    = 'badge' + (dayData.blocked ? ' closed' : '');
-    toggleBtn.textContent = dayData.blocked ? '🔓 Abrir este dia' : '🔒 Fechar este dia';
-    toggleBtn.className   = 'btn btn-sm ' + (dayData.blocked ? 'btn-gold' : 'btn-danger-outline');
-    blockedBanner.style.display = dayData.blocked ? 'block' : 'none';
-    newForm.style.display       = dayData.blocked ? 'none'  : 'block';
+    badge.className    = 'badge'+(dayData.blocked?' closed':'');
+    tBtn.textContent   = dayData.blocked ? '🔓 Abrir este dia' : '🔒 Fechar este dia';
+    tBtn.className     = 'btn btn-sm '+(dayData.blocked?'btn-gold':'btn-danger-outline');
+    banner.style.display = dayData.blocked ? 'block' : 'none';
+    form.style.display   = dayData.blocked ? 'none'  : 'block';
     renderDayApts(key);
   }
 
   function renderDayApts(key) {
     const dayData = getDay(key);
     const list    = document.getElementById('dayAptList');
-    if (dayData.apts.length === 0) {
+    if (!dayData.apts.length) {
       list.innerHTML = '<div class="empty-state"><div class="icon">🗓</div>Nenhum agendamento neste dia.</div>';
       return;
     }
-    const totalDia  = dayData.apts.reduce((s, a) => s + (Number(a.valor) || 0), 0);
+    const totalDia  = dayData.apts.reduce((s,a) => s+(Number(a.valor)||0), 0);
     const totalHtml = totalDia > 0
-      ? `<div style="text-align:right;font-size:0.82rem;color:var(--green);margin-bottom:10px;font-weight:600;">Total do dia: ${formatValor(totalDia)}</div>`
+      ? `<div style="text-align:right;font-size:0.82rem;color:var(--green);margin-bottom:10px;font-weight:600;">Total do dia: ${fv(totalDia)}</div>`
       : '';
-    list.innerHTML = totalHtml + dayData.apts.map(apt => `
-      <div class="apt-card">
-        <div class="apt-time-block">
-          <div class="apt-time-start">${apt.timeStart}</div>
-          <div class="apt-time-sep">até</div>
-          <div class="apt-time-end">${apt.timeEnd}</div>
-        </div>
-        <div class="apt-body">
-          <div class="apt-client">${apt.client}</div>
-          <div class="apt-service">${apt.service}</div>
-          ${apt.valor ? `<div class="apt-valor">${formatValor(apt.valor)}</div>` : ''}
-          ${apt.obs ? `<div class="apt-obs">${apt.obs}</div>` : ''}
-        </div>
-        <button class="apt-del" onclick="removeApt('${key}', ${apt.id})">✕</button>
-      </div>
-    `).join('');
+
+    list.innerHTML = totalHtml + dayData.apts.map(apt => {
+      const val   = Number(apt.valor)     || 0;
+      const pago  = Number(apt.valorPago) || 0;
+      const saldo = val - pago;
+      const sCls  = saldo <= 0 ? 'quitado' : 'pendente';
+      const sTxt  = val === 0 ? '' : saldo <= 0
+        ? (saldo < 0 ? `Crédito ${fv(Math.abs(saldo))}` : '✓ Quitado')
+        : `Saldo: ${fv(saldo)}`;
+      const pagoTxt = apt.valorPago
+        ? `💳 Pago: ${fv(apt.valorPago)}`
+        : '';
+      return `
+        <div class="apt-card">
+          <div class="apt-time-block">
+            <div class="apt-time-start">${apt.timeStart}</div>
+            <div class="apt-time-sep">até</div>
+            <div class="apt-time-end">${apt.timeEnd}</div>
+          </div>
+          <div class="apt-body">
+            <div class="apt-client">${apt.client}</div>
+            <div class="apt-service">${apt.service}</div>
+            ${apt.valor  ? `<div class="apt-valor">${fv(apt.valor)}</div>` : ''}
+            ${pagoTxt    ? `<div class="apt-pago">${pagoTxt}</div>` : ''}
+            ${sTxt       ? `<div class="apt-saldo ${sCls}">${sTxt}</div>` : ''}
+            ${apt.obs    ? `<div class="apt-obs">${apt.obs}</div>` : ''}
+          </div>
+          <button class="apt-del" onclick="removeApt('${key}',${apt.id})">✕</button>
+        </div>`;
+    }).join('');
   }
 
-  // ══ AGENDAMENTO ══
+  // ── AGENDAMENTO ──
   window.addApt = async function() {
     if (!selectedDate) return;
     const key     = dateKey(selectedDate);
     const dayData = getDay(key);
+
     const timeStart = document.getElementById('inTimeStart').value;
     const timeEnd   = document.getElementById('inTimeEnd').value;
     const client    = document.getElementById('inClient').value.trim();
     const service   = document.getElementById('inService').value;
     const valor     = document.getElementById('inValor').value;
+    const valorPago = document.getElementById('inValorPago').value;
     const obs       = document.getElementById('inObs').value.trim();
-    if (!timeStart)  return showToast('⚠ Informe o horário de início.', true);
-    if (!timeEnd)    return showToast('⚠ Informe o horário de término.', true);
+
+    if (!timeStart)           return showToast('⚠ Informe o horário de início.', true);
+    if (!timeEnd)             return showToast('⚠ Informe o horário de término.', true);
     if (timeEnd <= timeStart) return showToast('⚠ O término deve ser após o início.', true);
-    if (!client)     return showToast('⚠ Informe o nome do cliente.', true);
-    if (!service)    return showToast('⚠ Selecione o serviço.', true);
-    const dup = dayData.apts.find(a => a.timeStart === timeStart);
-    if (dup) return showToast(`⚠ Já existe agendamento às ${timeStart}.`, true);
-    dayData.apts.push({ id: Date.now(), timeStart, timeEnd, client, service, valor: valor ? parseFloat(valor) : null, obs });
+    if (!client)              return showToast('⚠ Informe o nome do cliente.', true);
+    if (!service)             return showToast('⚠ Selecione o serviço.', true);
+
+    if (dayData.apts.find(a => a.timeStart === timeStart))
+      return showToast(`⚠ Já existe agendamento às ${timeStart}.`, true);
+
+    dayData.apts.push({
+      id: Date.now(), timeStart, timeEnd, client, service, obs,
+      valor:     valor     ? parseFloat(valor)     : null,
+      valorPago: valorPago ? parseFloat(valorPago) : null
+    });
     dayData.apts.sort((a,b) => a.timeStart.localeCompare(b.timeStart));
     await saveDay(key, dayData);
-    document.getElementById('inTimeStart').value = '';
-    document.getElementById('inTimeEnd').value   = '';
-    document.getElementById('inClient').value    = '';
-    document.getElementById('inService').value   = '';
-    document.getElementById('inValor').value     = '';
-    document.getElementById('inObs').value       = '';
+
+    ['inTimeStart','inTimeEnd','inClient','inValor','inValorPago','inObs']
+      .forEach(id => document.getElementById(id).value = '');
+    document.getElementById('inService').value      = '';
+    document.getElementById('saldoDisplay').textContent = '—';
+    document.getElementById('saldoDisplay').className   = 'sb-val';
+    document.getElementById('saldoBox').className       = 'saldo-box';
+
     showToast('✓ Agendamento confirmado!');
   };
 
   window.removeApt = async function(key, id) {
     if (!confirm('Remover este agendamento?')) return;
-    const dayData = getDay(key);
-    dayData.apts  = dayData.apts.filter(a => a.id !== id);
-    await saveDay(key, dayData);
+    const d = getDay(key);
+    d.apts  = d.apts.filter(a => a.id !== id);
+    await saveDay(key, d);
     showToast('Agendamento removido.');
   };
 
   window.toggleBlock = async function() {
     if (!selectedDate) return;
-    const key     = dateKey(selectedDate);
-    const dayData = getDay(key);
-    if (!dayData.blocked && dayData.apts.length > 0) {
-      if (!confirm(`Há ${dayData.apts.length} agendamento(s) neste dia. Fechar mesmo assim?`)) return;
-    }
-    dayData.blocked = !dayData.blocked;
-    await saveDay(key, dayData);
-    showToast(dayData.blocked ? '🔒 Dia fechado.' : '🔓 Dia aberto.');
+    const key = dateKey(selectedDate);
+    const d   = getDay(key);
+    if (!d.blocked && d.apts.length > 0)
+      if (!confirm(`Há ${d.apts.length} agendamento(s) neste dia. Fechar mesmo assim?`)) return;
+    d.blocked = !d.blocked;
+    await saveDay(key, d);
+    showToast(d.blocked ? '🔒 Dia fechado.' : '🔓 Dia aberto.');
   };
 
-  // ══ VISÃO GERAL ══
+  // ── VISÃO GERAL ──
   window.setPeriodo = function(btn) {
     document.querySelectorAll('#filtrosPeriodo .filtro-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
@@ -879,117 +951,122 @@
 
   function getRangeDatas() {
     const hoje = new Date(); hoje.setHours(0,0,0,0);
-
     if (periodoAtivo === 'hoje') {
-      atualizarLabel(`Exibindo: ${hoje.getDate()} de ${MONTHS[hoje.getMonth()]} de ${hoje.getFullYear()}`);
+      setLabel(`Exibindo: ${hoje.getDate()} de ${MONTHS[hoje.getMonth()]} de ${hoje.getFullYear()}`);
       return { de: new Date(hoje), ate: new Date(hoje) };
     }
     if (periodoAtivo === 'semana') {
-      const dom = new Date(hoje); dom.setDate(hoje.getDate() - hoje.getDay());
-      const sab = new Date(dom);  sab.setDate(dom.getDate() + 6);
-      atualizarLabel(`Exibindo: ${dom.getDate()}/${dom.getMonth()+1} a ${sab.getDate()}/${sab.getMonth()+1}`);
-      return { de: dom, ate: sab };
+      const dom = new Date(hoje); dom.setDate(hoje.getDate()-hoje.getDay());
+      const sab = new Date(dom);  sab.setDate(dom.getDate()+6);
+      setLabel(`Exibindo: ${dom.getDate()}/${dom.getMonth()+1} a ${sab.getDate()}/${sab.getMonth()+1}`);
+      return { de:dom, ate:sab };
     }
     if (periodoAtivo === 'mes') {
       const ini = new Date(hoje.getFullYear(), hoje.getMonth(), 1);
       const fim = new Date(hoje.getFullYear(), hoje.getMonth()+1, 0);
-      atualizarLabel(`Exibindo: ${MONTHS[hoje.getMonth()]} de ${hoje.getFullYear()}`);
-      return { de: ini, ate: fim };
+      setLabel(`Exibindo: ${MONTHS[hoje.getMonth()]} de ${hoje.getFullYear()}`);
+      return { de:ini, ate:fim };
     }
     if (periodoAtivo === 'proximo') {
-      const proxMes = new Date(hoje.getFullYear(), hoje.getMonth()+1, 1);
-      const fimProx = new Date(hoje.getFullYear(), hoje.getMonth()+2, 0);
-      atualizarLabel(`Exibindo: ${MONTHS[proxMes.getMonth()]} de ${proxMes.getFullYear()}`);
-      return { de: proxMes, ate: fimProx };
+      const ini = new Date(hoje.getFullYear(), hoje.getMonth()+1, 1);
+      const fim = new Date(hoje.getFullYear(), hoje.getMonth()+2, 0);
+      setLabel(`Exibindo: ${MONTHS[ini.getMonth()]} de ${ini.getFullYear()}`);
+      return { de:ini, ate:fim };
     }
     if (periodoAtivo === 'custom') {
       const de  = document.getElementById('filtroDataDe').value;
       const ate = document.getElementById('filtroDataAte').value;
-      if (!de || !ate) { atualizarLabel(''); return null; }
+      if (!de || !ate) { setLabel(''); return null; }
       const [dy,dm,dd] = de.split('-').map(Number);
       const [ay,am,ad] = ate.split('-').map(Number);
-      atualizarLabel(`Exibindo: ${dd}/${dm}/${dy} a ${ad}/${am}/${ay}`);
+      setLabel(`Exibindo: ${dd}/${dm}/${dy} a ${ad}/${am}/${ay}`);
       return { de: new Date(dy,dm-1,dd), ate: new Date(ay,am-1,ad) };
     }
     return null;
   }
 
-  function atualizarLabel(texto) {
+  function setLabel(txt) {
     const el = document.getElementById('periodoLabel');
-    if (texto) { el.textContent = texto; el.style.display = 'block'; }
-    else { el.style.display = 'none'; }
+    el.textContent   = txt;
+    el.style.display = txt ? 'block' : 'none';
   }
 
   window.renderVisao = function() {
-    const range         = getRangeDatas();
-    const filtroServico = document.getElementById('filtroServico').value;
-    const filtroCliente = document.getElementById('filtroCliente').value.toLowerCase().trim();
-    const list          = document.getElementById('visaoList');
-
+    const range = getRangeDatas();
+    const fSrv  = document.getElementById('filtroServico').value;
+    const fCli  = document.getElementById('filtroCliente').value.toLowerCase().trim();
+    const list  = document.getElementById('visaoList');
     if (!range) {
       list.innerHTML = '<div class="empty-state"><div class="icon">📅</div>Selecione o período personalizado.</div>';
       return;
     }
-
     let results = [];
     Object.keys(agenda).sort().forEach(key => {
       const [y,m,d] = key.split('-').map(Number);
       const dt = new Date(y,m-1,d); dt.setHours(0,0,0,0);
-      if (dt < range.de || dt > range.ate) return;
-      if (agenda[key].blocked) return;
-      (agenda[key].apts || []).forEach(apt => {
-        if (filtroServico && apt.service !== filtroServico) return;
-        if (filtroCliente && !apt.client.toLowerCase().includes(filtroCliente)) return;
+      if (dt < range.de || dt > range.ate || agenda[key].blocked) return;
+      (agenda[key].apts||[]).forEach(apt => {
+        if (fSrv && apt.service !== fSrv) return;
+        if (fCli && !apt.client.toLowerCase().includes(fCli)) return;
         results.push({ dt, key, ...apt });
       });
     });
-
-    const totalFat = results.reduce((s, r) => s + (Number(r.valor) || 0), 0);
+    const totalFat = results.reduce((s,r) => s+(Number(r.valor)||0), 0);
     document.getElementById('vrTotal').textContent = results.length;
-    document.getElementById('vrFat').textContent   = formatValor(totalFat) || 'R$ 0,00';
+    document.getElementById('vrFat').textContent   = fv(totalFat) || 'R$ 0,00';
     document.getElementById('resultadoCount').textContent =
       results.length > 0 ? `${results.length} agendamento(s) encontrado(s)` : '';
-
-    if (results.length === 0) {
+    if (!results.length) {
       list.innerHTML = '<div class="empty-state"><div class="icon">📭</div>Nenhum agendamento no período.</div>';
       return;
     }
-
     const grupos = {};
     results.forEach(r => {
       const k = dateKey(r.dt);
-      if (!grupos[k]) grupos[k] = { dt: r.dt, items: [] };
+      if (!grupos[k]) grupos[k] = { dt:r.dt, items:[] };
       grupos[k].items.push(r);
     });
-
     list.innerHTML = Object.keys(grupos).sort().map(k => {
-      const g = grupos[k];
-      const totalGrupo = g.items.reduce((s, a) => s + (Number(a.valor) || 0), 0);
+      const g  = grupos[k];
+      const tg = g.items.reduce((s,a) => s+(Number(a.valor)||0), 0);
       return `
         <div class="section-sep">
           ${WEEKDAYS[g.dt.getDay()]}, ${g.dt.getDate()} de ${MONTHS[g.dt.getMonth()]}
-          ${totalGrupo > 0 ? `<span style="color:var(--green);float:right;">${formatValor(totalGrupo)}</span>` : ''}
+          ${tg > 0 ? `<span style="color:var(--green);float:right;">${fv(tg)}</span>` : ''}
         </div>
-        ${g.items.map(apt => `
-          <div class="visao-apt-card">
-            <div class="apt-time-block">
-              <div class="apt-time-start">${apt.timeStart}</div>
-              <div class="apt-time-sep">até</div>
-              <div class="apt-time-end">${apt.timeEnd}</div>
-            </div>
-            <div class="visao-body">
-              <div class="visao-client">${apt.client}</div>
-              <span class="servico-tag">${apt.service}</span>
-              ${apt.valor ? `<div class="visao-valor">${formatValor(apt.valor)}</div>` : ''}
-              ${apt.obs ? `<div class="visao-obs">${apt.obs}</div>` : ''}
-            </div>
-          </div>
-        `).join('')}
+        ${g.items.map(apt => {
+          const val   = Number(apt.valor)     || 0;
+          const pago  = Number(apt.valorPago) || 0;
+          const saldo = val - pago;
+          const sCls  = saldo <= 0 ? 'quitado' : 'pendente';
+          const sTxt  = val === 0 ? '' : saldo <= 0
+                      ? (saldo < 0 ? `Crédito ${fv(Math.abs(saldo))}` : '✓ Quitado')
+            : `Saldo: ${fv(saldo)}`;
+          const pagoTxt = apt.valorPago
+            ? `💳 Pago: ${fv(apt.valorPago)}`
+            : '';
+          return `
+            <div class="visao-apt-card">
+              <div class="apt-time-block">
+                <div class="apt-time-start">${apt.timeStart}</div>
+                <div class="apt-time-sep">até</div>
+                <div class="apt-time-end">${apt.timeEnd}</div>
+              </div>
+              <div class="visao-body">
+                <div class="visao-client">${apt.client}</div>
+                <span class="servico-tag">${apt.service}</span>
+                ${apt.valor  ? `<div class="visao-valor">${fv(apt.valor)}</div>` : ''}
+                ${pagoTxt    ? `<div class="visao-pago">${pagoTxt}</div>` : ''}
+                ${sTxt       ? `<div class="visao-saldo ${sCls}">${sTxt}</div>` : ''}
+                ${apt.obs    ? `<div class="visao-obs">${apt.obs}</div>` : ''}
+              </div>
+            </div>`;
+        }).join('')}
       `;
     }).join('');
   };
 
-  // ══ BUSCA ══
+  // ── BUSCA ──
   window.renderSearchList = function() {
     const q    = document.getElementById('searchInput').value.toLowerCase().trim();
     const list = document.getElementById('searchList');
@@ -997,36 +1074,47 @@
     Object.keys(agenda).sort().forEach(key => {
       const [y,m,d] = key.split('-').map(Number);
       const dt = new Date(y,m-1,d);
-      (agenda[key].apts || []).forEach(apt => {
-        if (!q || apt.client.toLowerCase().includes(q) || apt.service.toLowerCase().includes(q)) {
+      (agenda[key].apts||[]).forEach(apt => {
+        if (!q || apt.client.toLowerCase().includes(q) || apt.service.toLowerCase().includes(q))
           results.push({ dt, key, ...apt });
-        }
       });
     });
-    if (results.length === 0) {
+    if (!results.length) {
       list.innerHTML = '<div class="empty-state"><div class="icon">🔍</div>Nenhum resultado.</div>';
       return;
     }
-    list.innerHTML = results.map(r => `
-      <div class="apt-card">
-        <div class="apt-time-block">
-          <div class="apt-time-start">${r.timeStart}</div>
-          <div class="apt-time-sep">até</div>
-          <div class="apt-time-end">${r.timeEnd}</div>
-        </div>
-        <div style="min-width:40px;text-align:center;margin-right:4px;">
-          <div style="font-size:1rem;font-weight:700;color:var(--gold)">${r.dt.getDate()}</div>
-          <div style="font-size:0.62rem;color:var(--muted)">${MONTHS_SHORT[r.dt.getMonth()]}</div>
-        </div>
-        <div class="apt-body">
-          <div class="apt-client">${r.client}</div>
-          <div class="apt-service">${r.service}</div>
-          ${r.valor ? `<div class="apt-valor">${formatValor(r.valor)}</div>` : ''}
-          ${r.obs ? `<div class="apt-obs">${r.obs}</div>` : ''}
-        </div>
-      </div>
-    `).join('');
+    list.innerHTML = results.map(r => {
+      const val   = Number(r.valor)     || 0;
+      const pago  = Number(r.valorPago) || 0;
+      const saldo = val - pago;
+      const sCls  = saldo <= 0 ? 'quitado' : 'pendente';
+      const sTxt  = val === 0 ? '' : saldo <= 0
+        ? (saldo < 0 ? `Crédito ${fv(Math.abs(saldo))}` : '✓ Quitado')
+        : `Saldo: ${fv(saldo)}`;
+      const pagoTxt = r.valorPago ? `💳 Pago: ${fv(r.valorPago)}` : '';
+      return `
+        <div class="apt-card">
+          <div class="apt-time-block">
+            <div class="apt-time-start">${r.timeStart}</div>
+            <div class="apt-time-sep">até</div>
+            <div class="apt-time-end">${r.timeEnd}</div>
+          </div>
+          <div style="min-width:40px;text-align:center;margin-right:4px;">
+            <div style="font-size:1rem;font-weight:700;color:var(--gold)">${r.dt.getDate()}</div>
+            <div style="font-size:0.62rem;color:var(--muted)">${MONTHS_SHORT[r.dt.getMonth()]}</div>
+          </div>
+          <div class="apt-body">
+            <div class="apt-client">${r.client}</div>
+            <div class="apt-service">${r.service}</div>
+            ${r.valor   ? `<div class="apt-valor">${fv(r.valor)}</div>` : ''}
+            ${pagoTxt   ? `<div class="apt-pago">${pagoTxt}</div>` : ''}
+            ${sTxt      ? `<div class="apt-saldo ${sCls}">${sTxt}</div>` : ''}
+            ${r.obs     ? `<div class="apt-obs">${r.obs}</div>` : ''}
+          </div>
+        </div>`;
+    }).join('');
   };
 </script>
 </body>
 </html>
+
