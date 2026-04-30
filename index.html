@@ -80,12 +80,12 @@
 
     .bottom-nav button {
       flex: 1; background: none; border: none; color: var(--muted);
-      font-size: 0.7rem; display: flex; flex-direction: column;
+      font-size: 0.68rem; display: flex; flex-direction: column;
       align-items: center; justify-content: center; gap: 3px;
       cursor: pointer; transition: color 0.2s;
     }
 
-    .bottom-nav button .icon { font-size: 1.4rem; line-height: 1; }
+    .bottom-nav button .icon { font-size: 1.3rem; line-height: 1; }
     .bottom-nav button.active { color: var(--gold); }
 
     .page { display: none; padding: 16px 16px 80px; }
@@ -110,6 +110,65 @@
     .faturamento-card .fat-val { font-size: 1.8rem; font-weight: 700; color: var(--green); margin-top: 4px; }
     .faturamento-card .fat-icon { font-size: 2.2rem; opacity: 0.6; }
 
+    /* ── FILTROS VISÃO GERAL ── */
+    .filtros-wrap {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;
+    }
+
+    .filtro-btn {
+      padding: 7px 14px; border-radius: 20px; border: 1.5px solid var(--border);
+      background: var(--card2); color: var(--muted); font-size: 0.78rem;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+
+    .filtro-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(200,169,110,0.1); }
+
+    .filtros-selects {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;
+    }
+
+    .visao-resumo {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;
+    }
+
+    .visao-resumo-item {
+      background: var(--card); border-radius: 12px; padding: 12px;
+      text-align: center;
+    }
+
+    .visao-resumo-item .vr-val { font-size: 1.4rem; font-weight: 700; color: var(--gold); }
+    .visao-resumo-item .vr-val.green { color: var(--green); }
+    .visao-resumo-item .vr-lbl { font-size: 0.68rem; color: var(--muted); margin-top: 4px; }
+
+    .visao-apt-card {
+      background: var(--bg); border-left: 4px solid var(--gold);
+      border-radius: 10px; padding: 12px 14px; margin-bottom: 10px;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+
+    .visao-data {
+      min-width: 44px; text-align: center; background: var(--card);
+      border-radius: 10px; padding: 6px 4px;
+    }
+
+    .visao-data .vd-num { font-size: 1.2rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .visao-data .vd-mes { font-size: 0.62rem; color: var(--muted); text-transform: uppercase; }
+    .visao-data .vd-dia { font-size: 0.6rem; color: var(--muted); margin-top: 2px; }
+
+    .visao-body { flex: 1; }
+    .visao-client { font-size: 0.9rem; font-weight: 600; }
+    .visao-detail { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+    .visao-valor { font-size: 0.8rem; color: var(--green); font-weight: 600; margin-top: 3px; }
+    .visao-obs { font-size: 0.72rem; color: #6b7280; margin-top: 3px; font-style: italic; }
+
+    .servico-tag {
+      display: inline-block; font-size: 0.68rem; padding: 2px 8px;
+      border-radius: 10px; background: rgba(200,169,110,0.15);
+      color: var(--gold); border: 1px solid rgba(200,169,110,0.3);
+      margin-top: 3px;
+    }
+
+    /* ── CALENDÁRIO ── */
     .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
     .cal-nav h2 { font-size: 1rem; color: var(--gold); }
     .cal-nav button {
@@ -153,7 +212,6 @@
     textarea { min-height: 70px; resize: vertical; }
     .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .form-row-3 { display: grid; grid-template-columns: 1fr auto 1fr; gap: 6px; align-items: end; }
-
     .time-arrow { color: var(--muted); font-size: 1rem; padding-bottom: 13px; text-align: center; }
 
     .btn { width: 100%; padding: 14px; border-radius: 12px; border: none; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s; margin-top: 4px; }
@@ -226,6 +284,15 @@
       color: var(--green); font-weight: 700; font-size: 0.95rem; pointer-events: none;
     }
     .input-valor-wrap input { padding-left: 30px; color: var(--green); font-weight: 700; }
+
+    .section-sep {
+      font-size: 0.72rem; color: var(--muted); text-transform: uppercase;
+      letter-spacing: 0.5px; margin: 16px 0 8px; padding-left: 2px;
+    }
+
+    .resultado-count {
+      font-size: 0.78rem; color: var(--muted); margin-bottom: 12px; text-align: right;
+    }
   </style>
 </head>
 <body>
@@ -255,14 +322,13 @@
   </div>
 </header>
 
-<!-- INÍCIO -->
+<!-- ═══ INÍCIO ═══ -->
 <div class="page active" id="page-home">
   <div class="summary-grid">
     <div class="summary-item"><div class="val" id="sumToday">0</div><div class="lbl">Hoje</div></div>
     <div class="summary-item"><div class="val" id="sumMonth">0</div><div class="lbl">Este mês</div></div>
     <div class="summary-item"><div class="val" id="sumBlocked">0</div><div class="lbl">Dias fechados</div></div>
   </div>
-
   <div class="faturamento-card">
     <div>
       <div class="fat-label">💰 Faturamento do mês</div>
@@ -270,14 +336,13 @@
     </div>
     <div class="fat-icon">📊</div>
   </div>
-
   <div class="card">
     <h3>📋 Próximos agendamentos</h3>
     <div id="nextList"><div class="loading"><div class="spinner"></div><br>Carregando...</div></div>
   </div>
 </div>
 
-<!-- CALENDÁRIO -->
+<!-- ═══ CALENDÁRIO ═══ -->
 <div class="page" id="page-calendar">
   <div class="card">
     <div class="cal-nav">
@@ -302,19 +367,11 @@
 
     <div id="newAptForm" class="card">
       <h3>➕ Novo agendamento</h3>
-
       <div class="form-row-3">
-        <div class="form-group">
-          <label>Início</label>
-          <input type="time" id="inTimeStart"/>
-        </div>
+        <div class="form-group"><label>Início</label><input type="time" id="inTimeStart"/></div>
         <div class="time-arrow">→</div>
-        <div class="form-group">
-          <label>Término</label>
-          <input type="time" id="inTimeEnd"/>
-        </div>
+        <div class="form-group"><label>Término</label><input type="time" id="inTimeEnd"/></div>
       </div>
-
       <div class="form-row-2">
         <div class="form-group">
           <label>Serviço</label>
@@ -339,23 +396,73 @@
           </div>
         </div>
       </div>
-
-      <div class="form-group">
-        <label>Nome do cliente</label>
-        <input type="text" id="inClient" placeholder="Ex: Maria Silva"/>
-      </div>
-
-      <div class="form-group">
-        <label>Observação</label>
-        <textarea id="inObs" placeholder="Preferências, alergias..."></textarea>
-      </div>
-
+      <div class="form-group"><label>Nome do cliente</label><input type="text" id="inClient" placeholder="Ex: Maria Silva"/></div>
+      <div class="form-group"><label>Observação</label><textarea id="inObs" placeholder="Preferências, alergias..."></textarea></div>
       <button class="btn btn-gold" onclick="addApt()">Confirmar agendamento</button>
     </div>
   </div>
 </div>
 
-<!-- BUSCA -->
+<!-- ═══ VISÃO GERAL ═══ -->
+<div class="page" id="page-visao">
+  <div class="card">
+    <h3>🔎 Filtrar agendamentos</h3>
+
+    <!-- Período rápido -->
+    <div class="filtros-wrap" id="filtrosPeriodo">
+      <button class="filtro-btn active" data-periodo="hoje" onclick="setPeriodo(this)">Hoje</button>
+      <button class="filtro-btn" data-periodo="semana" onclick="setPeriodo(this)">Esta semana</button>
+      <button class="filtro-btn" data-periodo="mes" onclick="setPeriodo(this)">Este mês</button>
+      <button class="filtro-btn" data-periodo="custom" onclick="setPeriodo(this)">Personalizado</button>
+    </div>
+
+    <!-- Datas personalizadas -->
+    <div id="customDates" style="display:none;" class="form-row-2">
+      <div class="form-group"><label>De</label><input type="date" id="filtroDataDe" oninput="renderVisao()"/></div>
+      <div class="form-group"><label>Até</label><input type="date" id="filtroDataAte" oninput="renderVisao()"/></div>
+    </div>
+
+    <!-- Filtros de serviço e cliente -->
+    <div class="filtros-selects">
+      <div class="form-group" style="margin:0">
+        <label>Serviço</label>
+        <select id="filtroServico" onchange="renderVisao()">
+          <option value="">Todos</option>
+          <option>Maquiagem</option>
+          <option>Penteado</option>
+          <option>Dia da noiva</option>
+          <option>Hidratação</option>
+          <option>15 anos</option>
+          <option>Progressiva</option>
+          <option>Corte bordado</option>
+          <option>Escova</option>
+          <option>Realinhamento</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin:0">
+        <label>Cliente</label>
+        <input type="text" id="filtroCliente" placeholder="Nome..." oninput="renderVisao()"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resumo dos resultados -->
+  <div class="visao-resumo" id="visaoResumo">
+    <div class="visao-resumo-item">
+      <div class="vr-val" id="vrTotal">0</div>
+      <div class="vr-lbl">Agendamentos</div>
+    </div>
+    <div class="visao-resumo-item">
+      <div class="vr-val green" id="vrFat">R$ 0,00</div>
+      <div class="vr-lbl">Faturamento</div>
+    </div>
+  </div>
+
+  <div class="resultado-count" id="resultadoCount"></div>
+  <div id="visaoList"></div>
+</div>
+
+<!-- ═══ BUSCA ═══ -->
 <div class="page" id="page-list">
   <div class="card">
     <h3>🔍 Buscar agendamentos</h3>
@@ -367,7 +474,8 @@
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav" id="mainNav">
   <button class="active" onclick="goPage('home',this)"><span class="icon">🏠</span>Início</button>
-  <button onclick="goPage('calendar',this)"><span class="icon">📅</span>Calendário</button>
+  <button onclick="goPage('calendar',this)"><span class="icon">📅</span>Agenda</button>
+  <button onclick="goPage('visao',this)"><span class="icon">📊</span>Visão geral</button>
   <button onclick="goPage('list',this)"><span class="icon">🔍</span>Buscar</button>
 </nav>
 
@@ -404,10 +512,25 @@
   let selectedDate = null;
   let agenda = {};
   let syncStarted = false;
+  let periodoAtivo = 'hoje';
 
   function formatValor(v) {
     if (!v || isNaN(v)) return '';
     return Number(v).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  function dateKey(d) {
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  }
+
+  function getDay(key) {
+    if (!agenda[key]) agenda[key] = { blocked: false, apts: [] };
+    if (!agenda[key].apts) agenda[key].apts = [];
+    return agenda[key];
+  }
+
+  function formatDateDisplay(d) {
+    return `${WEEKDAYS[d.getDay()]}, ${d.getDate()} de ${MONTHS[d.getMonth()]}`;
   }
 
   // ══ MOSTRAR APP ══
@@ -442,10 +565,9 @@
   }
 
   document.getElementById('btnEntrar').addEventListener('click', doLogin);
-
   if (sessionStorage.getItem('kr_auth') === '1') mostrarApp();
 
-  // ══ FIREBASE SYNC ══
+  // ══ FIREBASE ══
   function startSync() {
     const agendaRef = ref(db, 'agenda');
     onValue(agendaRef, (snapshot) => {
@@ -453,11 +575,9 @@
       renderHome();
       renderCalendar();
       if (selectedDate) renderDayDetail();
+      renderVisao();
       setSyncStatus(true);
-    }, (error) => {
-      console.error(error);
-      setSyncStatus(false);
-    });
+    }, () => setSyncStatus(false));
 
     window.addEventListener('online',  () => setSyncStatus(true));
     window.addEventListener('offline', () => setSyncStatus(false));
@@ -474,21 +594,6 @@
     } catch(e) {
       showToast('⚠ Erro ao salvar. Verifique a conexão.', true);
     }
-  }
-
-  // ══ UTILITÁRIOS ══
-  function dateKey(d) {
-    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-  }
-
-  function getDay(key) {
-    if (!agenda[key]) agenda[key] = { blocked: false, apts: [] };
-    if (!agenda[key].apts) agenda[key].apts = [];
-    return agenda[key];
-  }
-
-  function formatDateDisplay(d) {
-    return `${WEEKDAYS[d.getDay()]}, ${d.getDate()} de ${MONTHS[d.getMonth()]}`;
   }
 
   // ══ TOAST ══
@@ -508,6 +613,7 @@
     btn.classList.add('active');
     if (id === 'home') renderHome();
     if (id === 'calendar') renderCalendar();
+    if (id === 'visao') renderVisao();
     if (id === 'list') renderSearchList();
   };
 
@@ -524,16 +630,14 @@
       if (k.startsWith(prefix)) {
         monthTotal += agenda[k].apts?.length || 0;
         if (agenda[k].blocked) blockedTotal++;
-        (agenda[k].apts || []).forEach(apt => {
-          if (apt.valor) fatTotal += Number(apt.valor);
-        });
+        (agenda[k].apts || []).forEach(apt => { if (apt.valor) fatTotal += Number(apt.valor); });
       }
     });
 
     document.getElementById('sumToday').textContent = todayData?.apts?.length || 0;
     document.getElementById('sumMonth').textContent = monthTotal;
     document.getElementById('sumBlocked').textContent = blockedTotal;
-    document.getElementById('fatMonth').textContent = formatValor(fatTotal);
+    document.getElementById('fatMonth').textContent = formatValor(fatTotal) || 'R$ 0,00';
 
     const list = document.getElementById('nextList');
     const today = new Date(); today.setHours(0,0,0,0);
@@ -658,12 +762,9 @@
       return;
     }
 
-    // Total do dia
     const totalDia = dayData.apts.reduce((s, a) => s + (Number(a.valor) || 0), 0);
     const totalHtml = totalDia > 0
-      ? `<div style="text-align:right;font-size:0.82rem;color:var(--green);margin-bottom:10px;font-weight:600;">
-           Total do dia: ${formatValor(totalDia)}
-         </div>`
+      ? `<div style="text-align:right;font-size:0.82rem;color:var(--green);margin-bottom:10px;font-weight:600;">Total do dia: ${formatValor(totalDia)}</div>`
       : '';
 
     list.innerHTML = totalHtml + dayData.apts.map(apt => `
@@ -706,10 +807,7 @@
     const dup = dayData.apts.find(a => a.timeStart === timeStart);
     if (dup) return showToast(`⚠ Já existe agendamento às ${timeStart}.`, true);
 
-    dayData.apts.push({
-      id: Date.now(), timeStart, timeEnd, client, service,
-      valor: valor ? parseFloat(valor) : null, obs
-    });
+    dayData.apts.push({ id: Date.now(), timeStart, timeEnd, client, service, valor: valor ? parseFloat(valor) : null, obs });
     dayData.apts.sort((a,b) => a.timeStart.localeCompare(b.timeStart));
 
     await saveDay(key, dayData);
@@ -744,6 +842,122 @@
     dayData.blocked = !dayData.blocked;
     await saveDay(key, dayData);
     showToast(dayData.blocked ? '🔒 Dia fechado.' : '🔓 Dia aberto.');
+  };
+
+  // ══ VISÃO GERAL ══
+  window.setPeriodo = function(btn) {
+    document.querySelectorAll('#filtrosPeriodo .filtro-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    periodoAtivo = btn.dataset.periodo;
+    document.getElementById('customDates').style.display = periodoAtivo === 'custom' ? 'grid' : 'none';
+    renderVisao();
+  };
+
+  function getRangeDatas() {
+    const hoje = new Date(); hoje.setHours(0,0,0,0);
+
+    if (periodoAtivo === 'hoje') {
+      return { de: new Date(hoje), ate: new Date(hoje) };
+    }
+
+    if (periodoAtivo === 'semana') {
+      const dom = new Date(hoje);
+      dom.setDate(hoje.getDate() - hoje.getDay());
+      const sab = new Date(dom);
+      sab.setDate(dom.getDate() + 6);
+      return { de: dom, ate: sab };
+    }
+
+    if (periodoAtivo === 'mes') {
+      const ini = new Date(hoje.getFullYear(), hoje.getMonth(), 1);
+      const fim = new Date(hoje.getFullYear(), hoje.getMonth()+1, 0);
+      return { de: ini, ate: fim };
+    }
+
+    if (periodoAtivo === 'custom') {
+      const de  = document.getElementById('filtroDataDe').value;
+      const ate = document.getElementById('filtroDataAte').value;
+      if (!de || !ate) return null;
+      const [dy,dm,dd] = de.split('-').map(Number);
+      const [ay,am,ad] = ate.split('-').map(Number);
+      return { de: new Date(dy,dm-1,dd), ate: new Date(ay,am-1,ad) };
+    }
+
+    return null;
+  }
+
+  window.renderVisao = function() {
+    const range = getRangeDatas();
+    const filtroServico = document.getElementById('filtroServico').value;
+    const filtroCliente = document.getElementById('filtroCliente').value.toLowerCase().trim();
+    const list = document.getElementById('visaoList');
+
+    if (!range) {
+      list.innerHTML = '<div class="empty-state"><div class="icon">📅</div>Selecione o período personalizado.</div>';
+      return;
+    }
+
+    let results = [];
+
+    Object.keys(agenda).sort().forEach(key => {
+      const [y,m,d] = key.split('-').map(Number);
+      const dt = new Date(y,m-1,d); dt.setHours(0,0,0,0);
+
+      if (dt < range.de || dt > range.ate) return;
+      if (agenda[key].blocked) return;
+
+      (agenda[key].apts || []).forEach(apt => {
+        if (filtroServico && apt.service !== filtroServico) return;
+        if (filtroCliente && !apt.client.toLowerCase().includes(filtroCliente)) return;
+        results.push({ dt, key, ...apt });
+      });
+    });
+
+    // Resumo
+    const totalFat = results.reduce((s, r) => s + (Number(r.valor) || 0), 0);
+    document.getElementById('vrTotal').textContent = results.length;
+    document.getElementById('vrFat').textContent = formatValor(totalFat) || 'R$ 0,00';
+    document.getElementById('resultadoCount').textContent =
+      results.length > 0 ? `${results.length} agendamento(s) encontrado(s)` : '';
+
+    if (results.length === 0) {
+      list.innerHTML = '<div class="empty-state"><div class="icon">📭</div>Nenhum agendamento no período.</div>';
+      return;
+    }
+
+    // Agrupar por data
+    const grupos = {};
+    results.forEach(r => {
+      const k = dateKey(r.dt);
+      if (!grupos[k]) grupos[k] = { dt: r.dt, items: [] };
+      grupos[k].items.push(r);
+    });
+
+    list.innerHTML = Object.keys(grupos).sort().map(k => {
+      const g = grupos[k];
+      const totalGrupo = g.items.reduce((s, a) => s + (Number(a.valor) || 0), 0);
+      return `
+        <div class="section-sep">
+          ${WEEKDAYS[g.dt.getDay()]}, ${g.dt.getDate()} de ${MONTHS[g.dt.getMonth()]}
+          ${totalGrupo > 0 ? `<span style="color:var(--green);float:right;">${formatValor(totalGrupo)}</span>` : ''}
+        </div>
+        ${g.items.map(apt => `
+          <div class="visao-apt-card">
+            <div class="apt-time-block">
+              <div class="apt-time-start">${apt.timeStart}</div>
+              <div class="apt-time-sep">até</div>
+              <div class="apt-time-end">${apt.timeEnd}</div>
+            </div>
+            <div class="visao-body">
+              <div class="visao-client">${apt.client}</div>
+              <span class="servico-tag">${apt.service}</span>
+              ${apt.valor ? `<div class="visao-valor">${formatValor(apt.valor)}</div>` : ''}
+              ${apt.obs ? `<div class="visao-obs">${apt.obs}</div>` : ''}
+            </div>
+          </div>
+        `).join('')}
+      `;
+    }).join('');
   };
 
   // ══ BUSCA ══
