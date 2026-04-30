@@ -17,6 +17,7 @@
       --text: #f3f4f6;
       --muted: #9ca3af;
       --danger: #dc2626;
+      --green: #4ade80;
     }
 
     html, body { height: 100%; font-family: -apple-system, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); overscroll-behavior: none; }
@@ -28,12 +29,9 @@
     }
 
     .login-box {
-      background: var(--card);
-      border-radius: 20px;
-      padding: 36px 28px;
-      width: 90%; max-width: 360px;
-      text-align: center;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+      background: var(--card); border-radius: 20px;
+      padding: 36px 28px; width: 90%; max-width: 360px;
+      text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,0.6);
     }
 
     .login-box .logo { font-size: 3rem; margin-bottom: 6px; }
@@ -42,11 +40,9 @@
 
     .login-box input {
       width: 100%; background: var(--bg);
-      border: 1.5px solid var(--border);
-      border-radius: 12px; color: var(--text);
-      padding: 14px 16px; font-size: 1rem;
-      outline: none; margin-bottom: 12px;
-      text-align: center; letter-spacing: 4px;
+      border: 1.5px solid var(--border); border-radius: 12px;
+      color: var(--text); padding: 14px 16px; font-size: 1rem;
+      outline: none; margin-bottom: 12px; text-align: center; letter-spacing: 4px;
     }
 
     .login-box input:focus { border-color: var(--gold); }
@@ -56,15 +52,14 @@
       width: 100%; padding: 14px;
       background: linear-gradient(135deg, var(--gold), var(--gold-dark));
       border: none; border-radius: 12px;
-      color: #fff; font-size: 1rem; font-weight: 700;
-      cursor: pointer;
+      color: #fff; font-size: 1rem; font-weight: 700; cursor: pointer;
     }
 
     header {
       position: sticky; top: 0; z-index: 100;
       background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-      padding: 14px 20px;
-      display: none; align-items: center; justify-content: space-between;
+      padding: 14px 20px; display: none;
+      align-items: center; justify-content: space-between;
       box-shadow: 0 2px 12px rgba(0,0,0,0.5);
     }
 
@@ -101,8 +96,19 @@
 
     .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
     .summary-item { background: var(--card); border-radius: 12px; padding: 14px 8px; text-align: center; }
-    .summary-item .val { font-size: 2rem; font-weight: 700; color: var(--gold); line-height: 1; }
-    .summary-item .lbl { font-size: 0.65rem; color: var(--muted); margin-top: 5px; }
+    .summary-item .val { font-size: 1.6rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .summary-item .lbl { font-size: 0.62rem; color: var(--muted); margin-top: 5px; }
+
+    .faturamento-card {
+      background: linear-gradient(135deg, #1a2e1a, #1f2937);
+      border: 1px solid #2d4a2d;
+      border-radius: 14px; padding: 16px; margin-bottom: 14px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .faturamento-card .fat-label { font-size: 0.78rem; color: var(--green); text-transform: uppercase; letter-spacing: 0.5px; }
+    .faturamento-card .fat-val { font-size: 1.8rem; font-weight: 700; color: var(--green); margin-top: 4px; }
+    .faturamento-card .fat-icon { font-size: 2.2rem; opacity: 0.6; }
 
     .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
     .cal-nav h2 { font-size: 1rem; color: var(--gold); }
@@ -146,12 +152,13 @@
     input:focus, select:focus, textarea:focus { border-color: var(--gold); }
     textarea { min-height: 70px; resize: vertical; }
     .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    .form-row-3 { display: grid; grid-template-columns: 1fr auto 1fr; gap: 6px; align-items: end; }
+
+    .time-arrow { color: var(--muted); font-size: 1rem; padding-bottom: 13px; text-align: center; }
 
     .btn { width: 100%; padding: 14px; border-radius: 12px; border: none; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s; margin-top: 4px; }
     .btn:active { opacity: 0.8; }
     .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #fff; }
-    .btn-outline { background: transparent; border: 1.5px solid var(--gold); color: var(--gold); }
     .btn-danger-outline { background: transparent; border: 1.5px solid var(--danger); color: var(--danger); }
     .btn-sm { width: auto; padding: 7px 14px; font-size: 0.8rem; border-radius: 8px; }
 
@@ -163,12 +170,13 @@
 
     .apt-time-block { display: flex; flex-direction: column; align-items: center; min-width: 52px; }
     .apt-time-start { font-size: 1rem; font-weight: 700; color: var(--gold); line-height: 1; }
-    .apt-time-sep { font-size: 0.65rem; color: var(--muted); margin: 2px 0; }
+    .apt-time-sep { font-size: 0.6rem; color: var(--muted); margin: 2px 0; }
     .apt-time-end { font-size: 0.82rem; font-weight: 600; color: var(--muted); line-height: 1; }
 
     .apt-body { flex: 1; }
     .apt-client { font-size: 0.95rem; font-weight: 600; }
     .apt-service { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+    .apt-valor { font-size: 0.82rem; color: var(--green); font-weight: 600; margin-top: 3px; }
     .apt-obs { font-size: 0.75rem; color: #6b7280; margin-top: 3px; font-style: italic; }
     .apt-del { background: none; border: none; color: var(--danger); font-size: 1.1rem; cursor: pointer; padding: 2px 6px; border-radius: 6px; }
 
@@ -192,8 +200,10 @@
     .next-date { min-width: 42px; text-align: center; background: var(--bg); border-radius: 10px; padding: 6px 4px; }
     .next-date .nd { font-size: 1.3rem; font-weight: 700; color: var(--gold); line-height: 1; }
     .next-date .nm { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; }
+    .next-info { flex: 1; }
     .next-info .ni-client { font-size: 0.9rem; font-weight: 600; }
     .next-info .ni-detail { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+    .next-valor { font-size: 0.82rem; color: var(--green); font-weight: 700; white-space: nowrap; }
 
     .loading { text-align: center; padding: 30px; color: var(--muted); }
     .spinner { display: inline-block; width: 28px; height: 28px; border: 3px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 10px; }
@@ -202,16 +212,20 @@
     #toast {
       position: fixed; bottom: 74px; left: 50%;
       transform: translateX(-50%) translateY(20px);
-      background: #1f2937; color: #fff;
-      padding: 10px 20px; border-radius: 30px;
-      font-size: 0.85rem; opacity: 0; transition: all 0.3s;
-      z-index: 999; white-space: nowrap;
+      background: #1f2937; color: #fff; padding: 10px 20px;
+      border-radius: 30px; font-size: 0.85rem; opacity: 0;
+      transition: all 0.3s; z-index: 999; white-space: nowrap;
       border: 1px solid var(--border); pointer-events: none;
     }
 
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    .time-arrow { text-align: center; color: var(--muted); font-size: 0.8rem; padding-top: 28px; }
+    .input-valor-wrap { position: relative; }
+    .input-valor-wrap span {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: var(--green); font-weight: 700; font-size: 0.95rem; pointer-events: none;
+    }
+    .input-valor-wrap input { padding-left: 30px; color: var(--green); font-weight: 700; }
   </style>
 </head>
 <body>
@@ -248,6 +262,15 @@
     <div class="summary-item"><div class="val" id="sumMonth">0</div><div class="lbl">Este mês</div></div>
     <div class="summary-item"><div class="val" id="sumBlocked">0</div><div class="lbl">Dias fechados</div></div>
   </div>
+
+  <div class="faturamento-card">
+    <div>
+      <div class="fat-label">💰 Faturamento do mês</div>
+      <div class="fat-val" id="fatMonth">R$ 0,00</div>
+    </div>
+    <div class="fat-icon">📊</div>
+  </div>
+
   <div class="card">
     <h3>📋 Próximos agendamentos</h3>
     <div id="nextList"><div class="loading"><div class="spinner"></div><br>Carregando...</div></div>
@@ -280,7 +303,6 @@
     <div id="newAptForm" class="card">
       <h3>➕ Novo agendamento</h3>
 
-      <!-- Horário início e fim -->
       <div class="form-row-3">
         <div class="form-group">
           <label>Início</label>
@@ -293,30 +315,36 @@
         </div>
       </div>
 
-      <!-- Serviço -->
-      <div class="form-group">
-        <label>Serviço</label>
-        <select id="inService">
-          <option value="">Selecione</option>
-          <option>Maquiagem</option>
-          <option>Penteado</option>
-          <option>Dia da noiva</option>
-          <option>Hidratação</option>
-          <option>15 anos</option>
-          <option>Progressiva</option>
-          <option>Corte bordado</option>
-          <option>Escova</option>
-          <option>Realinhamento</option>
-        </select>
+      <div class="form-row-2">
+        <div class="form-group">
+          <label>Serviço</label>
+          <select id="inService">
+            <option value="">Selecione</option>
+            <option>Maquiagem</option>
+            <option>Penteado</option>
+            <option>Dia da noiva</option>
+            <option>Hidratação</option>
+            <option>15 anos</option>
+            <option>Progressiva</option>
+            <option>Corte bordado</option>
+            <option>Escova</option>
+            <option>Realinhamento</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Valor do serviço</label>
+          <div class="input-valor-wrap">
+            <span>R$</span>
+            <input type="number" id="inValor" placeholder="0,00" min="0" step="0.01"/>
+          </div>
+        </div>
       </div>
 
-      <!-- Cliente -->
       <div class="form-group">
         <label>Nome do cliente</label>
         <input type="text" id="inClient" placeholder="Ex: Maria Silva"/>
       </div>
 
-      <!-- Observação -->
       <div class="form-group">
         <label>Observação</label>
         <textarea id="inObs" placeholder="Preferências, alergias..."></textarea>
@@ -377,6 +405,11 @@
   let agenda = {};
   let syncStarted = false;
 
+  function formatValor(v) {
+    if (!v || isNaN(v)) return '';
+    return Number(v).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
   // ══ MOSTRAR APP ══
   function mostrarApp() {
     document.getElementById('loginScreen').style.display = 'none';
@@ -410,9 +443,7 @@
 
   document.getElementById('btnEntrar').addEventListener('click', doLogin);
 
-  if (sessionStorage.getItem('kr_auth') === '1') {
-    mostrarApp();
-  }
+  if (sessionStorage.getItem('kr_auth') === '1') mostrarApp();
 
   // ══ FIREBASE SYNC ══
   function startSync() {
@@ -488,17 +519,21 @@
     const year = new Date().getFullYear();
     const prefix = `${year}-${month}`;
 
-    let monthTotal = 0, blockedTotal = 0;
+    let monthTotal = 0, blockedTotal = 0, fatTotal = 0;
     Object.keys(agenda).forEach(k => {
       if (k.startsWith(prefix)) {
         monthTotal += agenda[k].apts?.length || 0;
         if (agenda[k].blocked) blockedTotal++;
+        (agenda[k].apts || []).forEach(apt => {
+          if (apt.valor) fatTotal += Number(apt.valor);
+        });
       }
     });
 
     document.getElementById('sumToday').textContent = todayData?.apts?.length || 0;
     document.getElementById('sumMonth').textContent = monthTotal;
     document.getElementById('sumBlocked').textContent = blockedTotal;
+    document.getElementById('fatMonth').textContent = formatValor(fatTotal);
 
     const list = document.getElementById('nextList');
     const today = new Date(); today.setHours(0,0,0,0);
@@ -529,6 +564,7 @@
           <div class="ni-client">${it.client}</div>
           <div class="ni-detail">${it.timeStart} – ${it.timeEnd} · ${it.service}</div>
         </div>
+        ${it.valor ? `<div class="next-valor">${formatValor(it.valor)}</div>` : ''}
       </div>
     `).join('');
   }
@@ -622,7 +658,15 @@
       return;
     }
 
-    list.innerHTML = dayData.apts.map(apt => `
+    // Total do dia
+    const totalDia = dayData.apts.reduce((s, a) => s + (Number(a.valor) || 0), 0);
+    const totalHtml = totalDia > 0
+      ? `<div style="text-align:right;font-size:0.82rem;color:var(--green);margin-bottom:10px;font-weight:600;">
+           Total do dia: ${formatValor(totalDia)}
+         </div>`
+      : '';
+
+    list.innerHTML = totalHtml + dayData.apts.map(apt => `
       <div class="apt-card">
         <div class="apt-time-block">
           <div class="apt-time-start">${apt.timeStart}</div>
@@ -632,6 +676,7 @@
         <div class="apt-body">
           <div class="apt-client">${apt.client}</div>
           <div class="apt-service">${apt.service}</div>
+          ${apt.valor ? `<div class="apt-valor">${formatValor(apt.valor)}</div>` : ''}
           ${apt.obs ? `<div class="apt-obs">${apt.obs}</div>` : ''}
         </div>
         <button class="apt-del" onclick="removeApt('${key}', ${apt.id})">✕</button>
@@ -649,6 +694,7 @@
     const timeEnd   = document.getElementById('inTimeEnd').value;
     const client    = document.getElementById('inClient').value.trim();
     const service   = document.getElementById('inService').value;
+    const valor     = document.getElementById('inValor').value;
     const obs       = document.getElementById('inObs').value.trim();
 
     if (!timeStart)  return showToast('⚠ Informe o horário de início.', true);
@@ -660,7 +706,10 @@
     const dup = dayData.apts.find(a => a.timeStart === timeStart);
     if (dup) return showToast(`⚠ Já existe agendamento às ${timeStart}.`, true);
 
-    dayData.apts.push({ id: Date.now(), timeStart, timeEnd, client, service, obs });
+    dayData.apts.push({
+      id: Date.now(), timeStart, timeEnd, client, service,
+      valor: valor ? parseFloat(valor) : null, obs
+    });
     dayData.apts.sort((a,b) => a.timeStart.localeCompare(b.timeStart));
 
     await saveDay(key, dayData);
@@ -669,6 +718,7 @@
     document.getElementById('inTimeEnd').value   = '';
     document.getElementById('inClient').value    = '';
     document.getElementById('inService').value   = '';
+    document.getElementById('inValor').value     = '';
     document.getElementById('inObs').value       = '';
 
     showToast('✓ Agendamento confirmado!');
@@ -724,13 +774,14 @@
           <div class="apt-time-sep">até</div>
           <div class="apt-time-end">${r.timeEnd}</div>
         </div>
-        <div style="min-width:44px;text-align:center;margin-right:4px;">
-          <div style="font-size:1.1rem;font-weight:700;color:var(--gold)">${r.dt.getDate()}</div>
-          <div style="font-size:0.65rem;color:var(--muted)">${MONTHS_SHORT[r.dt.getMonth()]}</div>
+        <div style="min-width:40px;text-align:center;margin-right:4px;">
+          <div style="font-size:1rem;font-weight:700;color:var(--gold)">${r.dt.getDate()}</div>
+          <div style="font-size:0.62rem;color:var(--muted)">${MONTHS_SHORT[r.dt.getMonth()]}</div>
         </div>
         <div class="apt-body">
           <div class="apt-client">${r.client}</div>
           <div class="apt-service">${r.service}</div>
+          ${r.valor ? `<div class="apt-valor">${formatValor(r.valor)}</div>` : ''}
           ${r.obs ? `<div class="apt-obs">${r.obs}</div>` : ''}
         </div>
       </div>
