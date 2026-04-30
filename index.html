@@ -35,11 +35,10 @@
     }
 
     .login-logo {
-      width: 140px; height: auto; margin-bottom: 16px;
-      filter: drop-shadow(0 2px 8px rgba(200,169,110,0.3));
+      width: 160px; height: auto; margin-bottom: 18px;
+      filter: drop-shadow(0 2px 12px rgba(200,169,110,0.4));
     }
 
-    .login-box h2 { color: var(--gold); font-size: 1.1rem; margin-bottom: 4px; }
     .login-box p { color: var(--muted); font-size: 0.82rem; margin-bottom: 24px; }
 
     .login-box input {
@@ -68,14 +67,152 @@
     }
 
     .header-left { display: flex; align-items: center; gap: 10px; }
+    .header-logo { height: 40px; width: auto; }
+    .header-text p { font-size: 0.7rem; color: rgba(255,255,255,0.85); margin-top: 1px; }
 
-    .header-logo {
-      height: 42px; width: auto;
-      filter: brightness(0) invert(1);
+    .sync-indicator { font-size: 0.7rem; color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 5px; }
+    .sync-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; }
+    .sync-dot.offline { background: #f87171; animation: none; }
+
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+      background: var(--card); border-top: 1px solid var(--border);
+      display: none; height: 62px;
     }
 
-    .header-text h1 { font-size: 1.1rem; color: #fff; }
-    .header-text p  { font-size: 0.7rem; color: rgba(255,255,255,0.85); margin-top: 1px; }
+    .bottom-nav button {
+      flex: 1; background: none; border: none; color: var(--muted);
+      font-size: 0.68rem; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 3px;
+      cursor: pointer; transition: color 0.2s;
+    }
 
-    .sync-indicator
+    .bottom-nav button .icon { font-size: 1.3rem; line-height: 1; }
+    .bottom-nav button.active { color: var(--gold); }
+
+    .page { display: none; padding: 16px 16px 80px; }
+    .page.active { display: block; }
+
+    .card { background: var(--card); border-radius: 14px; padding: 16px; margin-bottom: 14px; }
+    .card h3 { font-size: 0.82rem; color: var(--gold); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+    .summary-item { background: var(--card); border-radius: 12px; padding: 14px 8px; text-align: center; }
+    .summary-item .val { font-size: 1.6rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .summary-item .lbl { font-size: 0.62rem; color: var(--muted); margin-top: 5px; }
+
+    .faturamento-card {
+      background: linear-gradient(135deg, #1a2e1a, #1f2937);
+      border: 1px solid #2d4a2d;
+      border-radius: 14px; padding: 16px; margin-bottom: 14px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .faturamento-card .fat-label { font-size: 0.78rem; color: var(--green); text-transform: uppercase; letter-spacing: 0.5px; }
+    .faturamento-card .fat-val { font-size: 1.8rem; font-weight: 700; color: var(--green); margin-top: 4px; }
+    .faturamento-card .fat-icon { font-size: 2.2rem; opacity: 0.6; }
+
+    .filtros-wrap { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+
+    .filtro-btn {
+      padding: 7px 14px; border-radius: 20px; border: 1.5px solid var(--border);
+      background: var(--card2); color: var(--muted); font-size: 0.78rem;
+      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    }
+
+    .filtro-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(200,169,110,0.1); }
+
+    .filtros-selects { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+
+    .visao-resumo { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+
+    .visao-resumo-item { background: var(--card); border-radius: 12px; padding: 12px; text-align: center; }
+    .visao-resumo-item .vr-val { font-size: 1.4rem; font-weight: 700; color: var(--gold); }
+    .visao-resumo-item .vr-val.green { color: var(--green); }
+    .visao-resumo-item .vr-lbl { font-size: 0.68rem; color: var(--muted); margin-top: 4px; }
+
+    .visao-apt-card {
+      background: var(--bg); border-left: 4px solid var(--gold);
+      border-radius: 10px; padding: 12px 14px; margin-bottom: 10px;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+
+    .visao-body { flex: 1; }
+    .visao-client { font-size: 0.9rem; font-weight: 600; }
+    .visao-valor { font-size: 0.8rem; color: var(--green); font-weight: 600; margin-top: 3px; }
+    .visao-obs { font-size: 0.72rem; color: #6b7280; margin-top: 3px; font-style: italic; }
+
+    .servico-tag {
+      display: inline-block; font-size: 0.68rem; padding: 2px 8px;
+      border-radius: 10px; background: rgba(200,169,110,0.15);
+      color: var(--gold); border: 1px solid rgba(200,169,110,0.3); margin-top: 3px;
+    }
+
+    .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .cal-nav h2 { font-size: 1rem; color: var(--gold); }
+    .cal-nav button {
+      background: var(--gold); border: none; color: #fff;
+      width: 34px; height: 34px; border-radius: 50%;
+      font-size: 1.1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .cal-days-header { display: grid; grid-template-columns: repeat(7,1fr); margin-bottom: 6px; }
+    .cal-days-header span { text-align: center; font-size: 0.68rem; color: var(--gold); font-weight: 600; padding: 4px 0; }
+
+    .cal-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 4px; }
+
+    .cal-cell {
+      aspect-ratio: 1; border-radius: 10px; background: var(--card2);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      cursor: pointer; border: 2px solid transparent; transition: all 0.15s;
+      position: relative; font-size: 0.85rem; font-weight: 600;
+    }
+
+    .cal-cell.empty { background: transparent; cursor: default; }
+    .cal-cell.today { background: #1e3a5f; }
+    .cal-cell.selected { border-color: var(--gold); background: #2a3f5f; }
+    .cal-cell.blocked { background: #2d1515; }
+    .cal-cell.blocked .cal-num { color: #666; }
+
+    .cal-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); position: absolute; bottom: 4px; }
+    .cal-dot.blocked-dot { background: var(--danger); }
+
+    .form-group { margin-bottom: 12px; }
+    label { display: block; font-size: 0.78rem; color: var(--gold); margin-bottom: 5px; }
+
+    input, select, textarea {
+      width: 100%; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; color: var(--text); padding: 12px 14px;
+      font-size: 0.95rem; outline: none; -webkit-appearance: none; appearance: none;
+    }
+
+    input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+    textarea { min-height: 70px; resize: vertical; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .form-row-3 { display: grid; grid-template-columns: 1fr auto 1fr; gap: 6px; align-items: end; }
+    .time-arrow { color: var(--muted); font-size: 1rem; padding-bottom: 13px; text-align: center; }
+
+    .btn { width: 100%; padding: 14px; border-radius: 12px; border: none; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s; margin-top: 4px; }
+    .btn:active { opacity: 0.8; }
+    .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: #fff; }
+    .btn-danger-outline { background: transparent; border: 1.5px solid var(--danger); color: var(--danger); }
+    .btn-sm { width: auto; padding: 7px 14px; font-size: 0.8rem; border-radius: 8px; }
+
+    .apt-card {
+      background: var(--bg); border-left: 4px solid var(--gold);
+      border-radius: 10px; padding: 12px 14px; margin-bottom: 10px;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+
+    .apt-time-block { display: flex; flex-direction: column; align-items: center; min-width: 52px; }
+    .apt-time-start { font-size: 1rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .apt-time-sep { font-size: 0.6rem; color: var(--muted); margin: 2px 0; }
+    .apt-time-end { font-size: 0.82rem; font-weight: 600; color: var(--muted); line-height: 1; }
+
+    .apt-body { flex: 1; }
+    .apt-client { font-size: 0.95rem; font-weight: 600; }
+    .apt-service { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
 
