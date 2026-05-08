@@ -228,519 +228,547 @@
       border-radius: 10px; padding: 12px 14px; margin-bottom: 10px;
       display: flex; align-items: flex-start; gap: 12px;
     }
-    .apt-time-block { display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--muted); }
-    .apt-time-start { font-size: 1.1rem; font-weight: 700; color: var(--text); }
-    .apt-time-sep { font-size: 0.6rem; margin: -2px 0; }
-    .apt-body { flex: 1; }
-    .apt-client { font-size: 0.9rem; font-weight: 600; }
-    .apt-service { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
-    .apt-valor { font-size: 0.8rem; color: var(--green); font-weight: 600; margin-top: 3px; }
-    .apt-pago  { font-size: 0.78rem; color: var(--blue); margin-top: 2px; }
-    .apt-saldo { font-size: 0.78rem; font-weight: 700; margin-top: 2px; }
-    .apt-saldo.quitado { color: var(--green); }
-    .apt-saldo.pendente { color: var(--amber); }
-    .apt-obs { font-size: 0.72rem; color: #6b7280; margin-top: 3px; font-style: italic; }
-    .apt-del { background: none; border: none; color: var(--danger); font-size: 1.2rem; cursor: pointer; padding: 0 5px; }
+    .apt-time-block { display: flex; flex-direction: column; align-items: center; min-width: 52px; }
+    .apt-time-start { font-size: 1rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .apt-time-sep { font-size: 0.6rem; color: var(--muted); margin: 2px 0; }
+    .apt-time-end { font-size: 0.82rem; font-weight: 600; color: var(--muted); line-height: 1; }
 
-    .badge {
-      display: inline-block; padding: 4px 10px; border-radius: 15px;
-      font-size: 0.7rem; font-weight: 600; margin-left: 10px;
-      background: rgba(200,169,110,0.15); color: var(--gold);
-    }
-    .badge.closed { background: rgba(220,38,38,0.15); color: var(--danger); }
+    .apt-body { flex: 1; }
+    .apt-client { font-size: 0.95rem; font-weight: 600; }
+    .apt-service { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+    .apt-valor { font-size: 0.82rem; color: var(--green); font-weight: 600; margin-top: 3px; }
+    .apt-pago  { font-size: 0.8rem; color: var(--blue); margin-top: 2px; }
+    .apt-saldo { font-size: 0.8rem; font-weight: 700; margin-top: 2px; }
+    .apt-saldo.pendente { color: var(--amber); }
+    .apt-saldo.quitado  { color: var(--green); }
+    .apt-obs { font-size: 0.75rem; color: #6b7280; margin-top: 3px; font-style: italic; }
+    .apt-del { background: none; border: none; color: var(--danger); font-size: 1.1rem; cursor: pointer; padding: 2px 6px; border-radius: 6px; }
 
     .blocked-banner {
-      background: rgba(220,38,38,0.15); border: 1px solid var(--danger);
-      color: var(--danger); padding: 12px; border-radius: 10px;
-      text-align: center; font-size: 0.85rem; margin-bottom: 15px;
+      background: #2d1515; border: 1px solid var(--danger);
+      border-radius: 12px; padding: 16px; text-align: center;
+      color: #f87171; font-weight: 600; margin-bottom: 12px;
     }
 
-    .empty-state {
-      text-align: center; padding: 40px 20px; color: var(--muted);
-      font-size: 0.9rem;
-    }
-    .empty-state .icon { font-size: 3rem; margin-bottom: 15px; }
+    .empty-state { text-align: center; color: var(--muted); padding: 30px 0; font-size: 0.9rem; }
+    .empty-state .icon { font-size: 2.5rem; margin-bottom: 8px; }
 
-    #toast {
-      position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%);
-      background: #333; color: #fff; padding: 10px 20px; border-radius: 8px;
-      z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.3s ease-in-out;
-      font-size: 0.9rem; white-space: nowrap;
+    .day-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
+    .day-header h2 { font-size: 1rem; }
+
+    .badge { font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; background: var(--card); color: var(--gold); border: 1px solid var(--gold); }
+    .badge.closed { color: var(--danger); border-color: var(--danger); background: #2d1515; }
+
+    .next-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+    .next-item:last-child { border-bottom: none; }
+    .next-date { min-width: 42px; text-align: center; background: var(--bg); border-radius: 10px; padding: 6px 4px; }
+    .next-date .nd { font-size: 1.3rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .next-date .nm { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; }
+    .next-info { flex: 1; }
+    .next-info .ni-client { font-size: 0.9rem; font-weight: 600; }
+    .next-info .ni-detail { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+    .next-valor { font-size: 0.82rem; color: var(--green); font-weight: 700; white-space: nowrap; }
+
+    .loading { text-align: center; padding: 30px; color: var(--muted); }
+    .spinner { display: inline-block; width: 28px; height: 28px; border: 3px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 10px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .section-sep {
+      font-size: 0.78rem; font-weight: 700; color: var(--gold);
+      padding: 8px 0 6px; margin-top: 6px;
+      border-bottom: 1px solid var(--border); margin-bottom: 8px;
     }
-    #toast.show { opacity: 1; visibility: visible; }
-    #toast.error { background: var(--danger); }
+
+    .periodo-label {
+      font-size: 0.78rem; color: var(--gold); font-weight: 600;
+      margin-bottom: 10px; display: none;
+      background: rgba(200,169,110,0.08); border-radius: 8px;
+      padding: 6px 12px; text-align: center;
+    }
+
+    .resultado-count {
+      font-size: 0.78rem; color: var(--muted);
+      margin-bottom: 10px; text-align: right;
+    }
+
+    .custom-dates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; display: none; }
+
+    .toast {
+      position: fixed; bottom: 76px; left: 50%; transform: translateX(-50%) translateY(20px);
+      background: var(--card); border: 1.5px solid var(--gold);
+      color: var(--text); padding: 10px 20px; border-radius: 20px;
+      font-size: 0.85rem; opacity: 0; transition: all 0.3s; z-index: 9999;
+      white-space: nowrap; pointer-events: none;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
 
-  <div id="loginScreen">
-    <div class="login-box">
-      <img src="logo.png" alt="Espaço KR Logo" class="login-logo">
-      <p>Acesse sua agenda</p>
-      <input type="password" id="loginPassword" placeholder="Senha" onkeypress="if(event.key==='Enter') login()">
-      <div id="loginError" class="login-error"></div>
-      <button class="btn-login" onclick="login()">Entrar</button>
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <img src="logo_branca_sem_fundo.png" alt="Espaço KR" class="login-logo"/>
+    <p>Digite a senha para acessar</p>
+    <input type="password" id="loginInput" placeholder="••••••••" maxlength="20"/>
+    <div class="login-error" id="loginError"></div>
+    <button class="btn-login" id="btnEntrar">Entrar</button>
+  </div>
+</div>
+
+<!-- MODAL VISÃO GERAL -->
+<div id="modalVisao">
+  <div class="modal-box">
+    <div class="modal-icon">🔐</div>
+    <h3>Área Restrita</h3>
+    <p>Digite a senha para acessar a Visão Geral</p>
+    <input type="password" id="visaoSenhaInput" placeholder="••••••••" maxlength="20"/>
+    <div class="modal-error" id="visaoSenhaError"></div>
+    <div class="modal-btns">
+      <button class="btn-modal-cancel" onclick="cancelarVisao()">Cancelar</button>
+      <button class="btn-modal-ok" onclick="confirmarSenhaVisao()">Entrar</button>
     </div>
   </div>
+</div>
 
-  <header id="mainHeader">
-    <div class="header-left">
-      <img src="logo.png" alt="Espaço KR Logo" class="header-logo">
-      <div class="header-text">
-        <div style="font-weight: 700; color: #fff;">Espaço KR</div>
-        <p>Agenda</p>
-      </div>
-    </div>
-    <div class="sync-indicator">
-      <div id="syncDot" class="sync-dot"></div>
-      <span id="syncStatus">Offline</span>
-    </div>
-  </header>
-
-  <div id="homePage" class="page active">
-    <div class="card">
-      <h3>Resumo do Mês</h3>
-      <div class="summary-grid">
-        <div class="summary-item">
-          <div id="totalApts" class="val">0</div>
-          <div class="lbl">Agendamentos</div>
-        </div>
-        <div class="summary-item">
-          <div id="totalClients" class="val">0</div>
-          <div class="lbl">Clientes</div>
-        </div>
-        <!-- Ocultando o faturamento do mês na aba Início -->
-        <!-- <div class="summary-item">
-          <div id="totalRevenue" class="val">R$ 0,00</div>
-          <div class="lbl">Faturamento</div>
-        </div> -->
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="cal-nav">
-        <button onclick="changeMonth(-1)">‹</button>
-        <h2 id="calMonthLabel"></h2>
-        <button onclick="changeMonth(1)">›</button>
-      </div>
-      <div class="cal-days-header">
-        <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
-      </div>
-      <div id="calGrid" class="cal-grid">
-        <!-- Dias do calendário serão renderizados aqui -->
-      </div>
-    </div>
-
-    <div id="dayDetail" class="card" style="display: none;">
-      <h3 style="display: flex; align-items: center;">
-        <span id="dayDetailTitle"></span>
-        <span id="dayBadge" class="badge"></span>
-      </h3>
-      <div style="text-align: right; margin-bottom: 10px;">
-        <button id="toggleBlockBtn" class="btn btn-sm btn-danger-outline" onclick="toggleBlock()"></button>
-      </div>
-
-      <div id="blockedBanner" class="blocked-banner" style="display: none;">
-        Este dia está bloqueado para novos agendamentos.
-      </div>
-
-      <div id="newAptForm">
-        <div class="form-row-2">
-          <div class="form-group">
-            <label for="inTimeStart">Início</label>
-            <input type="time" id="inTimeStart">
-          </div>
-          <div class="form-group">
-            <label for="inTimeEnd">Término</label>
-            <input type="time" id="inTimeEnd">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="inClient">Cliente</label>
-          <input type="text" id="inClient" placeholder="Nome do cliente">
-        </div>
-
-        <div class="form-group">
-          <label for="inService">Serviço</label>
-          <select id="inService">
-            <option value="">Selecione um serviço</option>
-            <option value="Maquiagem">Maquiagem</option>
-            <option value="Penteado">Penteado</option>
-            <option value="Dia da noiva">Dia da noiva</option>
-            <option value="Hidratação">Hidratação</option>
-            <option value="15 anos">15 anos</option>
-            <option value="Progressiva">Progressiva</option>
-            <option value="Corte bordado">Corte bordado</option>
-            <option value="Escova">Escova</option>
-            <option value="Realinhamento">Realinhamento</option>
-          </select>
-        </div>
-
-        <div class="form-row-2">
-          <div class="form-group">
-            <label for="inValor">Valor do Serviço</label>
-            <input type="number" id="inValor" placeholder="R$ 0,00" step="0.01" oninput="calculateSaldo()">
-          </div>
-          <div class="form-group">
-            <label for="inValorPago">Valor Pago</label>
-            <input type="number" id="inValorPago" placeholder="R$ 0,00" step="0.01" oninput="calculateSaldo()">
-          </div>
-        </div>
-
-        <div id="saldoBox" class="saldo-box">
-          <span class="sb-label">Saldo:</span>
-          <span id="saldoDisplay" class="sb-val">—</span>
-        </div>
-
-        <div class="form-group">
-          <label for="inObs">Observações</label>
-          <textarea id="inObs" placeholder="Observações sobre o agendamento"></textarea>
-        </div>
-
-        <button class="btn btn-gold" onclick="addApt()">Adicionar Agendamento</button>
-      </div>
-
-      <div id="dayAptList" style="margin-top: 20px;">
-        <!-- Agendamentos do dia serão renderizados aqui -->
-      </div>
+<!-- HEADER -->
+<header id="mainHeader">
+  <div class="header-left">
+    <img src="logo_branca_sem_fundo.png" alt="Espaço KR" class="header-logo"/>
+    <div class="header-text">
+      <p id="headerDate"></p>
     </div>
   </div>
+  <div class="sync-indicator">
+    <div class="sync-dot" id="syncDot"></div>
+    <span id="syncLabel">Online</span>
+  </div>
+</header>
 
-  <div id="overviewPage" class="page">
-    <div class="card">
-      <h3>Visão Geral</h3>
-      <div class="filtros-wrap" id="filtrosPeriodo">
-        <button class="filtro-btn active" data-periodo="hoje" onclick="setPeriodo(this)">Hoje</button>
-        <button class="filtro-btn" data-periodo="semana" onclick="setPeriodo(this)">Semana</button>
-        <button class="filtro-btn" data-periodo="mes" onclick="setPeriodo(this)">Mês</button>
-        <button class="filtro-btn" data-periodo="proximo" onclick="setPeriodo(this)">Próximo Mês</button>
-        <button class="filtro-btn" data-periodo="custom" onclick="setPeriodo(this)">Personalizado</button>
-      </div>
-      <div id="customDates" class="form-row-2" style="display: none; margin-bottom: 14px;">
-        <div class="form-group" style="margin-bottom: 0;">
-          <label for="filtroDataDe">De</label>
-          <input type="date" id="filtroDataDe" onchange="renderVisao()">
-        </div>
-        <div class="form-group" style="margin-bottom: 0;">
-          <label for="filtroDataAte">Até</label>
-          <input type="date" id="filtroDataAte" onchange="renderVisao()">
-        </div>
-      </div>
-      <p id="periodoLabel" style="font-size: 0.75rem; color: var(--muted); margin-bottom: 10px; display: none;"></p>
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="summary-grid">
+    <div class="summary-item"><div class="val" id="sumToday">0</div><div class="lbl">Hoje</div></div>
+    <div class="summary-item"><div class="val" id="sumMonth">0</div><div class="lbl">Este mês</div></div>
+    <div class="summary-item"><div class="val" id="sumBlocked">0</div><div class="lbl">Dias fechados</div></div>
+  </div>
+  <div class="card">
+    <h3>📋 Próximos agendamentos</h3>
+    <div id="nextList"><div class="loading"><div class="spinner"></div><div>Carregando...</div></div></div>
+  </div>
+</div>
 
-      <div class="filtros-selects">
-        <div class="form-group" style="margin-bottom: 0;">
-          <label for="filtroServico">Serviço</label>
-          <select id="filtroServico" onchange="renderVisao()">
-            <option value="">Todos os serviços</option>
-            <option value="Maquiagem">Maquiagem</option>
-            <option value="Penteado">Penteado</option>
-            <option value="Dia da noiva">Dia da noiva</option>
-            <option value="Hidratação">Hidratação</option>
-            <option value="15 anos">15 anos</option>
-            <option value="Progressiva">Progressiva</option>
-            <option value="Corte bordado">Corte bordado</option>
-            <option value="Escova">Escova</option>
-            <option value="Realinhamento">Realinhamento</option>
-          </select>
-        </div>
-        <div class="form-group" style="margin-bottom: 0;">
-          <label for="filtroCliente">Cliente</label>
-          <input type="text" id="filtroCliente" placeholder="Filtrar por cliente" oninput="renderVisao()">
-        </div>
-      </div>
-
-      <div class="visao-resumo">
-        <div class="visao-resumo-item">
-          <div id="vrTotal" class="vr-val">0</div>
-          <div class="vr-lbl">Agendamentos</div>
-        </div>
-        <div class="visao-resumo-item">
-          <div id="vrFat" class="vr-val green">R$ 0,00</div>
-          <div class="vr-lbl">Faturamento</div>
-        </div>
-      </div>
-      <p id="resultadoCount" style="font-size: 0.75rem; color: var(--muted); margin-bottom: 10px;"></p>
+<!-- AGENDA -->
+<div class="page" id="page-calendar">
+  <div class="card">
+    <div class="cal-nav">
+      <button onclick="changeMonth(-1)">‹</button>
+      <h2 id="calMonthLabel"></h2>
+      <button onclick="changeMonth(1)">›</button>
     </div>
-
-    <div id="visaoList">
-      <!-- Lista de agendamentos da visão geral será renderizada aqui -->
+    <div class="cal-days-header">
+      <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
     </div>
+    <div class="cal-grid" id="calGrid"></div>
   </div>
 
-  <div id="searchPage" class="page">
+  <div id="dayDetail" style="display:none;">
     <div class="card">
-      <h3>Buscar Agendamentos</h3>
+      <div class="day-header">
+        <h2 id="dayDetailTitle"></h2>
+        <span class="badge" id="dayBadge"></span>
+      </div>
+      <button class="btn btn-sm btn-danger-outline" id="toggleBlockBtn" onclick="toggleBlock()">🔒 Fechar este dia</button>
+    </div>
+
+    <div id="blockedBanner" class="blocked-banner" style="display:none;">
+      🚫 Este dia está fechado para novos agendamentos.
+    </div>
+
+    <div id="newAptForm" class="card">
+      <h3>➕ Novo agendamento</h3>
+
+      <div class="form-row-3 form-group">
+        <div>
+          <label>Início</label>
+          <input type="time" id="inTimeStart"/>
+        </div>
+        <div class="time-arrow">→</div>
+        <div>
+          <label>Término</label>
+          <input type="time" id="inTimeEnd"/>
+        </div>
+      </div>
+
       <div class="form-group">
-        <label for="searchInput">Buscar por Cliente ou Serviço</label>
-        <input type="text" id="searchInput" placeholder="Digite para buscar..." oninput="renderSearchList()">
+        <label>Cliente</label>
+        <input type="text" id="inClient" placeholder="Nome da cliente"/>
       </div>
+
+      <div class="form-group">
+        <label>Serviço</label>
+        <select id="inService">
+          <option value="">Selecione...</option>
+          <option>Maquiagem</option>
+          <option>Penteado</option>
+          <option>Dia da noiva</option>
+          <option>Hidratação</option>
+          <option>15 anos</option>
+          <option>Progressiva</option>
+          <option>Corte bordado</option>
+          <option>Escova</option>
+          <option>Realinhamento</option>
+        </select>
+      </div>
+
+      <!-- VALOR DO SERVIÇO -->
+      <div class="form-group">
+        <label>Valor do serviço (R$)</label>
+        <input type="number" id="inValor" placeholder="0,00" min="0" step="0.01"
+               oninput="calcularSaldo()"/>
+      </div>
+
+      <!-- VALOR PAGO -->
+      <div class="form-group">
+        <label>Valor pago (R$)</label>
+        <input type="number" id="inValorPago" placeholder="0,00" min="0" step="0.01"
+               oninput="calcularSaldo()"/>
+      </div>
+
+      <!-- SALDO AUTOMÁTICO -->
+      <div class="saldo-box" id="saldoBox">
+        <span class="sb-label">💰 Saldo a pagar</span>
+        <span class="sb-val" id="saldoDisplay">—</span>
+      </div>
+
+      <div class="form-group">
+        <label>Observações</label>
+        <textarea id="inObs" placeholder="Alguma observação..."></textarea>
+      </div>
+
+      <button class="btn btn-gold" onclick="addApt()">✓ Confirmar agendamento</button>
     </div>
-    <div id="searchList">
-      <!-- Resultados da busca serão renderizados aqui -->
+
+    <div class="card">
+      <h3>📌 Agendamentos do dia</h3>
+      <div id="dayAptList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- VISÃO GERAL -->
+<div class="page" id="page-visao">
+  <div class="card">
+    <h3>📊 Filtrar período</h3>
+    <div class="filtros-wrap" id="filtrosPeriodo">
+      <button class="filtro-btn active" data-periodo="hoje"    onclick="setPeriodo(this)">Hoje</button>
+      <button class="filtro-btn"        data-periodo="semana"  onclick="setPeriodo(this)">Semana</button>
+      <button class="filtro-btn"        data-periodo="mes"     onclick="setPeriodo(this)">Este mês</button>
+      <button class="filtro-btn"        data-periodo="proximo" onclick="setPeriodo(this)">Próximo mês</button>
+      <button class="filtro-btn"        data-periodo="custom"  onclick="setPeriodo(this)">Personalizado</button>
+    </div>
+    <div class="custom-dates-grid" id="customDates">
+      <div><label>De</label><input type="date" id="filtroDataDe" onchange="renderVisao()"/></div>
+      <div><label>Até</label><input type="date" id="filtroDataAte" onchange="renderVisao()"/></div>
+    </div>
+    <div class="periodo-label" id="periodoLabel"></div>
+  </div>
+
+  <div class="card">
+    <h3>🔎 Filtrar resultados</h3>
+    <div class="filtros-selects">
+      <div>
+        <label>Serviço</label>
+        <select id="filtroServico" onchange="renderVisao()">
+          <option value="">Todos</option>
+          <option>Maquiagem</option>
+          <option>Penteado</option>
+          <option>Dia da noiva</option>
+          <option>Hidratação</option>
+          <option>15 anos</option>
+          <option>Progressiva</option>
+          <option>Corte bordado</option>
+          <option>Escova</option>
+          <option>Realinhamento</option>
+        </select>
+      </div>
+      <div>
+        <label>Cliente</label>
+        <input type="text" id="filtroCliente" placeholder="Nome..." oninput="renderVisao()"/>
+      </div>
     </div>
   </div>
 
-  <nav class="bottom-nav" id="mainNav">
-    <button id="navBtnHome" onclick="goPage('home', this)">
-      <span class="icon">🏠</span>
-      <span>Início</span>
-    </button>
-    <button id="navBtnOverview" onclick="goPage('overview', this)">
-      <span class="icon">📊</span>
-      <span>Visão Geral</span>
-    </button>
-    <button id="navBtnSearch" onclick="goPage('search', this)">
-      <span class="icon">🔍</span>
-      <span>Buscar</span>
-    </button>
-  </nav>
-
-  <div id="toast" class="toast"></div>
-
-  <div id="modalVisao" class="modal-overlay">
-    <div class="modal-box">
-      <div class="modal-icon">🔒</div>
-      <h3>Acesso Restrito</h3>
-      <p>Para acessar a Visão Geral, insira a senha:</p>
-      <input type="password" id="visaoSenhaInput" placeholder="Senha" onkeypress="if(event.key==='Enter') checkVisaoPassword()">
-      <div id="modalVisaoError" class="modal-error"></div>
-      <div class="modal-btns">
-        <button class="btn-modal-cancel" onclick="document.getElementById('modalVisao').classList.remove('show')">Cancelar</button>
-        <button class="btn-modal-ok" onclick="checkVisaoPassword()">Acessar</button>
-      </div>
+  <div class="visao-resumo">
+    <div class="visao-resumo-item">
+      <div class="vr-val" id="vrTotal">0</div>
+      <div class="vr-lbl">Agendamentos</div>
+    </div>
+    <div class="visao-resumo-item">
+      <div class="vr-val green" id="vrFat">R$ 0,00</div>
+      <div class="vr-lbl">Faturamento</div>
     </div>
   </div>
 
-<script>
-  // ── CONSTANTES ──
-  const MONTHS = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
-  const MONTHS_SHORT = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-  const WEEKDAYS = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+  <div class="resultado-count" id="resultadoCount"></div>
+  <div id="visaoList"></div>
+</div>
 
-  // ── HASH SHA-256 ──
-  async function sha256(text) {
-    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
-    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-  }
+<!-- BUSCA -->
+<div class="page" id="page-list">
+  <div class="card">
+    <h3>🔍 Buscar agendamentos</h3>
+    <input type="text" id="searchInput" placeholder="Nome do cliente ou serviço..." oninput="renderSearchList()"/>
+  </div>
+  <div id="searchList"></div>
+</div>
 
-  async function verificarSenha(input, hashEsperado) {
-    const h = await sha256(input);
-    return h === hashEsperado;
-  }
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" id="mainNav">
+  <button class="active" onclick="goPage('home',this)"><span class="icon">🏠</span>Início</button>
+  <button onclick="goPage('calendar',this)"><span class="icon">📅</span>Agenda</button>
+  <button onclick="solicitarVisao(this)"><span class="icon">📊</span>Visão geral</button>
+  <button onclick="goPage('list',this)"><span class="icon">🔍</span>Buscar</button>
+</nav>
 
-  // Hashes das senhas (gerados a partir das senhas reais)
-  // Senha principal de login:  "karla2024"  → hash abaixo
-  // Senha da visão geral:      "karla@2020" → hash abaixo
-  const HASH_PRINCIPAL = 'b4c3e80062391219660897647413661270274716781218967919920912130000'; // Hash de "karla2024"
-  const HASH_VISAO     = '2411132223202411132223202411132223202411132223202411132223202411'; // Hash de "karla@2020"
+<div id="toast" class="toast"></div>
 
-  // ── VARIÁVEIS GLOBAIS ──
-  let agenda = JSON.parse(localStorage.getItem('kr_agenda')) || {};
-  let currentCal = new Date();
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, onValue, set }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDuSjRYnCZ3QwCU_qQHd_IxwukqFDcCKsQ",
+    authDomain: "espaco-kr.firebaseapp.com",
+    databaseURL: "https://espaco-kr-default-rtdb.firebaseio.com",
+    projectId: "espaco-kr",
+    storageBucket: "espaco-kr.firebasestorage.app",
+    messagingSenderId: "697053007858",
+    appId: "1:697053007858:web:fae7eac2ae9a1123e0256b",
+    measurementId: "G-6YBEP2K1J1"
+  };
+
+  const SENHA_PRINCIPAL = "espaco2024";
+  const SENHA_VISAO     = "karla@2020";
+
+  const firebaseApp = initializeApp(firebaseConfig);
+  const db = getDatabase(firebaseApp);
+
+  const MONTHS       = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  const MONTHS_SHORT = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  const WEEKDAYS     = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+  const WEEKDAYS_FULL= ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+
+  let currentCal   = new Date();
   let selectedDate = null;
-  let periodoAtivo = 'hoje'; // Padrão para a visão geral
-  let btnVisaoRef = null; // Para guardar a referência do botão da Visão Geral
+  let agenda       = {};
+  let syncStarted  = false;
+  let periodoAtivo = 'hoje';
+  let btnVisaoRef  = null;
 
-  // ── FUNÇÕES AUXILIARES ──
-  function dateKey(date) {
-    return `${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2,'0')}-${date.getDate().toString().padStart(2,'0')}`;
+  // ── UTILITÁRIOS ──
+  function fv(v) {
+    if (!v && v !== 0) return '';
+    return Number(v).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  function dateKey(d) {
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
 
   function getDay(key) {
-    if (!agenda[key]) {
-      agenda[key] = { blocked: false, apts: [] };
-    }
+    if (!agenda[key]) agenda[key] = { blocked: false, apts: [] };
+    if (!agenda[key].apts) agenda[key].apts = [];
     return agenda[key];
   }
 
-  async function saveDay(key, data) {
-    agenda[key] = data;
-    await syncData();
-    renderCalendar();
-    renderDayDetail();
+  function formatDateDisplay(d) {
+    return `${WEEKDAYS[d.getDay()]}, ${d.getDate()} de ${MONTHS[d.getMonth()]}`;
   }
 
-  function fv(value) { // Format Value (Formata para moeda BRL)
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+  function fmtDataBR(iso) {
+    if (!iso) return '';
+    const [y,m,d] = iso.split('-');
+    return `${d}/${m}/${y}`;
   }
 
-  function formatDateDisplay(date) {
-    return `${WEEKDAYS[date.getDay()]}, ${date.getDate()} de ${MONTHS[date.getMonth()]} de ${date.getFullYear()}`;
-  }
+  // ── SALDO AUTOMÁTICO ──
+  window.calcularSaldo = function() {
+    const val  = parseFloat(document.getElementById('inValor').value)     || 0;
+    const pago = parseFloat(document.getElementById('inValorPago').value) || 0;
+    const saldo = val - pago;
+    const box   = document.getElementById('saldoBox');
+    const disp  = document.getElementById('saldoDisplay');
 
-  // ── CÁLCULO DE SALDO ──
-  function calculateSaldo() {
-    const valorInput = document.getElementById('inValor');
-    const valorPagoInput = document.getElementById('inValorPago');
-    const saldoDisplay = document.getElementById('saldoDisplay');
-    const saldoBox = document.getElementById('saldoBox');
-
-    const valor = parseFloat(valorInput.value) || 0;
-    const valorPago = parseFloat(valorPagoInput.value) || 0;
-    const saldo = valor - valorPago;
-
-    saldoDisplay.textContent = fv(saldo);
-    saldoBox.classList.remove('pendente', 'quitado');
-    saldoDisplay.classList.remove('pendente', 'quitado'); // Limpa classes do texto também
-
-    if (saldo > 0) {
-      saldoBox.classList.add('pendente');
-      saldoDisplay.classList.add('pendente');
-    } else if (saldo <= 0) {
-      saldoBox.classList.add('quitado');
-      saldoDisplay.classList.add('quitado');
-    } else {
-      saldoDisplay.textContent = '—'; // Se ambos forem 0 ou NaN, mostra traço
+    if (val === 0 && pago === 0) {
+      disp.textContent = '—';
+      disp.className   = 'sb-val';
+      box.className    = 'saldo-box';
+      return;
     }
-  }
 
-  // ── Sincronização (simulada) ──
-  let syncTimeout;
-  async function syncData() {
-    document.getElementById('syncStatus').textContent = 'Sincronizando...';
-    document.getElementById('syncDot').classList.remove('offline');
-    clearTimeout(syncTimeout);
-    syncTimeout = setTimeout(async () => {
-      try {
-        localStorage.setItem('kr_agenda', JSON.stringify(agenda));
-        document.getElementById('syncStatus').textContent = 'Online';
-        document.getElementById('syncDot').classList.remove('offline');
-        updateSummary();
-      } catch (e) {
-        document.getElementById('syncStatus').textContent = 'Offline';
-        document.getElementById('syncDot').classList.add('offline');
-        showToast('Erro ao salvar dados localmente.', true);
-      }
-    }, 1000); // Simula um delay de rede
-  }
+    if (saldo <= 0) {
+      disp.textContent = saldo < 0 ? `Crédito ${fv(Math.abs(saldo))}` : '✓ Quitado';
+      disp.className   = 'sb-val quitado';
+      box.className    = 'saldo-box quitado';
+    } else {
+      disp.textContent = fv(saldo);
+      disp.className   = 'sb-val pendente';
+      box.className    = 'saldo-box pendente';
+    }
+  };
 
-  // ── TOAST ──
-  let toastTimeout;
-  function showToast(message, isError = false) {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.className = 'toast show';
-    if (isError) toast.classList.add('error');
-    clearTimeout(toastTimeout);
-    toastTimeout = setTimeout(() => {
-      toast.classList.remove('show');
-      toast.classList.remove('error');
-    }, 3000);
+  // ── APP ──
+  function mostrarApp() {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('mainHeader').style.display  = 'flex';
+    document.getElementById('mainNav').style.display     = 'flex';
+    const now = new Date();
+    document.getElementById('headerDate').textContent =
+      `${WEEKDAYS_FULL[now.getDay()]}, ${now.getDate()} de ${MONTHS[now.getMonth()]}`;
+    if (!syncStarted) { syncStarted = true; startSync(); renderCalendar(); }
   }
 
   // ── LOGIN ──
-  async function login() {
-    const passwordInput = document.getElementById('loginPassword');
-    const password      = passwordInput.value;
-    const errorDiv      = document.getElementById('loginError');
-
-    errorDiv.textContent = ''; // Limpa mensagens de erro anteriores
-
-    if (!password) {
-      errorDiv.textContent = 'Por favor, insira a senha.';
-      return;
-    }
-
-    const ok = await verificarSenha(password, HASH_PRINCIPAL); // Usa o hash
-    if (ok) {
-      sessionStorage.setItem('kr_logged_in', 'true');
-      document.getElementById('loginScreen').style.display = 'none';
-      document.getElementById('mainHeader').style.display = 'flex';
-      document.getElementById('mainNav').style.display = 'flex';
-      initApp();
+  function doLogin() {
+    const val = document.getElementById('loginInput').value;
+    const err = document.getElementById('loginError');
+    if (val === SENHA_PRINCIPAL) {
+      sessionStorage.setItem('kr_auth','1');
+      err.textContent = '';
+      mostrarApp();
     } else {
-      errorDiv.textContent = 'Senha incorreta.';
-      passwordInput.value = '';
+      err.textContent = 'Senha incorreta. Tente novamente.';
+      document.getElementById('loginInput').value = '';
     }
   }
 
-  // ── NAVEGAÇÃO ──
-  function goPage(pageId, button) {
-    if (pageId === 'overview' && !sessionStorage.getItem('kr_visao')) {
-      btnVisaoRef = button; // Guarda a referência do botão
-      document.getElementById('modalVisao').classList.add('show');
-      document.getElementById('visaoSenhaInput').value = '';
-      document.getElementById('modalVisaoError').textContent = '';
-      return;
-    }
-    goPageDireto(pageId, button);
-  }
+  document.getElementById('btnEntrar').addEventListener('click', doLogin);
+  document.getElementById('loginInput').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+  if (sessionStorage.getItem('kr_auth') === '1') mostrarApp();
 
-  function goPageDireto(pageId, button) {
-    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-    document.getElementById(pageId + 'Page').classList.add('active');
-    document.querySelectorAll('.bottom-nav button').forEach(btn => btn.classList.remove('active'));
-    if (button) button.classList.add('active');
+  // ── MODAL VISÃO ──
+  window.solicitarVisao = function(btn) {
+    if (sessionStorage.getItem('kr_visao') === '1') { goPageDireto('visao', btn); return; }
+    btnVisaoRef = btn;
+    document.getElementById('visaoSenhaInput').value   = '';
+    document.getElementById('visaoSenhaError').textContent = '';
+    document.getElementById('modalVisao').classList.add('show');
+    setTimeout(() => document.getElementById('visaoSenhaInput').focus(), 100);
+  };
 
-    if (pageId === 'home') {
-      updateSummary();
-      renderCalendar();
-      document.getElementById('dayDetail').style.display = 'none';
-    } else if (pageId === 'overview') {
-      renderVisao();
-    } else if (pageId === 'search') {
-      document.getElementById('searchInput').value = '';
-      renderSearchList();
-    }
-  }
-
-  async function checkVisaoPassword() {
+  window.confirmarSenhaVisao = function() {
     const val = document.getElementById('visaoSenhaInput').value;
-    const err = document.getElementById('modalVisaoError');
-    err.textContent = '';
-    if (!val) {
-      err.textContent = 'Por favor, insira a senha.';
-      return;
-    }
-    const ok = await verificarSenha(val, HASH_VISAO); // Usa o hash
-    if (ok) {
-      sessionStorage.setItem('kr_visao','true');
+    const err = document.getElementById('visaoSenhaError');
+    if (val === SENHA_VISAO) {
+      sessionStorage.setItem('kr_visao','1');
       document.getElementById('modalVisao').classList.remove('show');
-      goPageDireto('overview', btnVisaoRef); // Usa a referência guardada
+      goPageDireto('visao', btnVisaoRef);
     } else {
       err.textContent = 'Senha incorreta.';
       document.getElementById('visaoSenhaInput').value = '';
     }
+  };
+
+  window.cancelarVisao = function() {
+    document.getElementById('modalVisao').classList.remove('show');
+  };
+
+  document.getElementById('visaoSenhaInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') window.confirmarSenhaVisao();
+  });
+
+  // ── NAVEGAÇÃO ──
+  function goPageDireto(id, btn) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.bottom-nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-'+id).classList.add('active');
+    if (btn) btn.classList.add('active');
+    if (id === 'home')     renderHome();
+    if (id === 'calendar') renderCalendar();
+    if (id === 'visao')    renderVisao();
+    if (id === 'list')     renderSearchList();
   }
 
-  // ── INICIALIZAÇÃO ──
-  function initApp() {
-    if (sessionStorage.getItem('kr_logged_in')) {
-      document.getElementById('loginScreen').style.display = 'none';
-      document.getElementById('mainHeader').style.display = 'flex';
-      document.getElementById('mainNav').style.display = 'flex';
-      goPageDireto('home', document.getElementById('navBtnHome'));
-    } else {
-      document.getElementById('loginScreen').style.display = 'flex';
-    }
-    syncData(); // Inicia a sincronização
+  window.goPage = function(id, btn) { goPageDireto(id, btn); };
+
+  // ── FIREBASE ──
+  function startSync() {
+    const agendaRef = ref(db, 'agenda');
+    onValue(agendaRef, snap => {
+      agenda = snap.val() || {};
+      renderHome(); renderCalendar();
+      if (selectedDate) renderDayDetail();
+      renderVisao(); setSyncStatus(true);
+    }, () => setSyncStatus(false));
+    window.addEventListener('online',  () => setSyncStatus(true));
+    window.addEventListener('offline', () => setSyncStatus(false));
   }
 
-  // ── RESUMO DO MÊS ──
-  function updateSummary() {
-    const currentMonth = currentCal.getMonth();
-    const currentYear  = currentCal.getFullYear();
-    let totalApts = 0;
-    let totalClients = new Set(); // Usar Set para contar clientes únicos
+  function setSyncStatus(online) {
+    document.getElementById('syncDot').className      = 'sync-dot'+(online?'':' offline');
+    document.getElementById('syncLabel').textContent  = online ? 'Online' : 'Offline';
+  }
 
-    Object.keys(agenda).forEach(key => {
-      const [year, month, day] = key.split('-').map(Number);
-      if (year === currentYear && month === (currentMonth + 1)) { // Mês é 1-based no key
-        if (!agenda[key].blocked) {
-          agenda[key].apts.forEach(apt => {
-            totalApts++;
-            totalClients.add(apt.client);
-          });
-        }
+  async function saveDay(key, dayData) {
+    try { await set(ref(db, `agenda/${key}`), dayData); }
+    catch(e) { showToast('⚠ Erro ao salvar. Verifique a conexão.', true); }
+  }
+
+  // ── TOAST ──
+  function showToast(msg, isError = false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.borderColor = isError ? '#dc2626' : '#c8a96e';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // ── HOME ──
+  function renderHome() {
+    const todayKey  = dateKey(new Date());
+    const todayData = agenda[todayKey];
+    const month     = String(new Date().getMonth()+1).padStart(2,'0');
+    const year      = new Date().getFullYear();
+    const prefix    = `${year}-${month}`;
+    let monthTotal = 0, blockedTotal = 0;
+    Object.keys(agenda).forEach(k => {
+      if (k.startsWith(prefix)) {
+        monthTotal += agenda[k].apts?.length || 0;
+        if (agenda[k].blocked) blockedTotal++;
       }
     });
+    document.getElementById('sumToday').textContent   = todayData?.apts?.length || 0;
+    document.getElementById('sumMonth').textContent   = monthTotal;
+    document.getElementById('sumBlocked').textContent = blockedTotal;
 
-    document.getElementById('totalApts').textContent    = totalApts;
-    document.getElementById('totalClients').textContent = totalClients.size;
-    // O faturamento total do mês foi removido da aba Início, conforme solicitado.
-    // document.getElementById('totalRevenue').textContent = fv(totalRevenue);
+    const list  = document.getElementById('nextList');
+    const today = new Date(); today.setHours(0,0,0,0);
+    let items   = [];
+    Object.keys(agenda).sort().forEach(k => {
+      const [y,m,d] = k.split('-').map(Number);
+      const dt = new Date(y,m-1,d);
+      if (dt >= today && !agenda[k].blocked)
+        (agenda[k].apts||[]).forEach(apt => items.push({ date: dt, ...apt }));
+    });
+    items = items.slice(0, 8);
+    if (!items.length) {
+      list.innerHTML = '<div class="empty-state"><div class="icon">📭</div>Nenhum agendamento futuro.</div>';
+      return;
+    }
+    list.innerHTML = items.map(it => `
+      <div class="next-item">
+        <div class="next-date">
+          <div class="nd">${it.date.getDate()}</div>
+          <div class="nm">${MONTHS_SHORT[it.date.getMonth()]}</div>
+        </div>
+        <div class="next-info">
+          <div class="ni-client">${it.client}</div>
+          <div class="ni-detail">${it.timeStart} – ${it.timeEnd} · ${it.service}</div>
+        </div>
+        ${it.valor ? `<div class="next-valor">${fv(it.valor)}</div>` : ''}
+      </div>`).join('');
   }
 
   // ── CALENDÁRIO ──
@@ -748,42 +776,30 @@
     const grid  = document.getElementById('calGrid');
     const label = document.getElementById('calMonthLabel');
     grid.innerHTML = '';
-
     const year  = currentCal.getFullYear();
     const month = currentCal.getMonth();
     const todayKey = dateKey(new Date());
-
     label.textContent = `${MONTHS[month]} ${year}`;
-
-    const firstDay    = new Date(year, month, 1).getDay(); // 0 = Dom, 1 = Seg...
+    const firstDay    = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month+1, 0).getDate();
-
-    // Células vazias para preencher o início da semana
     for (let i=0; i<firstDay; i++) {
-      const el = document.createElement('div');
-      el.className = 'cal-cell empty';
-      grid.appendChild(el);
+      const el = document.createElement('div'); el.className = 'cal-cell empty'; grid.appendChild(el);
     }
-
-    // Células para cada dia do mês
     for (let d=1; d<=daysInMonth; d++) {
       const dt  = new Date(year, month, d);
       const key = dateKey(dt);
-      const dd  = agenda[key]; // Dados do dia
+      const dd  = agenda[key];
       const el  = document.createElement('div');
       el.className = 'cal-cell';
       el.innerHTML = `<span class="cal-num">${d}</span>`;
-
       if (key === todayKey) el.classList.add('today');
       if (selectedDate && dateKey(selectedDate) === key) el.classList.add('selected');
-
       if (dd?.blocked) {
         el.classList.add('blocked');
         el.innerHTML += '<div class="cal-dot blocked-dot"></div>';
       } else if (dd?.apts?.length > 0) {
         el.innerHTML += '<div class="cal-dot"></div>';
       }
-
       el.onclick = () => selectDay(new Date(year, month, d));
       grid.appendChild(el);
     }
@@ -841,7 +857,9 @@
       const sTxt  = val === 0 ? '' : saldo <= 0
         ? (saldo < 0 ? `Crédito ${fv(Math.abs(saldo))}` : '✓ Quitado')
         : `Saldo: ${fv(saldo)}`;
-      const pagoTxt = apt.valorPago ? `💳 Pago: ${fv(apt.valorPago)}` : '';
+      const pagoTxt = apt.valorPago
+        ? `💳 Pago: ${fv(apt.valorPago)}`
+        : '';
       return `
         <div class="apt-card">
           <div class="apt-time-block">
@@ -852,10 +870,10 @@
           <div class="apt-body">
             <div class="apt-client">${apt.client}</div>
             <div class="apt-service">${apt.service}</div>
-            ${apt.valor ? `<div class="apt-valor">${fv(apt.valor)}</div>` : ''}
-            ${pagoTxt   ? `<div class="apt-pago">${pagoTxt}</div>`       : ''}
-            ${sTxt      ? `<div class="apt-saldo ${sCls}">${sTxt}</div>` : ''}
-            ${apt.obs   ? `<div class="apt-obs">${apt.obs}</div>`        : ''}
+            ${apt.valor  ? `<div class="apt-valor">${fv(apt.valor)}</div>` : ''}
+            ${pagoTxt    ? `<div class="apt-pago">${pagoTxt}</div>` : ''}
+            ${sTxt       ? `<div class="apt-saldo ${sCls}">${sTxt}</div>` : ''}
+            ${apt.obs    ? `<div class="apt-obs">${apt.obs}</div>` : ''}
           </div>
           <button class="apt-del" onclick="removeApt('${key}',${apt.id})">✕</button>
         </div>`;
@@ -896,7 +914,10 @@
     ['inTimeStart','inTimeEnd','inClient','inValor','inValorPago','inObs']
       .forEach(id => document.getElementById(id).value = '');
     document.getElementById('inService').value      = '';
-    calculateSaldo(); // Recalcula o saldo após adicionar
+    document.getElementById('saldoDisplay').textContent = '—';
+    document.getElementById('saldoDisplay').className   = 'sb-val';
+    document.getElementById('saldoBox').className       = 'saldo-box';
+
     showToast('✓ Agendamento confirmado!');
   };
 
@@ -1019,9 +1040,11 @@
           const saldo = val - pago;
           const sCls  = saldo <= 0 ? 'quitado' : 'pendente';
           const sTxt  = val === 0 ? '' : saldo <= 0
-            ? (saldo < 0 ? `Crédito ${fv(Math.abs(saldo))}` : '✓ Quitado')
+                      ? (saldo < 0 ? `Crédito ${fv(Math.abs(saldo))}` : '✓ Quitado')
             : `Saldo: ${fv(saldo)}`;
-          const pagoTxt = apt.valorPago ? `💳 Pago: ${fv(apt.valorPago)}` : '';
+          const pagoTxt = apt.valorPago
+            ? `💳 Pago: ${fv(apt.valorPago)}`
+            : '';
           return `
             <div class="visao-apt-card">
               <div class="apt-time-block">
@@ -1083,17 +1106,14 @@
           <div class="apt-body">
             <div class="apt-client">${r.client}</div>
             <div class="apt-service">${r.service}</div>
-            ${r.valor   ? `<div class="apt-valor">${fv(r.valor)}</div>`        : ''}
-            ${pagoTxt   ? `<div class="apt-pago">${pagoTxt}</div>`             : ''}
-            ${sTxt      ? `<div class="apt-saldo ${sCls}">${sTxt}</div>`       : ''}
-            ${r.obs     ? `<div class="apt-obs">${r.obs}</div>`                : ''}
+            ${r.valor   ? `<div class="apt-valor">${fv(r.valor)}</div>` : ''}
+            ${pagoTxt   ? `<div class="apt-pago">${pagoTxt}</div>` : ''}
+            ${sTxt      ? `<div class="apt-saldo ${sCls}">${sTxt}</div>` : ''}
+            ${r.obs     ? `<div class="apt-obs">${r.obs}</div>` : ''}
           </div>
         </div>`;
     }).join('');
   };
-
-  // ── INICIALIZAÇÃO DA APLICAÇÃO ──
-  document.addEventListener('DOMContentLoaded', initApp);
 </script>
 </body>
 </html>
