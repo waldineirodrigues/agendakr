@@ -209,6 +209,7 @@
     .btn-danger-outline { background: transparent; border: 1.5px solid var(--danger); color: var(--danger); }
     .btn-sm { width: auto; padding: 7px 14px; font-size: 0.8rem; border-radius: 8px; }
 
+    /* Caixa de saldo automático */
     .saldo-box {
       background: var(--bg); border: 1.5px solid var(--border);
       border-radius: 10px; padding: 12px 14px; margin-bottom: 12px;
@@ -233,11 +234,11 @@
     .apt-time-end { font-size: 0.82rem; font-weight: 600; color: var(--muted); line-height: 1; }
 
     .apt-body { flex: 1; }
-    .apt-client  { font-size: 0.95rem; font-weight: 600; }
+    .apt-client { font-size: 0.95rem; font-weight: 600; }
     .apt-service { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
-    .apt-valor   { font-size: 0.82rem; color: var(--green); font-weight: 600; margin-top: 3px; }
-    .apt-pago    { font-size: 0.8rem; color: var(--blue); margin-top: 2px; }
-    .apt-saldo   { font-size: 0.8rem; font-weight: 700; margin-top: 2px; }
+    .apt-valor { font-size: 0.82rem; color: var(--green); font-weight: 600; margin-top: 3px; }
+    .apt-pago  { font-size: 0.8rem; color: var(--blue); margin-top: 2px; }
+    .apt-saldo { font-size: 0.8rem; font-weight: 700; margin-top: 2px; }
     .apt-saldo.pendente { color: var(--amber); }
     .apt-saldo.quitado  { color: var(--green); }
     .apt-obs { font-size: 0.75rem; color: #6b7280; margin-top: 3px; font-style: italic; }
@@ -285,7 +286,10 @@
       padding: 6px 12px; text-align: center;
     }
 
-    .resultado-count { font-size: 0.78rem; color: var(--muted); margin-bottom: 10px; text-align: right; }
+    .resultado-count {
+      font-size: 0.78rem; color: var(--muted);
+      margin-bottom: 10px; text-align: right;
+    }
 
     .custom-dates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; display: none; }
 
@@ -417,16 +421,21 @@
         </select>
       </div>
 
+      <!-- VALOR DO SERVIÇO -->
       <div class="form-group">
         <label>Valor do serviço (R$)</label>
-        <input type="number" id="inValor" placeholder="0,00" min="0" step="0.01" oninput="calcularSaldo()"/>
+        <input type="number" id="inValor" placeholder="0,00" min="0" step="0.01"
+               oninput="calcularSaldo()"/>
       </div>
 
+      <!-- VALOR PAGO -->
       <div class="form-group">
         <label>Valor pago (R$)</label>
-        <input type="number" id="inValorPago" placeholder="0,00" min="0" step="0.01" oninput="calcularSaldo()"/>
+        <input type="number" id="inValorPago" placeholder="0,00" min="0" step="0.01"
+               oninput="calcularSaldo()"/>
       </div>
 
+      <!-- SALDO AUTOMÁTICO -->
       <div class="saldo-box" id="saldoBox">
         <span class="sb-label">💰 Saldo a pagar</span>
         <span class="sb-val" id="saldoDisplay">—</span>
@@ -441,7 +450,7 @@
     </div>
 
     <div class="card">
-      <h3>📅 Agendamentos do dia</h3>
+      <h3>📌 Agendamentos do dia</h3>
       <div id="dayAptList"></div>
     </div>
   </div>
@@ -449,6 +458,47 @@
 
 <!-- VISÃO GERAL -->
 <div class="page" id="page-visao">
+  <div class="card">
+    <h3>📊 Filtrar período</h3>
+    <div class="filtros-wrap" id="filtrosPeriodo">
+      <button class="filtro-btn active" data-periodo="hoje"    onclick="setPeriodo(this)">Hoje</button>
+      <button class="filtro-btn"        data-periodo="semana"  onclick="setPeriodo(this)">Semana</button>
+      <button class="filtro-btn"        data-periodo="mes"     onclick="setPeriodo(this)">Este mês</button>
+      <button class="filtro-btn"        data-periodo="proximo" onclick="setPeriodo(this)">Próximo mês</button>
+      <button class="filtro-btn"        data-periodo="custom"  onclick="setPeriodo(this)">Personalizado</button>
+    </div>
+    <div class="custom-dates-grid" id="customDates">
+      <div><label>De</label><input type="date" id="filtroDataDe" onchange="renderVisao()"/></div>
+      <div><label>Até</label><input type="date" id="filtroDataAte" onchange="renderVisao()"/></div>
+    </div>
+    <div class="periodo-label" id="periodoLabel"></div>
+  </div>
+
+  <div class="card">
+    <h3>🔎 Filtrar resultados</h3>
+    <div class="filtros-selects">
+      <div>
+        <label>Serviço</label>
+        <select id="filtroServico" onchange="renderVisao()">
+          <option value="">Todos</option>
+          <option>Maquiagem</option>
+          <option>Penteado</option>
+          <option>Dia da noiva</option>
+          <option>Hidratação</option>
+          <option>15 anos</option>
+          <option>Progressiva</option>
+          <option>Corte bordado</option>
+          <option>Escova</option>
+          <option>Realinhamento</option>
+        </select>
+      </div>
+      <div>
+        <label>Cliente</label>
+        <input type="text" id="filtroCliente" placeholder="Nome..." oninput="renderVisao()"/>
+      </div>
+    </div>
+  </div>
+
   <div class="visao-resumo">
     <div class="visao-resumo-item">
       <div class="vr-val" id="vrTotal">0</div>
@@ -460,121 +510,55 @@
     </div>
   </div>
 
-  <div id="filtrosPeriodo" class="filtros-wrap">
-    <button class="filtro-btn active" data-periodo="hoje"   onclick="setPeriodo(this)">Hoje</button>
-    <button class="filtro-btn"        data-periodo="semana" onclick="setPeriodo(this)">Semana</button>
-    <button class="filtro-btn"        data-periodo="mes"    onclick="setPeriodo(this)">Este mês</button>
-    <button class="filtro-btn"        data-periodo="proximo" onclick="setPeriodo(this)">Próximo mês</button>
-    <button class="filtro-btn"        data-periodo="custom" onclick="setPeriodo(this)">Período</button>
-  </div>
-
-  <div class="custom-dates-grid" id="customDates">
-    <div class="form-group">
-      <label>De</label>
-      <input type="date" id="filtroDataDe" onchange="renderVisao()"/>
-    </div>
-    <div class="form-group">
-      <label>Até</label>
-      <input type="date" id="filtroDataAte" onchange="renderVisao()"/>
-    </div>
-  </div>
-
-  <div class="periodo-label" id="periodoLabel"></div>
-
-  <div class="filtros-selects">
-    <div class="form-group" style="margin-bottom:0;">
-      <select id="filtroServico" onchange="renderVisao()">
-        <option value="">Todos os serviços</option>
-        <option>Maquiagem</option>
-        <option>Penteado</option>
-        <option>Dia da noiva</option>
-        <option>Hidratação</option>
-        <option>15 anos</option>
-        <option>Progressiva</option>
-        <option>Corte bordado</option>
-        <option>Escova</option>
-        <option>Realinhamento</option>
-      </select>
-    </div>
-    <div class="form-group" style="margin-bottom:0;">
-      <input type="text" id="filtroCliente" placeholder="Buscar cliente..." oninput="renderVisao()"/>
-    </div>
-  </div>
-
   <div class="resultado-count" id="resultadoCount"></div>
   <div id="visaoList"></div>
 </div>
 
 <!-- BUSCA -->
 <div class="page" id="page-list">
-  <div class="card" style="margin-bottom:14px;">
-    <input type="text" id="searchInput" placeholder="🔍 Buscar cliente ou serviço..." oninput="renderSearchList()"/>
+  <div class="card">
+    <h3>🔍 Buscar agendamentos</h3>
+    <input type="text" id="searchInput" placeholder="Nome do cliente ou serviço..." oninput="renderSearchList()"/>
   </div>
-  <div id="searchList">
-    <div class="empty-state"><div class="icon">🔍</div>Digite para buscar.</div>
-  </div>
+  <div id="searchList"></div>
 </div>
 
-<!-- NAV -->
-<nav class="bottom-nav" id="mainNav" style="display:flex;">
-  <button onclick="goPage('home',this)" class="active">
-    <span class="icon">🏠</span>Início
-  </button>
-  <button onclick="goPage('calendar',this)">
-    <span class="icon">📅</span>Agenda
-  </button>
-  <button onclick="solicitarVisao(this)">
-    <span class="icon">📊</span>Visão
-  </button>
-  <button onclick="goPage('list',this)">
-    <span class="icon">🔍</span>Busca
-  </button>
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" id="mainNav">
+  <button class="active" onclick="goPage('home',this)"><span class="icon">🏠</span>Início</button>
+  <button onclick="goPage('calendar',this)"><span class="icon">📅</span>Agenda</button>
+  <button onclick="solicitarVisao(this)"><span class="icon">📊</span>Visão geral</button>
+  <button onclick="goPage('list',this)"><span class="icon">🔍</span>Buscar</button>
 </nav>
 
 <div id="toast" class="toast"></div>
 
 <script type="module">
-  import { initializeApp }              from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-  import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js';
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, onValue, set }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
   const firebaseConfig = {
-    apiKey:            "AIzaSyBkXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    authDomain:        "espacokr-agenda.firebaseapp.com",
-    databaseURL:       "https://espacokr-agenda-default-rtdb.firebaseio.com",
-    projectId:         "espacokr-agenda",
-    storageBucket:     "espacokr-agenda.firebasestorage.app",
+    apiKey: "AIzaSyDuSjRYnCZ3QwCU_qQHd_IxwukqFDcCKsQ",
+    authDomain: "espaco-kr.firebaseapp.com",
+    databaseURL: "https://espaco-kr-default-rtdb.firebaseio.com",
+    projectId: "espaco-kr",
+    storageBucket: "espaco-kr.firebasestorage.app",
     messagingSenderId: "697053007858",
-    appId:             "1:697053007858:web:fae7eac2ae9a1123e0256b",
-    measurementId:     "G-6YBEP2K1J1"
+    appId: "1:697053007858:web:fae7eac2ae9a1123e0256b",
+    measurementId: "G-6YBEP2K1J1"
   };
 
-  // ══════════════════════════════════════════════
-  // SENHAS PROTEGIDAS POR HASH SHA-256
-  // Senha principal : espaco2024  → hash abaixo
-  // Senha visão     : karla@2020  → hash abaixo
-  // Para gerar novos hashes abra o console (F12) e rode:
-  //   sha256('suaSenha').then(console.log)
-  // ══════════════════════════════════════════════
-  const HASH_PRINCIPAL = 'f2ca1bb6c7e907d06dafe4687e579fce76b37e4e93b7605022da52e6ccc26fd2';
-  const HASH_VISAO     = '7b6922fd772a566a39c4f0f10e8c4528af5a0d56534e0c79f64e22eb2d54651e';
-
-  async function sha256(text) {
-    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
-    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-  }
-
-  async function verificarSenha(input, hashEsperado) {
-    const h = await sha256(input);
-    return h === hashEsperado;
-  }
+  const SENHA_PRINCIPAL = "espaco2024";
+  const SENHA_VISAO     = "karla@2020";
 
   const firebaseApp = initializeApp(firebaseConfig);
-  const db          = getDatabase(firebaseApp);
+  const db = getDatabase(firebaseApp);
 
-  const MONTHS        = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-  const MONTHS_SHORT  = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
-  const WEEKDAYS      = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-  const WEEKDAYS_FULL = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+  const MONTHS       = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  const MONTHS_SHORT = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  const WEEKDAYS     = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+  const WEEKDAYS_FULL= ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
 
   let currentCal   = new Date();
   let selectedDate = null;
@@ -586,7 +570,7 @@
   // ── UTILITÁRIOS ──
   function fv(v) {
     if (!v && v !== 0) return '';
-    return Number(v).toLocaleString('pt-BR', { style:'currency', currency:'BRL' });
+    return Number(v).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   }
 
   function dateKey(d) {
@@ -603,10 +587,16 @@
     return `${WEEKDAYS[d.getDay()]}, ${d.getDate()} de ${MONTHS[d.getMonth()]}`;
   }
 
+  function fmtDataBR(iso) {
+    if (!iso) return '';
+    const [y,m,d] = iso.split('-');
+    return `${d}/${m}/${y}`;
+  }
+
   // ── SALDO AUTOMÁTICO ──
   window.calcularSaldo = function() {
-    const val   = parseFloat(document.getElementById('inValor').value)     || 0;
-    const pago  = parseFloat(document.getElementById('inValorPago').value) || 0;
+    const val  = parseFloat(document.getElementById('inValor').value)     || 0;
+    const pago = parseFloat(document.getElementById('inValorPago').value) || 0;
     const saldo = val - pago;
     const box   = document.getElementById('saldoBox');
     const disp  = document.getElementById('saldoDisplay');
@@ -617,6 +607,7 @@
       box.className    = 'saldo-box';
       return;
     }
+
     if (saldo <= 0) {
       disp.textContent = saldo < 0 ? `Crédito ${fv(Math.abs(saldo))}` : '✓ Quitado';
       disp.className   = 'sb-val quitado';
@@ -639,12 +630,11 @@
     if (!syncStarted) { syncStarted = true; startSync(); renderCalendar(); }
   }
 
-  // ── LOGIN COM HASH ──
-  async function doLogin() {
+  // ── LOGIN ──
+  function doLogin() {
     const val = document.getElementById('loginInput').value;
     const err = document.getElementById('loginError');
-    const ok  = await verificarSenha(val, HASH_PRINCIPAL);
-    if (ok) {
+    if (val === SENHA_PRINCIPAL) {
       sessionStorage.setItem('kr_auth','1');
       err.textContent = '';
       mostrarApp();
@@ -658,21 +648,20 @@
   document.getElementById('loginInput').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
   if (sessionStorage.getItem('kr_auth') === '1') mostrarApp();
 
-  // ── MODAL VISÃO COM HASH ──
+  // ── MODAL VISÃO ──
   window.solicitarVisao = function(btn) {
     if (sessionStorage.getItem('kr_visao') === '1') { goPageDireto('visao', btn); return; }
     btnVisaoRef = btn;
-    document.getElementById('visaoSenhaInput').value        = '';
-    document.getElementById('visaoSenhaError').textContent  = '';
+    document.getElementById('visaoSenhaInput').value   = '';
+    document.getElementById('visaoSenhaError').textContent = '';
     document.getElementById('modalVisao').classList.add('show');
     setTimeout(() => document.getElementById('visaoSenhaInput').focus(), 100);
   };
 
-  window.confirmarSenhaVisao = async function() {
+  window.confirmarSenhaVisao = function() {
     const val = document.getElementById('visaoSenhaInput').value;
     const err = document.getElementById('visaoSenhaError');
-    const ok  = await verificarSenha(val, HASH_VISAO);
-    if (ok) {
+    if (val === SENHA_VISAO) {
       sessionStorage.setItem('kr_visao','1');
       document.getElementById('modalVisao').classList.remove('show');
       goPageDireto('visao', btnVisaoRef);
@@ -718,8 +707,8 @@
   }
 
   function setSyncStatus(online) {
-    document.getElementById('syncDot').className     = 'sync-dot'+(online?'':' offline');
-    document.getElementById('syncLabel').textContent = online ? 'Online' : 'Offline';
+    document.getElementById('syncDot').className      = 'sync-dot'+(online?'':' offline');
+    document.getElementById('syncLabel').textContent  = online ? 'Online' : 'Offline';
   }
 
   async function saveDay(key, dayData) {
@@ -738,8 +727,11 @@
 
   // ── HOME ──
   function renderHome() {
-    const todayKey = dateKey(new Date());
-    const prefix   = todayKey.slice(0,7);
+    const todayKey  = dateKey(new Date());
+    const todayData = agenda[todayKey];
+    const month     = String(new Date().getMonth()+1).padStart(2,'0');
+    const year      = new Date().getFullYear();
+    const prefix    = `${year}-${month}`;
     let monthTotal = 0, blockedTotal = 0;
     Object.keys(agenda).forEach(k => {
       if (k.startsWith(prefix)) {
@@ -747,12 +739,13 @@
         if (agenda[k].blocked) blockedTotal++;
       }
     });
-    document.getElementById('sumToday').textContent   = agenda[todayKey]?.apts?.length || 0;
+    document.getElementById('sumToday').textContent   = todayData?.apts?.length || 0;
     document.getElementById('sumMonth').textContent   = monthTotal;
     document.getElementById('sumBlocked').textContent = blockedTotal;
 
+    const list  = document.getElementById('nextList');
     const today = new Date(); today.setHours(0,0,0,0);
-    let items = [];
+    let items   = [];
     Object.keys(agenda).sort().forEach(k => {
       const [y,m,d] = k.split('-').map(Number);
       const dt = new Date(y,m-1,d);
@@ -760,7 +753,6 @@
         (agenda[k].apts||[]).forEach(apt => items.push({ date: dt, ...apt }));
     });
     items = items.slice(0, 8);
-    const list = document.getElementById('nextList');
     if (!items.length) {
       list.innerHTML = '<div class="empty-state"><div class="icon">📭</div>Nenhum agendamento futuro.</div>';
       return;
@@ -865,7 +857,9 @@
       const sTxt  = val === 0 ? '' : saldo <= 0
         ? (saldo < 0 ? `Crédito ${fv(Math.abs(saldo))}` : '✓ Quitado')
         : `Saldo: ${fv(saldo)}`;
-      const pagoTxt = apt.valorPago ? `💳 Pago: ${fv(apt.valorPago)}` : '';
+      const pagoTxt = apt.valorPago
+        ? `💳 Pago: ${fv(apt.valorPago)}`
+        : '';
       return `
         <div class="apt-card">
           <div class="apt-time-block">
@@ -876,10 +870,10 @@
           <div class="apt-body">
             <div class="apt-client">${apt.client}</div>
             <div class="apt-service">${apt.service}</div>
-            ${apt.valor ? `<div class="apt-valor">${fv(apt.valor)}</div>` : ''}
-            ${pagoTxt   ? `<div class="apt-pago">${pagoTxt}</div>`       : ''}
-            ${sTxt      ? `<div class="apt-saldo ${sCls}">${sTxt}</div>` : ''}
-            ${apt.obs   ? `<div class="apt-obs">${apt.obs}</div>`        : ''}
+            ${apt.valor  ? `<div class="apt-valor">${fv(apt.valor)}</div>` : ''}
+            ${pagoTxt    ? `<div class="apt-pago">${pagoTxt}</div>` : ''}
+            ${sTxt       ? `<div class="apt-saldo ${sCls}">${sTxt}</div>` : ''}
+            ${apt.obs    ? `<div class="apt-obs">${apt.obs}</div>` : ''}
           </div>
           <button class="apt-del" onclick="removeApt('${key}',${apt.id})">✕</button>
         </div>`;
@@ -1046,9 +1040,11 @@
           const saldo = val - pago;
           const sCls  = saldo <= 0 ? 'quitado' : 'pendente';
           const sTxt  = val === 0 ? '' : saldo <= 0
-            ? (saldo < 0 ? `Crédito ${fv(Math.abs(saldo))}` : '✓ Quitado')
+                      ? (saldo < 0 ? `Crédito ${fv(Math.abs(saldo))}` : '✓ Quitado')
             : `Saldo: ${fv(saldo)}`;
-          const pagoTxt = apt.valorPago ? `💳 Pago: ${fv(apt.valorPago)}` : '';
+          const pagoTxt = apt.valorPago
+            ? `💳 Pago: ${fv(apt.valorPago)}`
+            : '';
           return `
             <div class="visao-apt-card">
               <div class="apt-time-block">
@@ -1059,10 +1055,10 @@
               <div class="visao-body">
                 <div class="visao-client">${apt.client}</div>
                 <span class="servico-tag">${apt.service}</span>
-                ${apt.valor ? `<div class="visao-valor">${fv(apt.valor)}</div>` : ''}
-                ${pagoTxt   ? `<div class="visao-pago">${pagoTxt}</div>`       : ''}
-                ${sTxt      ? `<div class="visao-saldo ${sCls}">${sTxt}</div>` : ''}
-                ${apt.obs   ? `<div class="visao-obs">${apt.obs}</div>`        : ''}
+                ${apt.valor  ? `<div class="visao-valor">${fv(apt.valor)}</div>` : ''}
+                ${pagoTxt    ? `<div class="visao-pago">${pagoTxt}</div>` : ''}
+                ${sTxt       ? `<div class="visao-saldo ${sCls}">${sTxt}</div>` : ''}
+                ${apt.obs    ? `<div class="visao-obs">${apt.obs}</div>` : ''}
               </div>
             </div>`;
         }).join('')}
@@ -1110,10 +1106,10 @@
           <div class="apt-body">
             <div class="apt-client">${r.client}</div>
             <div class="apt-service">${r.service}</div>
-            ${r.valor   ? `<div class="apt-valor">${fv(r.valor)}</div>`        : ''}
-            ${pagoTxt   ? `<div class="apt-pago">${pagoTxt}</div>`             : ''}
-            ${sTxt      ? `<div class="apt-saldo ${sCls}">${sTxt}</div>`       : ''}
-            ${r.obs     ? `<div class="apt-obs">${r.obs}</div>`                : ''}
+            ${r.valor   ? `<div class="apt-valor">${fv(r.valor)}</div>` : ''}
+            ${pagoTxt   ? `<div class="apt-pago">${pagoTxt}</div>` : ''}
+            ${sTxt      ? `<div class="apt-saldo ${sCls}">${sTxt}</div>` : ''}
+            ${r.obs     ? `<div class="apt-obs">${r.obs}</div>` : ''}
           </div>
         </div>`;
     }).join('');
@@ -1121,4 +1117,3 @@
 </script>
 </body>
 </html>
-
